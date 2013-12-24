@@ -71,7 +71,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': '_5_8',
         'USER': 'admin_5_8',
-        'PASSWORD': 'fe175li',
+        'PASSWORD': 'admin',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -80,7 +80,7 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-CO'
 
 TIME_ZONE = 'UTC'
 
@@ -94,11 +94,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = "/static/"
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates')
 )
 
-MEDIA_ROOT = os.path.join(STATIC_URL, 'media')
+MEDIA_ROOT = os.path.join(STATIC_URL, 'images')
 MEDIA_URL = 'media/'

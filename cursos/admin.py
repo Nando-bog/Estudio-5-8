@@ -1,3 +1,6 @@
 from django.contrib import admin
+from cursos.models import Curso, Leccion, Recurso
 
-# Register your models here.
+admin.site.register(Recurso)
+admin.site.register(Curso)
+admin.site.register(Leccion)
