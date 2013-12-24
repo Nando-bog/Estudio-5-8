@@ -2,7 +2,7 @@ Sitio web para 5-8 Carpintería, en proceso y apenas comenzando. Desarrollado co
 
 Planeo que incluya las siguientes funciones:
 
-1. Publicación de cursos, guías y tutoriales con recursos multimedia (imágenes, videos, textos, gráficos)
+1. Publicación de cursos, guías y tutoriales con recursos multimedia (imágenes, videos, textos, gráficos). Estos recursos deben ser reutilizables.
 2. Guía de herramientas (inventario personal y colecciones)
 3. Comercio electrónico con carrito de compras, wishlist y pagos con crédito y débito en Colombia
 4. Taller (información y reservas)
