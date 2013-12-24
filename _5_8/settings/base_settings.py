@@ -17,9 +17,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'vj3u-=6o+r$u0z=^j6@ga3dnk8r9ipd5psteyp(i(^yad-b72!'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
@@ -65,17 +62,7 @@ WSGI_APPLICATION = '_5_8.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': '_5_8',
-        'USER': 'admin',
-        'PASSWORD': 'admin',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
+#Databases moved to local settings for now.
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
