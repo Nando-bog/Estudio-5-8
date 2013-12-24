@@ -1,4 +1,3 @@
-##Sitio web para 5-8 Carpintería
-##Creado con Python 2.7 y Django 1.6
-##Creado por Fernando Díaz del Castillo
-##Licencia: Por definir (GPL)
+# coding=utf-8
+##Sitio web para 5-8 Carpinter√≠a
+##Creado por Fernando D√≠az del Castillo
