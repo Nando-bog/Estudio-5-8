@@ -1,7 +1,7 @@
 # coding=utf-8
-from .base import *
+from .base_settings import *
 
 try:
-    from .local import *
+    from .local_settings import *
 except ImportError:
     pass

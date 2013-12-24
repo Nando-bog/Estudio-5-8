@@ -9,6 +9,7 @@ class Curso(models.Model):
     """
     nombre=models.CharField(max_length=150)
     imagen_destacada=models.ImageField(upload_to='images')
+    tags = TaggableManager()
     def __unicode__(self):
         return self.nombre
 
