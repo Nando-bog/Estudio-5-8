@@ -38,6 +38,7 @@ DEFAULT_APPS = (
 
 THIRD_PARTY_APPS = (
     'taggit',
+    'ckeditor',
 )
 
 LOCAL_APPS =  (
@@ -90,3 +91,5 @@ TEMPLATE_DIRS = (
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'../user-file-uploads')
 MEDIA_URL = '/media/'
+
+CKEDITOR_UPLOAD_PATH = 'ckedito-uploads/'
