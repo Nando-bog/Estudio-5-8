@@ -2,7 +2,7 @@ Sitio web para 5-8 Carpintería, en proceso y apenas comenzando. Desarrollado co
 
 Planeo que incluya las siguientes funciones:
 
-1. Publicación de cursos, guías y tutoriales con recursos multimedia (imágenes, videos, textos, gráficos). Estos recursos deben ser reutilizables y estar categorizados y tagueados. Discusión en cada lección. Modelo pedagógico EpC subyacente.
+1. Publicación de cursos, guías y tutoriales con recursos multimedia (imágenes, videos, textos, gráficos). Estos recursos deben ser reutilizables y estar categorizados y tagueados. Modelo pedagógico EpC subyacente.
 2. Guía de herramientas: Guía general, colecciones, tienda e inventario personal
 3. Comercio electrónico con carrito de compras, wishlist y pagos con crédito y débito en Colombia para la tienda de herramientas y el taller
 4. Taller (información y reservas con pago online)
