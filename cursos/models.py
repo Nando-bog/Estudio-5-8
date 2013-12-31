@@ -1,5 +1,6 @@
 # coding=utf-8
 # Modelos para la aplicación "Cursos".
+# VERSION 0.12
 
 # Standard Python/Django libraries
 import datetime
@@ -12,6 +13,7 @@ from taggit.managers import TaggableManager
 # Local libraries
 # None yet
 
+#MODELOS PRINCIPALES
 class Recurso(models.Model):
     """
     Representa cualquier tipo de recurso de aprendizaje que se puede utilizar como apoyo a un desempeño o ser independiente, como una entrada de blog-tutorial o una biblioteca de recursos comentados.
@@ -30,7 +32,10 @@ class Recurso(models.Model):
         (MULTIMEDIA, 'Multimedia'),
     )
     #Atributos básicos y obligatorios
-    autor = models.ManyToManyField(User)
+    autor = models.ManyToManyField(
+        User,
+        through='RecursosAutores'
+        )
     nombre = models.CharField(
         max_length=150,
         help_text="Ojo con la ortografía de los títulos en español. Máximo 150 caracteres."
@@ -45,13 +50,19 @@ class Recurso(models.Model):
     #Atributos opcionales
     adjunto = models.FileField(
         upload_to='recurso_adjunto',
-        blank=True, help_text="Adjunto que se guardará con el recurso, como una imágen, PDF, video, etc."
+        blank=True,
+        help_text="Adjunto que se guardará con el recurso, como una imágen, PDF, video, etc."
         )
     url = models.URLField(
         blank=True,
         help_text="URL del recurso si proviene de otro sitio, como Youtube, Slideshare, etc."
         )
     #Metadatos opcionales
+    imagen_destacada=models.ImageField(
+        blank=True,
+        upload_to="recurso_adjunto",
+        help_text="Imagen que se verá en los destacados y listas del recurso."
+        )
     nombre_corto=models.CharField(
         max_length=30,
         blank=True,
@@ -156,6 +167,7 @@ class DesempenoDeComprension(models.Model):
     #Atributos básicos y obligatorios
     autor = models.ManyToManyField(
         User,
+        through='DesempenosDeComprensionAutores',
         help_text="Autor de esta lección."
         )
     nombre = models.CharField(
@@ -166,6 +178,7 @@ class DesempenoDeComprension(models.Model):
     fecha_actualizacion = models.DateField()
     recursos = models.ManyToManyField(
         Recurso,
+        through = 'DesempenosDeComprensionRecursos',
         help_text="Recursos que se utilizan para apoyar este desempeño. Aparecen adjuntos al texto HTML.",
         blank=True
         )
@@ -174,6 +187,11 @@ class DesempenoDeComprension(models.Model):
         help_text="Cuerpo de la lección que se deplegará para el estudiante."
         )
     #Metadatos opcionales
+    imagen_destacada=models.ImageField(
+        blank=True,
+        upload_to="recurso_adjunto",
+        help_text="Imagen que se verá en los destacados y listas del recurso."
+        )
     tags = TaggableManager(help_text="Lista de tags separados por comas.")
     notas_profesor = RichTextField(
         blank=True,
@@ -217,10 +235,10 @@ class Curso(models.Model):
     #Atributos básicos y obligatorios
     codigo=models.CharField(
         max_length=16,
-        unique=True,
-        validators=[RegexValidator(regex='^[A-Z]{1,5}-\d{1,4}-?[a-z]??',
+        validators=[RegexValidator(regex='^(?P<codigo_tipo>[A-Z])(?P<codigo_tema>[A-Z]{3,5})-(?P<nivel>[0-9]{,3})(?P<version>[a-z]{,3}$)',
         message="No es un código de curso válido. Intente de nuevo. Los códigos válidos se ajustan a la expresión regular anterior.")],
-        help_text="Código del curso. Debe ser único y de máximo 12 caracteres. Solo puede contener números, letras y guiones así: \^[A-Z]{1,5}-\\d{1,4}-?[a-z]??$"
+        help_text="Código del curso. Se valida con la siguiente expresión regular: ^(?P<codigo_tipo>[A-Z])(?P<codigo_tema>[A-Z]{3,5})-(?P<nivel>[0-9]{,3})(?P<version>[a-z]{,3}$)",
+        verbose_name="Código",
         )
     nombre=models.CharField(
         max_length=150,
@@ -228,6 +246,7 @@ class Curso(models.Model):
         )
     profesores = models.ManyToManyField(
         User,
+        through = 'CursosProfesores',
         related_name='profesores',
         help_text="Autores y profesores del curso. Debe haber al menos uno."
         )
@@ -236,45 +255,49 @@ class Curso(models.Model):
         choices=TIPOS_ACCESO,
         default = ABIERTO_LIBRE
         )
+    
+    #Atributos de diseño curricular (también obligatorios)
+    hilos_conductores = models.ManyToManyField(
+        HiloConductor,
+        through='CursosHilosConductores'
+        )
+    topicos_generativos = models.ManyToManyField(
+        TopicoGenerativo,
+        through='CursosTopicosGenerativos'
+        )
+    metas_de_comprension = models.ManyToManyField(
+        MetaDeComprension,
+        through='CursosMetasDeComprension'
+        )
+    desempenos_de_comprension = models.ManyToManyField(
+        DesempenoDeComprension,
+        through='CursosDesempenosDeComprension'
+    )
+    #Atributos del curso que requiere inscripción
+    inscritos = models.ManyToManyField(
+        User,
+        through='CursosInscritos',
+        related_name='inscritos',
+        blank=True,
+        help_text="Agregar alumnos a este curso."
+        )
+    fecha_inicio=models.DateField(blank=True)
+    fecha_fin=models.DateField(blank=True)
     cupos = models.IntegerField(
         blank=True,
         null=True,
         help_text="Cupo máximo del curso."
         )
-    inscritos = models.ManyToManyField(
-        User,
-        related_name='inscritos',
-        blank=True,
-        help_text="Agregar alumnos a este curso."
-        )
-    
-    #Atributos de diseño curricular (también obligatorios)
-    hilos_conductores = models.ManyToManyField(
-        HiloConductor,
-        through='HilosConductoresCurso'
-        )
-    topicos_generativos = models.ManyToManyField(
-        TopicoGenerativo,
-        through='TopicosGenerativosCurso'
-        )
-    metas_de_comprension = models.ManyToManyField(
-        MetaDeComprension,
-        through='MetasDeComprensionCurso'
-        )
-    desempenos_de_comprension = models.ManyToManyField(
-        DesempenoDeComprension,
-        through='DesempenosCurso'
-    )
-    #Atributos opcionales
+    #Metadatos
+    tags = TaggableManager(help_text="Lista de tags separados por comas.")
     imagen_destacada=models.ImageField(
         upload_to='curso_imagen_destacada',
         blank=True
         )
-    #Metadatos
-    tags = TaggableManager(help_text="Lista de tags separados por comas.")
     
     class Meta:
         verbose_name_plural="Cursos"
+        verbose_name='Curso'
         ordering=['nombre']
     
     class Admin:
@@ -286,34 +309,107 @@ class Curso(models.Model):
     def get_absolute_url(self):
         return "cursos/%s/" % self.codigo
 
-class HilosConductoresCurso(models.Model):
+
+# MODELOS PARA LAS RELACIONES THROUGH= DE LOS CAMPOS M2M.
+class RecursosAutores(models.Model):
+    """recurso=Recurso, autor=User
+    Contiene la relación entre autores y recursos.
     """
+    recurso=models.ForeignKey(Recurso, verbose_name="Recurso")
+    autor=models.ForeignKey(User, verbose_name="Autor")
+    
+    class Meta:
+        verbose_name_plural="Autores"
+        
+
+class DesempenosDeComprensionAutores(models.Model):
+    """desempeno_de_comprension=DesempenoDeComprension, autor=User
+    Contiene la relación entre desempeños de comprensión y autores
+    """
+    desempeno_de_comprension=models.ForeignKey(DesempenoDeComprension, verbose_name="Desempeños de comprensión")
+    autor = models.ForeignKey(User)
+    
+    class Meta:
+        verbose_name="Autores"
+    
+
+class DesempenosDeComprensionRecursos(models.Model):
+    """desempeno_de_comprension=DesempenoDeComprension, recurso=Recurso
+    Contiene la relación entre desempeños de comprensión y recursos
+    """
+    desempeno_de_comprension=models.ForeignKey(DesempenoDeComprension)
+    recurso=models.ForeignKey(Recurso)
+    
+    class Meta:
+        verbose_name_plural="Recursos"
+        
+    
+class CursosProfesores(models.Model):
+    """curso=Curso, profesor=User
+    Contiene la relación entre cursos y profesores.
+    """
+    curso=models.ForeignKey(Curso)
+    profesor=models.ForeignKey(User)
+    
+    class Meta:
+        verbose_name_plural="Profesores"
+
+
+class CursosHilosConductores(models.Model):
+    """hilo_conductor=HiloConductor, curso=Curso
     Contiene la relación entre Hilos conductores y cursos, junto a información adicional sobre la relación.
     """
     hilo_conductor=models.ForeignKey(HiloConductor)
     curso=models.ForeignKey(Curso)
+    
+    class Meta:
+        verbose_name_plural="Hilos conductores"
+    
 
-class TopicosGenerativosCurso(models.Model):
-    """
+class CursosTopicosGenerativos(models.Model):
+    """topico_generativo=TopicoGenerativo, curso=Curso
     Contiene la relación entre Tópicos generativos y cursos, junto a información adicional sobre la relación.
     """
-    topico_generativo=models.ForeignKey(TopicoGenerativo)
+    topico_generativo=models.ForeignKey(TopicoGenerativo, verbose_name="Tópico generativo")
     curso=models.ForeignKey(Curso)
     
-class MetasDeComprensionCurso(models.Model):
-    """
+    class Meta:
+        verbose_name_plural="Tópicos generativos"
+        
+    
+class CursosMetasDeComprension(models.Model):
+    """meta_de_comprension=MetaDeComprension, curso=Curso
     Contiene la relación entre Metas de comprensión y cursos, junto a información adicional sobre la relación.
     """
-    meta_de_comprension=models.ForeignKey(MetaDeComprension)
+    meta_de_comprension=models.ForeignKey(MetaDeComprension, verbose_name="Meta de comprensión")
     curso=models.ForeignKey(Curso)
 
-class DesempenosCurso(models.Model):
-    """
+    class Meta:
+        verbose_name_plural="Metas de comprensión"
+
+class CursosDesempenosDeComprension(models.Model):
+    """desempeno=DesempenoDeComprension, curso=Curso, orden=int
     Contiene la relación entre Desempeños y cursos, junto a información adicional sobre el desempeño en ese curso.
     """
-    desempeno=models.ForeignKey(DesempenoDeComprension)
+    desempeno_de_comprension=models.ForeignKey(DesempenoDeComprension, verbose_name="Desempeño de comprensión")
     curso=models.ForeignKey(Curso)
     orden=models.IntegerField()
+    
+    class Meta:
+        verbose_name_plural="Desempeños de comprensión"
+
+    
+class CursosInscritos(models.Model):
+    """curso=Curso, inscrito=User, fecha_inscripcion=datetime.datetime
+    Contiene la relación entre cursos e inscritos.
+    """
+    curso=models.ForeignKey(Curso)
+    inscrito=models.ForeignKey(User)
+    fecha_inscripcion=models.DateField(verbose_name="Fecha de inscripción")
+    
+    class Meta:
+        verbose_name_plural="Inscritos"
+
 
 #class Categoria(models.Model):
 #    nombre = models.CharField(max_length=150, help_text="Ojo con la ortografía de los títulos en español. Máximo 150 caracteres.")

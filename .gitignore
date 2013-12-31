@@ -7,4 +7,3 @@ user-file-uploads
 /_5_8/settings/local_settings.py
 *.DS_Store
 *.xmind
-popdb.py

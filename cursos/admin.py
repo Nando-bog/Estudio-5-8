@@ -1,30 +1,51 @@
 #coding=utf-8
 from django.contrib import admin
-from cursos.models import Recurso, HiloConductor, TopicoGenerativo, MetaDeComprension, DesempenoDeComprension, Curso, HilosConductoresCurso, TopicosGenerativosCurso, MetasDeComprensionCurso, DesempenosCurso
+from .models import Recurso, HiloConductor, TopicoGenerativo, MetaDeComprension, DesempenoDeComprension, Curso, RecursosAutores, DesempenosDeComprensionAutores, DesempenosDeComprensionRecursos, CursosProfesores, CursosHilosConductores, CursosTopicosGenerativos, CursosMetasDeComprension, CursosDesempenosDeComprension, CursosInscritos
 
-class HilosConductoresCursoInline(admin.TabularInline):
-    model = HilosConductoresCurso
+class CursosHilosConductoresInline(admin.TabularInline):
+    model = CursosHilosConductores
     extra = 1
     
-class TopicosGenerativosCursoInline(admin.TabularInline):
-    model = TopicosGenerativosCurso
+class CursosTopicosGenerativosInline(admin.TabularInline):
+    model = CursosTopicosGenerativos
     extra = 1
     
-class MetasDeComprensionCursoInline(admin.TabularInline):
-    model = MetasDeComprensionCurso
+class CursosMetasDeComprensionInline(admin.TabularInline):
+    model = CursosMetasDeComprension
     extra = 1
 
-class DesempenosCursoInline(admin.TabularInline):
-    model = DesempenosCurso
+class CursosDesempenosDeComprensionInline(admin.TabularInline):
+    model = CursosDesempenosDeComprension
+    extra = 1
+
+class CursosProfesoresInline(admin.TabularInline):
+    model = CursosProfesores
+    extra = 1
+
+class CursosInscritosInline(admin.TabularInline):
+    model = CursosInscritos
+    extra = 1
+
+
+class RecursosAutoresInline(admin.TabularInline):
+    model = RecursosAutores
+    extra = 1
+    
+class DesempenosDeComprensionAutoresInline(admin.TabularInline):
+    model = DesempenosDeComprensionAutores
+    extra = 1
+    
+class DesempenosDeComprensionRecursosInline(admin.TabularInline):
+    model = DesempenosDeComprensionRecursos
     extra = 1
 
 class RecursoAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'nombre_corto', 'adjunto', 'url', 'tipo')
-    filter_horizontal = ['autor',]
     prepopulated_fields = {'nombre_corto': ('nombre',)}
     fieldsets = (
-        (None, {'fields': ('nombre', 'nombre_corto', 'url', 'tipo', 'adjunto', 'html', 'autor')}),
+        (None, {'fields': ('nombre', 'imagen_destacada', 'nombre_corto', 'url', 'tipo', 'adjunto', 'html',)}),
     )
+    inlines = (RecursosAutoresInline,)
 
 class HiloConductorAdmin(admin.ModelAdmin):
     list_display=('nombre_corto', 'nombre')
@@ -40,32 +61,23 @@ class MetaDeComprensionAdmin(admin.ModelAdmin):
 
 class DesempenoDeComprensionAdmin(admin.ModelAdmin):
     fieldsets = (
-        ("Información básica", {'fields': ('nombre', 'duracion',)}),
+        ("Información básica", {'fields': ('nombre', 'duracion', 'imagen_destacada')}),
         ("Cuerpo", {'fields': ('cuerpo',)}),
-        ("Recursos", {'fields': ('recursos',),'classes': ('collapse',)}),
-        ("Metadatos", {'fields': ( 'autor', 'fecha_publicacion', 'fecha_actualizacion', 'tags', 'notas_profesor' ), 'classes' : ('collapse', )}),
+        ("Metadatos", {'fields': ( 'fecha_publicacion', 'fecha_actualizacion', 'tags', 'notas_profesor' ), 'classes' : ('collapse', )}),
     )
-    inlines = (DesempenosCursoInline,)
-    #fieldsets= (
-    #    ("Información básica", {'fields': ('nombre', 'duracion', 'autor')}),
-    #    ('Recursos', {'fields': ('recursos'), 'classes': ('collapse',)}),
-    #    ('Cuerpo', {'fields': ('html',)}),
-    #    ('Meta', {'fields': ('fecha_publicacion', 'fecha_actualizacion', 'tags', 'notas_profesor')})
-    #)
-    
+    inlines = (CursosDesempenosDeComprensionInline, DesempenosDeComprensionAutoresInline, DesempenosDeComprensionRecursosInline)    
     filter_horizontal=['autor', 'recursos',]
 
 class CursoAdmin(admin.ModelAdmin):
     list_display = ('codigo', 'nombre')
-    filter_horizontal = ['profesores', 'inscritos', 'hilos_conductores', 'topicos_generativos', 'metas_de_comprension',]
-    inlines = (HilosConductoresCursoInline, TopicosGenerativosCursoInline, MetasDeComprensionCursoInline, DesempenosCursoInline )
-    #fieldsets = (
-    #    ("Información´ básica", {'fields':('codigo', 'nombre', 'acceso', 'cupos', 'imagen_destacada',)}),
-    #    ('Profesores', {'fields':('profesores',)}),
-    #    ('Inscritos', {'fields':('inscritos',)}),
-    #    ("Diseño curricular", {'fields':('hilos_conductores','topicos_generativos', 'metas_de_comprension',)}),        
-    #)
-
+    #filter_horizontal = ['profesores', 'hilos_conductores', 'topicos_generativos', 'metas_de_comprension', 'inscritos']
+    fieldsets = (
+        ("Información´ básica: ", {'fields':('codigo', 'nombre', 'acceso')}),
+        ("Si requiere inscripción: ", {'fields':('cupos', 'fecha_inicio','fecha_fin',)}),
+        ("Metadatos: ", {'fields': ('tags', 'imagen_destacada', )}),
+    )
+    inlines = (CursosHilosConductoresInline, CursosTopicosGenerativosInline, CursosMetasDeComprensionInline, CursosDesempenosDeComprensionInline, CursosInscritosInline, CursosProfesoresInline)
+    
 admin.site.register(Recurso, RecursoAdmin)
 admin.site.register(HiloConductor, HiloConductorAdmin)
 admin.site.register(TopicoGenerativo, TopicoGenerativoAdmin)
