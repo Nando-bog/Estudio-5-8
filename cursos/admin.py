@@ -1,4 +1,7 @@
 #coding=utf-8
+# Admin para aplicación Cursos
+# VERSION 0.12
+
 from django.contrib import admin
 from .models import Recurso, HiloConductor, TopicoGenerativo, MetaDeComprension, DesempenoDeComprension, Curso, RecursosAutores, DesempenosDeComprensionAutores, DesempenosDeComprensionRecursos, CursosProfesores, CursosHilosConductores, CursosTopicosGenerativos, CursosMetasDeComprension, CursosDesempenosDeComprension, CursosInscritos
 
