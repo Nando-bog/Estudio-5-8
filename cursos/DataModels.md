@@ -1,0 +1,16 @@
+Recurso
+HiloConductor
+TopicoGenerativo
+MetaDeComprension
+DesempenoDeComprension
+Curso
+RecursosAutores
+DesempenosDeComprensionAutores
+DesempenosDeComprensionRecursos
+CursosProfesores
+CursosHilosConductores
+CursosTopicosGenerativos
+CursosMetasDeComprension
+CursosDesempenosDeComprension
+CursosInscritos
+
