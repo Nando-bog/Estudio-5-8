@@ -6,10 +6,14 @@
 *.gif
 *.psd
 *.svg
-/file-uploads/*.*
 /file-uploads/
 requirements.txt
-user-file-uploads
 /_5_8/settings/local_settings.py
-*.DS_Store
 *.xmind
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
