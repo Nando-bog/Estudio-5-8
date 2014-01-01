@@ -5,7 +5,9 @@
 # Standard Python/Django libraries
 import datetime
 from django.contrib.auth.models import User
+from django.conf import settings
 from django.core.validators import RegexValidator
+from django.core.urlresolvers import reverse
 from django.db import models
 # Third party libraries
 from ckeditor.fields import RichTextField
@@ -33,12 +35,16 @@ class Recurso(models.Model):
     )
     #Atributos básicos y obligatorios
     autor = models.ManyToManyField(
-        User,
+        settings.AUTH_USER_MODEL,
         through='RecursosAutores'
         )
     nombre = models.CharField(
         max_length=150,
         help_text="Ojo con la ortografía de los títulos en español. Máximo 150 caracteres."
+        )
+    nombre_corto=models.SlugField(
+        max_length=50,
+        help_text="Nombre corto que se verá en listas y otros lugares. Debe ser legible. Máximo 30 caracteres (letras, números, guiones, rayas). Debe ser único. Se usa para crear la URL del recurso y buscarlo en la bd."
         )
     html = RichTextField(
         help_text="Descripción o instrucciones del recurso si es un adjunto o URL; contenido completo si es un texto o multimedia para deplegar en línea en la lección. Puede ser HTML."
@@ -63,11 +69,6 @@ class Recurso(models.Model):
         upload_to="recurso_adjunto",
         help_text="Imagen que se verá en los destacados y listas del recurso."
         )
-    nombre_corto=models.CharField(
-        max_length=30,
-        blank=True,
-        help_text="Nombre corto que se verá en listas y otros lugares. Debe ser legible. Máximo 30 caracteres."
-        )
     tags = TaggableManager(help_text="Lista de tags separados por comas.")
     
     class Meta:
@@ -83,7 +84,8 @@ class Recurso(models.Model):
         return self.nombre
     
     def get_absolute_url(self):
-        return "recursos/%s/%s/" % (self.tipo, self.id )
+        #return "recursos/%s/%s/" % (self.tipo, self.nombre_corto )
+        return reverse('recurso_detalle', kwargs={'tipo': self.tipo, 'nombre_corto': self.nombre_corto})
 
 #Atributos pedagógicos de los cursos. Inspirado ligeramente en Collaborative Curriculum Design Tool ofrecido por Wide World en https://learnweb.harvard.edu/ccdt/index.cfm y las ideas sobre diseño curricular, EpC/TFU, de los investigadores de Proyecto Cero en la Escuela Posgragos en Educación de la Universidad de Harvard.
 
@@ -166,7 +168,7 @@ class DesempenoDeComprension(models.Model):
     """
     #Atributos básicos y obligatorios
     autor = models.ManyToManyField(
-        User,
+        settings.AUTH_USER_MODEL,
         through='DesempenosDeComprensionAutores',
         help_text="Autor de esta lección."
         )
@@ -275,7 +277,7 @@ class Curso(models.Model):
     )
     #Atributos del curso que requiere inscripción
     inscritos = models.ManyToManyField(
-        User,
+        settings.AUTH_USER_MODEL,
         through='CursosInscritos',
         related_name='inscritos',
         blank=True,
@@ -289,7 +291,10 @@ class Curso(models.Model):
         help_text="Cupo máximo del curso."
         )
     #Metadatos
-    tags = TaggableManager(help_text="Lista de tags separados por comas.")
+    tags = TaggableManager(
+        blank=True,
+        help_text="Lista de tags separados por comas."
+        )
     imagen_destacada=models.ImageField(
         upload_to='curso_imagen_destacada',
         blank=True
@@ -316,7 +321,7 @@ class RecursosAutores(models.Model):
     Contiene la relación entre autores y recursos.
     """
     recurso=models.ForeignKey(Recurso, verbose_name="Recurso")
-    autor=models.ForeignKey(User, verbose_name="Autor")
+    autor=models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name="Autor")
     
     class Meta:
         verbose_name_plural="Autores"
@@ -327,7 +332,7 @@ class DesempenosDeComprensionAutores(models.Model):
     Contiene la relación entre desempeños de comprensión y autores
     """
     desempeno_de_comprension=models.ForeignKey(DesempenoDeComprension, verbose_name="Desempeños de comprensión")
-    autor = models.ForeignKey(User)
+    autor = models.ForeignKey(settings.AUTH_USER_MODEL)
     
     class Meta:
         verbose_name="Autores"
@@ -349,7 +354,7 @@ class CursosProfesores(models.Model):
     Contiene la relación entre cursos y profesores.
     """
     curso=models.ForeignKey(Curso)
-    profesor=models.ForeignKey(User)
+    profesor=models.ForeignKey(settings.AUTH_USER_MODEL)
     
     class Meta:
         verbose_name_plural="Profesores"
@@ -404,7 +409,7 @@ class CursosInscritos(models.Model):
     Contiene la relación entre cursos e inscritos.
     """
     curso=models.ForeignKey(Curso)
-    inscrito=models.ForeignKey(User)
+    inscrito=models.ForeignKey(settings.AUTH_USER_MODEL)
     fecha_inscripcion=models.DateField(verbose_name="Fecha de inscripción")
     
     class Meta:

@@ -1,9 +1,17 @@
 .gitignore
 *.pyc
 *.old
+*.jpg
+*.png
+*.gif
+*.psd
 *.svg
 requirements.txt
 user-file-uploads
 /_5_8/settings/local_settings.py
 *.DS_Store
 *.xmind
+*.jpg
+*.png
+*.gif
+*.psd

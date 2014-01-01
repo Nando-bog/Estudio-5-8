@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" lang="es-CO"  />
+    <title>Detalle del recurso {{ recurso }} </title>
+    {% load static %}
+</head>
+<body>
+    <h1>Nombre: {{ recurso.nombre }} </h1>
+    <h2>Nombre corto: {{ recurso.nombre_corto }}</h2>
+    <p>Autor: {% for autor in recurso.autor.all %} {{autor.email}} {% endfor %} </p>
+    <p>Imagen destacada:<br/>
+    <img src="{% get_media_prefix %}{{ recurso.imagen_destacada }}" width="150px" height="auto"></p>
+    <p>Tipo: {{ recurso.tipo }} </p>
+    <p>URL: {{ recurso.url }}</p>
+    </ul>
+    <div>
+        <p>HTML: {{ recurso.html|safe }}</p>
+    </div>    
+</body>
+</html>
+autor=settings.AUTH_USER_MODEL,
+    nombre=CharField
+    nombre_corto=SlugField
+    html=RichTextField
+    tipo=CharField (choices)
+    #Atributos opcionales
+    adjunto=FileField
+    url=URLField
+    #Metadatos opcionales
+    imagen_destacada=ImageField
+    tags=TaggableManager()

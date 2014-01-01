@@ -57,6 +57,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+AUTH_USER_MODEL = 'auth.User'
+
 ROOT_URLCONF = '_5_8.urls'
 
 WSGI_APPLICATION = '_5_8.wsgi.application'
@@ -86,10 +88,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, '../static')
 STATIC_URL = '/static/'
 
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, '../templates')
+    os.path.join(BASE_DIR, '../templates'),
+    os.path.join(BASE_DIR, '../cursos/templates/')
 )
 
-MEDIA_ROOT = os.path.join(BASE_DIR,'../user-file-uploads')
+MEDIA_ROOT = os.path.join(BASE_DIR,'../file-uploads')
 MEDIA_URL = '/media/'
 
-CKEDITOR_UPLOAD_PATH = 'ckedito-uploads/'
+CKEDITOR_UPLOAD_PATH = 'ckeditor-uploads/'
