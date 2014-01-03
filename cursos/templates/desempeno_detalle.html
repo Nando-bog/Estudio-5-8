@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{{ desempeno.nombre }}</title>
+    {% load static %}
+</head>
+
+<body>
+    <h1>Nombre: {{ desempeno.nombre }}</h1>
+    <h2>Nombre corto:  {{ desempeno.nombre_corto }} </h2>
+    <p>Autores: </p>
+    <ul>
+        <li>{{ desempeno.autor }}</li>
+    </ul>
+    <p>Duración: {{ desempeno.duracion }}</p>
+    <p>Destacado: {{ desempeno.destacado }}</p>
+    <p>Imagen destacada:<br/>
+        <img src="{% get_media_prefix %}{{ desempeno.imagen_destacada }}" width="150px" height="auto">
+    </p>
+    <p>Fecha publicación: {{ desempeno.fecha_publicacion }}</p>
+    <p>Fecha actualización: {{ desempeno.fecha_actualizacion }}</p>
+    <p>Recursos:</p>
+    <ul>
+        {% for recurso in desempeno.recursos.all %}
+        <li>{{ recurso.nombre }}</li>
+        {% endfor %}
+    </ul>
+    <p>Tags:
+        {% for tag in desempeno.tags.all %}
+            {{ tag }} 
+        {% endfor %}
+    </p>
+    <p>Notas para el profesor:</p>
+    <div>
+        {{ desempeno.notas_profesor|safe}}
+    </div>
+    </p>
+</body>
+</html>

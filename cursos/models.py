@@ -46,7 +46,7 @@ class Recurso(models.Model):
         max_length=50,
         help_text="Nombre corto que se verá en listas y otros lugares. Debe ser legible. Máximo 30 caracteres (letras, números, guiones, rayas). Debe ser único. Se usa para crear la URL del recurso y buscarlo en la bd."
         )
-    html = RichTextField(
+    cuerpo = RichTextField(
         help_text="Descripción o instrucciones del recurso si es un adjunto o URL; contenido completo si es un texto o multimedia para deplegar en línea en la lección. Puede ser HTML."
         )
     tipo = models.CharField(
@@ -64,6 +64,7 @@ class Recurso(models.Model):
         help_text="URL del recurso si proviene de otro sitio, como Youtube, Slideshare, etc."
         )
     #Metadatos opcionales
+    destacado=models.BooleanField(default=False, help_text="Los recursos marcados como destacados son titulares en los listados y landings de secciones.")
     imagen_destacada=models.ImageField(
         blank=True,
         upload_to="recurso_adjunto",
@@ -84,7 +85,6 @@ class Recurso(models.Model):
         return self.nombre
     
     def get_absolute_url(self):
-        #return "recursos/%s/%s/" % (self.tipo, self.nombre_corto )
         return reverse('recurso_detalle', kwargs={'tipo': self.tipo, 'nombre_corto': self.nombre_corto})
 
 #Atributos pedagógicos de los cursos. Inspirado ligeramente en Collaborative Curriculum Design Tool ofrecido por Wide World en https://learnweb.harvard.edu/ccdt/index.cfm y las ideas sobre diseño curricular, EpC/TFU, de los investigadores de Proyecto Cero en la Escuela Posgragos en Educación de la Universidad de Harvard.
@@ -176,6 +176,10 @@ class DesempenoDeComprension(models.Model):
         max_length=150,
         help_text="Ojo con la ortografía de los títulos en español. Máximo 150 caracteres."
         )
+    nombre_corto=models.SlugField(
+        max_length=50,
+        help_text="Nombre corto que se verá en listas y otros lugares. Debe ser legible. Máximo 30 caracteres (letras, números, guiones, rayas). Debe ser único. Se usa para crear la URL del recurso y buscarlo en la bd."
+        )
     fecha_publicacion = models.DateField()
     fecha_actualizacion = models.DateField()
     recursos = models.ManyToManyField(
@@ -189,12 +193,12 @@ class DesempenoDeComprension(models.Model):
         help_text="Cuerpo de la lección que se deplegará para el estudiante."
         )
     #Metadatos opcionales
+    destacado=models.BooleanField(default=False, help_text="Los recursos marcados como destacados son titulares en los listados y landings de secciones.")
     imagen_destacada=models.ImageField(
         blank=True,
         upload_to="recurso_adjunto",
         help_text="Imagen que se verá en los destacados y listas del recurso."
         )
-    tags = TaggableManager(help_text="Lista de tags separados por comas.")
     notas_profesor = RichTextField(
         blank=True,
         help_text="Notas para el profesor.")
@@ -202,6 +206,7 @@ class DesempenoDeComprension(models.Model):
         help_text="Tiempo requerido para lograr este desempeño en minutos.",
         verbose_name="Duración"
         )
+    tags = TaggableManager(help_text="Lista de tags separados por comas.")
     
     class Meta:
         ordering=['nombre']
@@ -215,8 +220,8 @@ class DesempenoDeComprension(models.Model):
         return self.nombre
     
     def get_absolute_url(self):
-        return "leccion/%s/" % self.id 
-
+        #return "des/%s/" % self.id 
+        return reverse('desempeno_detalle', kwargs={'nombre_corto': self.nombre_corto})
 
 class Curso(models.Model):
     """
@@ -291,13 +296,14 @@ class Curso(models.Model):
         help_text="Cupo máximo del curso."
         )
     #Metadatos
-    tags = TaggableManager(
-        blank=True,
-        help_text="Lista de tags separados por comas."
-        )
+    destacado=models.BooleanField(default=False, help_text="Los recursos marcados como destacados son titulares en los listados y landings de secciones.")
     imagen_destacada=models.ImageField(
         upload_to='curso_imagen_destacada',
         blank=True
+        )
+    tags = TaggableManager(
+        blank=True,
+        help_text="Lista de tags separados por comas."
         )
     
     class Meta:
@@ -324,8 +330,12 @@ class RecursosAutores(models.Model):
     autor=models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name="Autor")
     
     class Meta:
-        verbose_name_plural="Autores"
+        verbose_name_plural="Relación autores y recursos"
+        verbose_name="Relaciones autores y recursos"
         
+    def __unicode__(self):
+        return "Autor o recurso (relación)"
+
 
 class DesempenosDeComprensionAutores(models.Model):
     """desempeno_de_comprension=DesempenoDeComprension, autor=User
@@ -335,18 +345,26 @@ class DesempenosDeComprensionAutores(models.Model):
     autor = models.ForeignKey(settings.AUTH_USER_MODEL)
     
     class Meta:
-        verbose_name="Autores"
+        verbose_name="Relación autores y desempeños de comprensión"
+        verbose_name_plural="Relaciones autores y desempeños de comprensión"
+    
+    def __unicode__(self):
+        return "Autor o desempeño (relación)"
     
 
 class DesempenosDeComprensionRecursos(models.Model):
     """desempeno_de_comprension=DesempenoDeComprension, recurso=Recurso
     Contiene la relación entre desempeños de comprensión y recursos
     """
-    desempeno_de_comprension=models.ForeignKey(DesempenoDeComprension)
-    recurso=models.ForeignKey(Recurso)
+    desempeno_de_comprension=models.ForeignKey(DesempenoDeComprension, verbose_name="Desempeño de comprensión")
+    recurso=models.ForeignKey(Recurso, verbose_name="Recurso")
     
     class Meta:
-        verbose_name_plural="Recursos"
+        verbose_name_plural="Relación desempeños de comprensión y recursos"
+        verbose_name="Relaciones desempeños de comprensión y recursos"
+    
+    def __unicode__(self):
+        return "Recurso y desempeño (relación)"
         
     
 class CursosProfesores(models.Model):
@@ -357,7 +375,11 @@ class CursosProfesores(models.Model):
     profesor=models.ForeignKey(settings.AUTH_USER_MODEL)
     
     class Meta:
-        verbose_name_plural="Profesores"
+        verbose_name="Relación cursos y profesores"
+        verbose_name_plural="Relaciones cursos y profesores"
+
+    def __unicode__(self):
+            return "Curso y profesor (relación)"
 
 
 class CursosHilosConductores(models.Model):
@@ -368,8 +390,12 @@ class CursosHilosConductores(models.Model):
     curso=models.ForeignKey(Curso)
     
     class Meta:
-        verbose_name_plural="Hilos conductores"
+        verbose_name="Relación hilos conductores y cursos"
+        verbose_name_plural="Relaciones hilos conductores y cursos"
     
+    def __unicode__(self):
+        return "Curso e hilo conductor (relación)"
+
 
 class CursosTopicosGenerativos(models.Model):
     """topico_generativo=TopicoGenerativo, curso=Curso
@@ -379,8 +405,12 @@ class CursosTopicosGenerativos(models.Model):
     curso=models.ForeignKey(Curso)
     
     class Meta:
-        verbose_name_plural="Tópicos generativos"
+        verbose_name="Relación cursos y tópicos generativos"
+        verbose_name_plural="Relaciones cursos y tópicos generativos"
         
+    def __unicode__(self):
+        return "Curso y tópico generativo (relación)"
+    
     
 class CursosMetasDeComprension(models.Model):
     """meta_de_comprension=MetaDeComprension, curso=Curso
@@ -390,7 +420,12 @@ class CursosMetasDeComprension(models.Model):
     curso=models.ForeignKey(Curso)
 
     class Meta:
-        verbose_name_plural="Metas de comprensión"
+        verbose_name="Relación cursos y metas de comprensión"
+        verbose_name_plural="Relaciones cursos y metas de comprensión"
+
+    def __unicode__(self):
+        return "Cursos y metas de comprensión (relación)"
+
 
 class CursosDesempenosDeComprension(models.Model):
     """desempeno=DesempenoDeComprension, curso=Curso, orden=int
@@ -401,9 +436,13 @@ class CursosDesempenosDeComprension(models.Model):
     orden=models.IntegerField()
     
     class Meta:
-        verbose_name_plural="Desempeños de comprensión"
-
+        verbose_name="Relación cursos y metas de comprensión"
+        verbose_name_plural="Relaciones desempeños de comprension y cursos"
     
+    def __unicode__(self):
+            return "Curso y desempeño (relación)"
+    
+
 class CursosInscritos(models.Model):
     """curso=Curso, inscrito=User, fecha_inscripcion=datetime.datetime
     Contiene la relación entre cursos e inscritos.
@@ -413,8 +452,11 @@ class CursosInscritos(models.Model):
     fecha_inscripcion=models.DateField(verbose_name="Fecha de inscripción")
     
     class Meta:
-        verbose_name_plural="Inscritos"
-
+        verbose_name="Relación cursos e inscritos"
+        verbose_name_plural="Relaciones cursos e inscritos"
+    
+    def __unicode__(self):
+        return "Cursos e inscritos (relación)"
 
 #class Categoria(models.Model):
 #    nombre = models.CharField(max_length=150, help_text="Ojo con la ortografía de los títulos en español. Máximo 150 caracteres.")

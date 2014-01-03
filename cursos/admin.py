@@ -46,9 +46,9 @@ class RecursoAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'nombre_corto', 'adjunto', 'url', 'tipo')
     prepopulated_fields = {'nombre_corto': ('nombre',)}
     fieldsets = (
-        (None, {'fields': ('nombre', 'imagen_destacada', 'nombre_corto', 'url', 'tipo', 'adjunto', 'html',)}),
+        (None, {'fields': ('nombre', 'imagen_destacada', 'nombre_corto', 'url', 'tipo', 'adjunto', 'html', 'tags')}),
     )
-    inlines = (RecursosAutoresInline,)
+    inlines = (RecursosAutoresInline, DesempenosDeComprensionRecursosInline)
 
 class HiloConductorAdmin(admin.ModelAdmin):
     list_display=('nombre_corto', 'nombre')
@@ -66,7 +66,7 @@ class DesempenoDeComprensionAdmin(admin.ModelAdmin):
     fieldsets = (
         ("Información básica", {'fields': ('nombre', 'duracion', 'imagen_destacada')}),
         ("Cuerpo", {'fields': ('cuerpo',)}),
-        ("Metadatos", {'fields': ( 'fecha_publicacion', 'fecha_actualizacion', 'tags', 'notas_profesor' ), 'classes' : ('collapse', )}),
+        ("Metadatos", {'fields': ( 'fecha_publicacion', 'fecha_actualizacion', 'tags', 'notas_profesor' ),}),
     )
     inlines = (CursosDesempenosDeComprensionInline, DesempenosDeComprensionAutoresInline, DesempenosDeComprensionRecursosInline)    
     filter_horizontal=['autor', 'recursos',]

@@ -52,7 +52,13 @@ def crear_recursos(cantidad):
     Requiere que exista un usuario de tipo django.contrib.auth.models.User y el manager de django-taggit
     """
     for n in range(cantidad):
-        rec=Recurso(nombre="Nombre largo del recurso {0}".format(str(n)), nombre_corto="recurso-{0}-{1}".format(str(n), datetime.datetime.now().strftime("%d%m%d%H%M%S%f")), html=LOREM_IPSUM, tipo='MLT', url="ftp://miadjunto.ftp.yo.com")
+        rec=Recurso(
+            nombre="Nombre largo del recurso {0}".format(str(n)),
+            nombre_corto="recurso-{0}-{1}".format(str(n),datetime.datetime.now().strftime("%d%m%d%H%M%S%f")),
+            cuerpo=LOREM_IPSUM,
+            tipo='MLT',
+            url="ftp://miadjunto.ftp.yo.com",
+            imagen_destacada='recurso_adjunto/5-8_color.png')
         rec.save()
         RecursosAutores(recurso=rec, autor=USUARIO).save()
         rec.tags.add("Tag {0}-{1}".format(str(n), datetime.datetime.now().strftime("%d%m%d%H%M%S%f")))
@@ -62,14 +68,19 @@ def crear_desempenos_de_comprension(cantidad):
     """
     for n in range(cantidad):
         des=DesempenoDeComprension(
-            nombre="Desemeño {0}".format(str(n)),
+            nombre="Desempeño {0}".format(str(n)),
+            nombre_corto="Desempeno-{0}".format(datetime.datetime.now().strftime("%d%m%d%H%M%S%f")),
             fecha_publicacion=datetime.datetime.now(),
             fecha_actualizacion=datetime.datetime.now(),
             cuerpo=LOREM_IPSUM,
             notas_profesor=LOREM_IPSUM,
-            duracion=60)
+            duracion=60,
+            imagen_destacada='recurso_adjunto/5-8_color.png'
+            )
         des.save()
+        rec=Recurso.objects.get(pk=1)
         DesempenosDeComprensionAutores(desempeno_de_comprension=des, autor=USUARIO).save()     
+        DesempenosDeComprensionRecursos(desempeno_de_comprension=des, recurso=rec).save()
         
 def crear_cursos(cantidad):
     for n in range(cantidad):

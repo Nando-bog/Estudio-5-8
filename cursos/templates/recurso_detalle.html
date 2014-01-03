@@ -8,25 +8,26 @@
 <body>
     <h1>Nombre: {{ recurso.nombre }} </h1>
     <h2>Nombre corto: {{ recurso.nombre_corto }}</h2>
-    <p>Autor: {% for autor in recurso.autor.all %} {{autor.email}} {% endfor %} </p>
+    <p>Desempeños: {% for desempeno in desempenos %} {{ desempeno.nombre_corto }} {% endfor %}</p>
+    <p>Autores:
+    <ul>
+        {% for autor in recurso.autor.all %}
+        <li>{{autor.email}}</li>
+        {% endfor %}
+    </ul>
     <p>Imagen destacada:<br/>
     <img src="{% get_media_prefix %}{{ recurso.imagen_destacada }}" width="150px" height="auto"></p>
     <p>Tipo: {{ recurso.tipo }} </p>
     <p>URL: {{ recurso.url }}</p>
+    <p>Adjunto: {{ recurso.adjunto }} </p>
     </ul>
     <div>
-        <p>HTML: {{ recurso.html|safe }}</p>
-    </div>    
+        <p>HTML: {{ recurso.cuerpo|safe }}</p>
+    </div>
+    <p>Tags:
+    {% for tag in recurso.tags.all %}
+        {{ tag }} 
+    {% endfor %}
+    </p>
 </body>
 </html>
-autor=settings.AUTH_USER_MODEL,
-    nombre=CharField
-    nombre_corto=SlugField
-    html=RichTextField
-    tipo=CharField (choices)
-    #Atributos opcionales
-    adjunto=FileField
-    url=URLField
-    #Metadatos opcionales
-    imagen_destacada=ImageField
-    tags=TaggableManager()
