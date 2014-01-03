@@ -42,13 +42,19 @@ class DesempenoDeComprensionDetailView(DetailView):
         context['cursos']=self.cursos
         return context
     
-#Detalle de un curso
+#Detalle de un curso (página de inicio)
 class CursoInicioDetailView(DetailView):
-    template_name="curso_inicio.html"
+    template_name="curso_presentacion.html"
     model=Curso
     slug_field='codigo'
     slug_url_kwarg='codigo'
-    
+
+#Lista de cursos. Debe tener filtro y caja de búsqueda. Creo que sería con mixins y Javascript... phew...
+class CursoListView(ListView):
+    model=Curso
+    context_object_name='cursos'
+    template_name='cursos_lista_todos.html'
+
 #Lista de recursos. Debe tener filtro y caja de búsqueda.
 class RecursosListView(ListView):
     pass

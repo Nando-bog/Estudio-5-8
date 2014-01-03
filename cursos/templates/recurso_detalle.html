@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" lang="es-CO"  />
-    <title> {{ recurso.nombre }} </title>
-    {% load static %}
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %} {{ recurso.nombre }} {% endblock %}
+
+{% block content %}
     <h1>Nombre: {{ recurso.nombre }} </h1>
     <h2>Nombre corto: {{ recurso.nombre_corto }}</h2>
     <p>Desempeños: {% for desempeno in desempenos %} {{ desempeno.nombre_corto }} {% endfor %}</p>
@@ -16,7 +12,7 @@
         {% endfor %}
     </ul>
     <p>Imagen destacada:<br/>
-    <img src="{% get_media_prefix %}{{ recurso.imagen_destacada }}" width="150px" height="auto"></p>
+    <img src="{{ MEDIA_URL }}{{ recurso.imagen_destacada }}" width="150px" height="auto"></p>
     <p>Tipo: {{ recurso.tipo }} </p>
     <p>URL: {{ recurso.url }}</p>
     <p>Adjunto: {{ recurso.adjunto }} </p>
@@ -29,5 +25,4 @@
         {{ tag }} 
     {% endfor %}
     </p>
-</body>
-</html>
+{% endblock %}

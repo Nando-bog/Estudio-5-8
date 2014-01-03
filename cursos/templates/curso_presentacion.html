@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %} {{ curso.codigo }}: {{ curso.nombre }} {% endblock %}
+{% block content %}
+
+    <h1>Sección de información 1</h1>
+    <h2>Nombre: {{ curso.codigo }}. {{ curso.nombre }}</h2>
+    <p>Imagen destacada:<br/>
+        <img src="{% get_media_prefix %}{{ curso.imagen_destacada }}" width="150px" height="auto">
+    </p>
+    <p>Acceso: {{ curso.acceso }}</p>
+    <p>Fecha inicio: {{ curso.acceso }}</p>
+    <p>Acceso: {{ curso.acceso }}</p>
+    <p>Destacado: {{ curso.destacado }}</p>
+    <h2>Profesores:</h2>
+    <ul>
+    {% for profesor in curso.profesores.all %}
+        <li>{{ profesor.last_name }} {{ profesor.first_name }} {{ profesor.email }}</li>
+    {% endfor %}
+    </ul>
+    <p> {{ curso.tipo }} </p>
+    <h2>Hilos conductores</h2>
+    <ul>
+        {% for hilo in curso.hilos_conductores.all %}
+            <li> {{ hilo.nombre }}
+        {% endfor %}
+    </ul>
+    <h2>Tópicos generativos</h2>
+    <ul>
+        {% for topico in curso.topicos_generativos.all %}
+            <li> {{ topico.nombre }}
+        {% endfor %}
+    </ul>
+    <h2>Metas de comprensión</h2>
+    <ul>
+        {% for meta in curso.metas_de_comprension.all %}
+            <li> {{ meta.nombre }}
+        {% endfor %}
+    </ul>
+    
+    <h1>Sección de información 2: Curso con inscripción</h1>
+    <h2>Inscritos</h2>
+    <p>Cupos: {{ curso.cupos }}</p>
+    <ul>
+        {% for inscrito in curso.inscritos.all %}
+            <li> {{ inscrito.last_name }} {{ inscrito.first_name }} {{ inscrito.email }}
+        {% endfor %}
+    </ul>
+    <h2>Tags</h2>
+    <ul>
+        {% for tag in curso.tags.all %}
+            <li> {{ tag }}
+        {% endfor %}
+    </ul>
+    <h2>Secuencia del curso</h2>
+    <ol>
+        {% for desempeno in curso.desempenos_de_comprension.all %}
+            <li> {{ desempeno.nombre_corto }} </li>
+        {% endfor %}
+    </ol>
+{% endblock %}

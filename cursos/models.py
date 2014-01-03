@@ -236,7 +236,6 @@ class Curso(models.Model):
         (PRIVADO,"Exclusivo para miembros"),
         (VIP,"Requiere autorización especial")
     )
-    
     #Atributos básicos y obligatorios
     codigo=models.CharField(
         max_length=12,
@@ -249,8 +248,9 @@ class Curso(models.Model):
         max_length=150,
         help_text="Ojo con la ortografía de los títulos en español. Máximo 150 caracteres."
         )
+    fecha_inicio=models.DateField(help_text="La fecha de inicio es obligatoria, aunque el curso no tenga fecha de finalización.")
     profesores = models.ManyToManyField(
-        User,
+        settings.AUTH_USER_MODEL,
         through = 'CursosProfesores',
         related_name='profesores',
         help_text="Autores y profesores del curso. Debe haber al menos uno."
@@ -286,7 +286,6 @@ class Curso(models.Model):
         blank=True,
         help_text="Agregar alumnos a este curso."
         )
-    fecha_inicio=models.DateField(blank=True)
     fecha_fin=models.DateField(blank=True)
     cupos = models.IntegerField(
         blank=True,

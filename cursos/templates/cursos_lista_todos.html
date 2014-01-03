@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Cursos y proyectos{% endblock %}
+
+{% block content %}
+    
+<table>
+    <tr>
+        <th>Código</th>
+        <th>Nombre</th>
+        <th>Profesores</th>
+        <th>Acceso</th>
+        <th>Inscritos</th>
+        <th>Fecha inicio</th>
+        <th>Fecha fin</th>
+        <th>Cupos</th>
+        <th>Destacado</th>
+        <th>Imagen</th>
+        <th>Tags</th>
+    </tr>
+    {% for curso in cursos %}
+    <tr>
+        <th><a href="">{{ curso.codigo }}</a></th>
+        <td>{{ curso.nombre }}</td>
+        <td>{{ profesores }}</td>
+        <td>{{ acceso }}</td>
+        <td>{{ inscritos }}</td>
+        <td>{{ curso.fecha_inicio }}</td>
+        <td>{{ curso.fecha_fin }}</td>
+        <td>{{ curso.cupos }}</td>
+        <td>{{ curso.destacado }}</td>
+        <td>{{ curso.imagen }}</td>
+        <td>{% for tag in curso.tags.all %} {{ tag }} {% endfor %}</td>
+    {% endfor %}
+    </tr>
+</table>
+
+<p>Otros campos disponibles: Hilos conductores, Tópicos generativos, Metas de comprensión, Desempeños de comprensión</p>
+
+{% endblock %}
