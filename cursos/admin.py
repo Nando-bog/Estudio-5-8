@@ -46,7 +46,7 @@ class RecursoAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'nombre_corto', 'adjunto', 'url', 'tipo')
     prepopulated_fields = {'nombre_corto': ('nombre',)}
     fieldsets = (
-        (None, {'fields': ('nombre', 'imagen_destacada', 'nombre_corto', 'url', 'tipo', 'adjunto', 'html', 'tags')}),
+        (None, {'fields': ('nombre', 'imagen_destacada', 'nombre_corto', 'url', 'tipo', 'adjunto', 'cuerpo', 'tags')}),
     )
     inlines = (RecursosAutoresInline, DesempenosDeComprensionRecursosInline)
 

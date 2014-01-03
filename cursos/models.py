@@ -220,13 +220,11 @@ class DesempenoDeComprension(models.Model):
         return self.nombre
     
     def get_absolute_url(self):
-        #return "des/%s/" % self.id 
         return reverse('desempeno_detalle', kwargs={'nombre_corto': self.nombre_corto})
 
+
 class Curso(models.Model):
-    """
-    Un curso está definido por un conjunto de tópicos generativos, metas de comprensión, desempeños de comprensión y recursos. Un proyecto es un tipo de curso.
-    """
+    """Un curso está definido por un conjunto de tópicos generativos, metas de comprensión, desempeños de comprensión (y recursos y relacionados con ellos). Un proyecto es un tipo de curso."""
     #Constantes
     ABIERTO_LIBRE = 'AB-L'
     ABIERTO_CON_INSCRIPCION = 'AB-I'
@@ -241,7 +239,7 @@ class Curso(models.Model):
     
     #Atributos básicos y obligatorios
     codigo=models.CharField(
-        max_length=16,
+        max_length=12,
         validators=[RegexValidator(regex='^(?P<codigo_tipo>[A-Z])(?P<codigo_tema>[A-Z]{3,5})-(?P<nivel>[0-9]{,3})(?P<version>[a-z]{,3}$)',
         message="No es un código de curso válido. Intente de nuevo. Los códigos válidos se ajustan a la expresión regular anterior.")],
         help_text="Código del curso. Se valida con la siguiente expresión regular: ^(?P<codigo_tipo>[A-Z])(?P<codigo_tema>[A-Z]{3,5})-(?P<nivel>[0-9]{,3})(?P<version>[a-z]{,3}$)",
@@ -318,8 +316,9 @@ class Curso(models.Model):
         return self.nombre
     
     def get_absolute_url(self):
-        return "cursos/%s/" % self.codigo
-
+        #return "cursos/%s/" % self.codigo
+        return reverse('curso_inicio', kwargs={'codigo': self.codigo})
+    
 
 # MODELOS PARA LAS RELACIONES THROUGH= DE LOS CAMPOS M2M.
 class RecursosAutores(models.Model):

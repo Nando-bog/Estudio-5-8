@@ -43,7 +43,8 @@ class DesempenoDeComprensionDetailView(DetailView):
         return context
     
 #Detalle de un curso
-class CursoDetailView(DetailView):
+class CursoInicioDetailView(DetailView):
+    template_name="curso_inicio.html"
     model=Curso
     slug_field='codigo'
     slug_url_kwarg='codigo'
