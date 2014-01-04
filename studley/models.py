@@ -26,8 +26,8 @@ class ClaseHerramienta(models.Model):
     creado_por=models.ForeignKey(settings.AUTH_USER_MODEL)
     
     class Meta:
-        verbose_name='Clase de herramienta'
-        verbose_name_plural='Clases de herramientas'
+        verbose_name='Clase'
+        verbose_name_plural='Clases'
         
     class Admin:
         pass
@@ -43,12 +43,12 @@ class TipoHerramienta(models.Model):
     """ Tipo o nombre genérico. P. ej. serrucho, dentro del cual hay muchos, como de corte fino, de costilla, etc. No toda herramienta requiere un tipo, pero los tipos son únicos.
     """
     clase=models.ForeignKey(ClaseHerramienta)
-    nombre=models.CharField(max_length=50, unique=True)
+    nombre=models.CharField(max_length=150, unique=True)
     creado_por=models.ForeignKey(settings.AUTH_USER_MODEL)
 
     class Meta:
-        verbose_name='Tipo de herramienta'
-        verbose_name_plural='Tipos de herramientas'
+        verbose_name='Tipo'
+        verbose_name_plural='Tipos'
         
     class Admin:
         pass
@@ -60,10 +60,10 @@ class TipoHerramienta(models.Model):
         return '/tipo/{0}'.format(self.nombre)
 
 
-class ImagenHerramienta(models.Model):
+class Imagen(models.Model):
     imagen = models.ImageField(upload_to='herramientas')
-    nombre = models.CharField(max_length=50)
-    autor = models.CharField(max_length=50)
+    nombre = models.CharField(max_length=150)
+    autor = models.CharField(max_length=150)
     url = models.URLField(  blank=True)
     licencia = models.TextField()
     
@@ -78,18 +78,18 @@ class ImagenHerramienta(models.Model):
             return self.imagen
         
         
-class HerramientaGenerica(models.Model):
+class HerramientaBase(models.Model):
     """ Una herramienta de la cual distintas marcas hacen versiones. E. g. Cepillo #5 o Formón media caña para torno o Sierra circular.
     """
     clase=models.ForeignKey(ClaseHerramienta, help_text="Clase de herramienta.")
     tipo=models.ForeignKey(TipoHerramienta, blank=True, help_text="Tipo o nombre genérico. E.g. Serruco, el cual es el tipo de ´de corte fino´, ´de costilla´, etc.")
-    nombre=models.CharField(max_length=100)
+    nombre=models.CharField(max_length=150)
     nombre_corto=models.SlugField(max_length=30)
-    imagenes=models.ManyToManyField(ImagenHerramienta, through='HerramientasGenericasImagenesHerramientas', blank=True)
+    imagenes=models.ManyToManyField(Imagen, through='HerramientasBaseImagenes', blank=True)
     
     class Meta:
-        verbose_name='Herramienta tipo'
-        verbose_name_plural='Herramientas tipo'
+        verbose_name='Herramienta base'
+        verbose_name_plural='Herramientas base'
         
     class Admin:
         pass
@@ -102,7 +102,7 @@ class HerramientaGenerica(models.Model):
     
     
 class Marca(models.Model):
-    nombre=models.CharField(max_length=100)
+    nombre=models.CharField(unique=True, max_length=150)
     pagina_web=models.URLField(blank=True)
 
     class Meta:
@@ -117,12 +117,12 @@ class Marca(models.Model):
 
 
 class Herramienta(models.Model):
-    herramienta_generica=models.ForeignKey(HerramientaGenerica, help_text="Herramienta genérica de la cual esta es una instancia. E.g. un serrucho de corte fino marca Veritas es una instancia de un Serrucho de corte fino.")
+    herramienta_generica=models.ForeignKey(HerramientaBase, help_text="Herramienta genérica de la cual esta es una instancia. E.g. un serrucho de corte fino marca Veritas es una instancia de un Serrucho de corte fino.")
     marca=models.ForeignKey(Marca)
     modelo=models.CharField(max_length=150)
-    detalle=models.CharField(max_length=255, blank=True)
+    detalle=models.TextField(blank=True)
     notas=models.TextField(blank=True)
-    imagenes=models.ManyToManyField(ImagenHerramienta, through='HerramientasImagenesHerramientas', blank=True)
+    imagenes=models.ManyToManyField(Imagen, through='HerramientasImagenes', blank=True)
     
     class Meta:
         verbose_name='Herramienta'
@@ -135,21 +135,21 @@ class Herramienta(models.Model):
         return self.nombre
     
     def get_absolute_url(self):
-        return 'herramientas/{0}/'.format(self.id)
+        return 'herramientas/herramienta/{0}/'.format(self.id)
 
 
 class Coleccion(models.Model):
     """Grupo de herramientas seleccionado o recomendado. Colección personal."""
     #Atributos básicos
-    nombre=models.CharField(max_length=150)
-    herramientas_genericas=models.ManyToManyField(
-        HerramientaGenerica,
-        through='ColeccionHerramientaGenerica',
+    nombre=models.CharField(max_length=150, unique=True)
+    herramientas_base=models.ManyToManyField(
+        HerramientaBase,
+        through='ColeccionesHerramientasBase',
         help_text=''
         )
     herramientas_recomendadas=models.ManyToManyField(
         Herramienta,
-        through='ColeccionHerramientaRecomendada',
+        through='ColeccionesHerramientas',
         blank=True
         )
     notas=models.TextField(blank=True)
@@ -168,8 +168,8 @@ class Coleccion(models.Model):
     fecha_actualizacion = models.DateField()
     
     class Meta:
-        verbose_name=''
-        verbose_name_plural=''
+        verbose_name="Colección"
+        verbose_name_plural="Colecciones"
         ordering=['nombre']
     
     class Admin:
@@ -179,54 +179,39 @@ class Coleccion(models.Model):
         return self.nombre
     
     def get_absolute_url(self):
-        return "coleccion/{0}".format(self.id)
+        return "coleccion/{0}".format(self.nombre)
 
 
-class HerramientasGenericasImagenesHerramientas(models.Model):
-    imagen_herramienta=models.ForeignKey(ImagenHerramienta)
-    herramienta_generica=models.ForeignKey(HerramientaGenerica)
-    
-    class Meta:
-        verbose_name="Relación entre herramienta genérica e imagen"
-        verbose_name_plural="Relaciones entre herramientas genéricas e imágenes"
+class HerramientasBaseImagenes(models.Model):
+    imagen_herramienta=models.ForeignKey(Imagen)
+    herramienta_base=models.ForeignKey(HerramientaBase)
         
     def __unicode__(self):
-        return "{0}-{1}".format(self.herramienta_generica, self.imagen_herramienta)
+        return "{0}-{1}".format(self.herramienta_base, self.imagen_herramienta)
     
-class HerramientasImagenesHerramientas(models.Model):
-    imagen_herramienta=models.ForeignKey(ImagenHerramienta)
+    
+class HerramientasImagenes(models.Model):
+    imagen_herramienta=models.ForeignKey(Imagen)
     herramienta=models.ForeignKey(Herramienta)
-    
-    class Meta:
-        verbose_name="Relación entre una herramienta y una imagen"
-        verbose_name_plural="Relaciones entre herramientas e imágenes"
         
     def __unicode__(self):
         return "{0}-{1}".format(self.herramienta, self.imagen_herramienta)
 
 
-class ColeccionHerramientaGenerica(models.Model):
+class ColeccionesHerramientasBase(models.Model):
     coleccion=models.ForeignKey(Coleccion)
-    herramienta_generica=models.ForeignKey(HerramientaGenerica)
+    herramienta_base=models.ForeignKey(HerramientaBase)
     requerida=models.BooleanField(default=True)
     notas=models.TextField(blank=True, help_text="Notas sobre la herramienta en la colección. E.g. Mantener varias cuchillas con distintos radios y ángulos a la mano para este cepillo. ")
-    
-    class Meta:
-        verbose_name="Relación entre una colección y una herramienta genérica"
-        verbose_name_plural="Relaciones entre colecciones y herramientas genéricas"
-        
+            
     def __unicode__(self):
         return "{0}-{1}".format(self.herramienta, self.imagen_herramienta)
 
 
-class ColeccionHerramientaRecomendada(models.Model):
+class ColeccionesHerramientas(models.Model):
     coleccion=models.ForeignKey(Coleccion)
     herramienta=models.ForeignKey(Herramienta)
-    recomendada_para=models.ForeignKey(ColeccionHerramientaGenerica)
-
-    class Meta:
-            verbose_name="Relación entre una colección y una herramienta"
-            verbose_name_plural="Relaciones entre colecciones y herramientas"
+    recomendada_para=models.ForeignKey(ColeccionesHerramientasBase)
         
     def __unicode__(self):
         return "{0}-{1}".format(self.herramienta, self.coleccion)
