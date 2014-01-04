@@ -180,7 +180,7 @@ class DesempenoDeComprension(models.Model):
         max_length=50,
         help_text="Nombre corto que se verá en listas y otros lugares. Debe ser legible. Máximo 30 caracteres (letras, números, guiones, rayas). Debe ser único. Se usa para crear la URL del recurso y buscarlo en la bd."
         )
-    fecha_publicacion = models.DateField()
+    fecha_creacion = models.DateField()
     fecha_actualizacion = models.DateField()
     recursos = models.ManyToManyField(
         Recurso,
