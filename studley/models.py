@@ -43,7 +43,7 @@ class TipoHerramienta(models.Model):
     """ Tipo o nombre genérico. P. ej. serrucho, dentro del cual hay muchos, como de corte fino, de costilla, etc. No toda herramienta requiere un tipo, pero los tipos son únicos.
     """
     clase=models.ForeignKey(ClaseHerramienta)
-    nombre=CharField(max_length=50, unique=True)
+    nombre=models.CharField(max_length=50, unique=True)
     creado_por=models.ForeignKey(settings.AUTH_USER_MODEL)
 
     class Meta:
@@ -85,13 +85,7 @@ class HerramientaGenerica(models.Model):
     tipo=models.ForeignKey(TipoHerramienta, blank=True, help_text="Tipo o nombre genérico. E.g. Serruco, el cual es el tipo de ´de corte fino´, ´de costilla´, etc.")
     nombre=models.CharField(max_length=100)
     nombre_corto=models.SlugField(max_length=30)
-    imagenes=models.ManyToManyField(
-        ImagenHerramienta,
-        through='HerramientasGenericasImagenesHerramientas',
-        upload_to="herramientas",
-        blank=True,
-        default="herramienta.png"
-        )
+    imagenes=models.ManyToManyField(ImagenHerramienta, through='HerramientasGenericasImagenesHerramientas', blank=True)
     
     class Meta:
         verbose_name='Herramienta tipo'
@@ -128,13 +122,7 @@ class Herramienta(models.Model):
     modelo=models.CharField(max_length=150)
     detalle=models.CharField(max_length=255, blank=True)
     notas=models.TextField(blank=True)
-    imagenes=models.ManyToManyField(
-        ImagenHerramienta,
-        through='HerramientasImagenesHerramientas',
-        upload_to="herramientas",
-        blank=True,
-        default="herramienta.png"
-        )
+    imagenes=models.ManyToManyField(ImagenHerramienta, through='HerramientasImagenesHerramientas', blank=True)
     
     class Meta:
         verbose_name='Herramienta'
@@ -207,7 +195,7 @@ class HerramientasGenericasImagenesHerramientas(models.Model):
     
 class HerramientasImagenesHerramientas(models.Model):
     imagen_herramienta=models.ForeignKey(ImagenHerramienta)
-    herramienta=models.ForeignKey(HerramientaGenerica)
+    herramienta=models.ForeignKey(Herramienta)
     
     class Meta:
         verbose_name="Relación entre una herramienta y una imagen"
@@ -218,8 +206,8 @@ class HerramientasImagenesHerramientas(models.Model):
 
 
 class ColeccionHerramientaGenerica(models.Model):
-    coleccion=models.ManyToManyField(Coleccion)
-    herramienta_generica=models.Manager(HerramientaGenerica)
+    coleccion=models.ForeignKey(Coleccion)
+    herramienta_generica=models.ForeignKey(HerramientaGenerica)
     requerida=models.BooleanField(default=True)
     notas=models.TextField(blank=True, help_text="Notas sobre la herramienta en la colección. E.g. Mantener varias cuchillas con distintos radios y ángulos a la mano para este cepillo. ")
     
@@ -232,8 +220,8 @@ class ColeccionHerramientaGenerica(models.Model):
 
 
 class ColeccionHerramientaRecomendada(models.Model):
-    coleccion=models.ManyToManyField(Coleccion)
-    herramienta=models.Manager(Herramienta)
+    coleccion=models.ForeignKey(Coleccion)
+    herramienta=models.ForeignKey(Herramienta)
     recomendada_para=models.ForeignKey(ColeccionHerramientaGenerica)
 
     class Meta:
