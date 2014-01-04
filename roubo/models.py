@@ -1,6 +1,6 @@
 # coding=utf-8
 # Modelos para la aplicación "Roubo".
-# VERSION 0.12
+# VERSION 0.13
 
 # Standard Python/Django libraries
 import datetime
@@ -312,7 +312,6 @@ class Curso(models.Model):
  
    
 
-
 # MODELOS PARA LAS RELACIONES THROUGH= DE LOS CAMPOS M2M.
 class RecursosAutores(models.Model):
     """recurso=Recurso, autor=User
@@ -322,8 +321,8 @@ class RecursosAutores(models.Model):
     autor=models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name="Autor")
     
     class Meta:
-        verbose_name_plural="Relación autores y recursos"
-        verbose_name="Relaciones autores y recursos"
+        verbose_name_plural="Autores y recursos"
+        verbose_name="Autores y recursos"
         
     def __unicode__(self):
         return "Autor o recurso (relación)"
@@ -337,8 +336,8 @@ class DesempenosDeComprensionAutores(models.Model):
     autor = models.ForeignKey(settings.AUTH_USER_MODEL)
     
     class Meta:
-        verbose_name="Relación autores y desempeños de comprensión"
-        verbose_name_plural="Relaciones autores y desempeños de comprensión"
+        verbose_name="Autores y desempeños de comprensión"
+        verbose_name_plural="Autores y desempeños de comprensión"
     
     def __unicode__(self):
         return "Autor o desempeño (relación)"
@@ -352,8 +351,8 @@ class DesempenosDeComprensionRecursos(models.Model):
     recurso=models.ForeignKey(Recurso, verbose_name="Recurso")
     
     class Meta:
-        verbose_name_plural="Relación desempeños de comprensión y recursos"
-        verbose_name="Relaciones desempeños de comprensión y recursos"
+        verbose_name_plural="Desempeños de comprensión y recursos"
+        verbose_name="Desempeños de comprensión y recursos"
     
     def __unicode__(self):
         return "Recurso y desempeño (relación)"
@@ -367,8 +366,8 @@ class CursosProfesores(models.Model):
     profesor=models.ForeignKey(settings.AUTH_USER_MODEL)
     
     class Meta:
-        verbose_name="Relación cursos y profesores"
-        verbose_name_plural="Relaciones cursos y profesores"
+        verbose_name="Cursos y profesores"
+        verbose_name_plural="Cursos y profesores"
 
     def __unicode__(self):
             return "Curso y profesor (relación)"
@@ -382,8 +381,8 @@ class CursosHilosConductores(models.Model):
     curso=models.ForeignKey(Curso)
     
     class Meta:
-        verbose_name="Relación hilos conductores y cursos"
-        verbose_name_plural="Relaciones hilos conductores y cursos"
+        verbose_name="Hilos conductores y cursos"
+        verbose_name_plural="Hilos conductores y cursos"
     
     def __unicode__(self):
         return "Curso e hilo conductor (relación)"
@@ -397,8 +396,8 @@ class CursosTopicosGenerativos(models.Model):
     curso=models.ForeignKey(Curso)
     
     class Meta:
-        verbose_name="Relación cursos y tópicos generativos"
-        verbose_name_plural="Relaciones cursos y tópicos generativos"
+        verbose_name="Cursos y tópicos generativos"
+        verbose_name_plural="Cursos y tópicos generativos"
         
     def __unicode__(self):
         return "Curso y tópico generativo (relación)"
@@ -412,8 +411,8 @@ class CursosMetasDeComprension(models.Model):
     curso=models.ForeignKey(Curso)
 
     class Meta:
-        verbose_name="Relación cursos y metas de comprensión"
-        verbose_name_plural="Relaciones cursos y metas de comprensión"
+        verbose_name="Cursos y metas de comprensión"
+        verbose_name_plural="Cursos y metas de comprensión"
 
     def __unicode__(self):
         return "Cursos y metas de comprensión (relación)"
@@ -428,26 +427,8 @@ class CursosDesempenosDeComprension(models.Model):
     orden=models.IntegerField()
     
     class Meta:
-        verbose_name="Relación cursos y metas de comprensión"
-        verbose_name_plural="Relaciones desempeños de comprension y cursos"
+        verbose_name="Cursos y metas de comprensión"
+        verbose_name_plural="Desempeños de comprension y cursos"
     
     def __unicode__(self):
             return "Curso y desempeño (relación)"
-
-#class Categoria(models.Model):
-#    nombre = models.CharField(max_length=150, help_text="Ojo con la ortografía de los títulos en español. Máximo 150 caracteres.")
-#    slug = models.SlugField(unique=True, help_text="Se usará para generar URLs. Admite letras, números y guiones. Debe ser único y máximo de 50 caracteres.")
-#    descripcion = models.TextField(blank=True, help_text="Descripción de la categoría.")
-#    
-#    class Meta:
-#        verbose_name_plural="Categorías"
-#        ordering = ['nombre']
-#    
-#    class Admin:
-#        pass
-#    
-#    def __unicode__(self):
-#        return self.nombre
-#    
-#    def get_absolute_url(self):
-#        return "cat/%s/" % self.slug
