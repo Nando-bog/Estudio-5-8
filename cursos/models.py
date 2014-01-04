@@ -279,14 +279,6 @@ class Curso(models.Model):
         through='CursosDesempenosDeComprension'
     )
     #Atributos del curso que requiere inscripción
-    inscritos = models.ManyToManyField(
-        settings.AUTH_USER_MODEL,
-        through='CursosInscritos',
-        related_name='inscritos',
-        blank=True,
-        help_text="Agregar alumnos a este curso."
-        )
-    fecha_fin=models.DateField(blank=True)
     cupos = models.IntegerField(
         blank=True,
         null=True,
@@ -441,22 +433,6 @@ class CursosDesempenosDeComprension(models.Model):
     
     def __unicode__(self):
             return "Curso y desempeño (relación)"
-    
-
-class CursosInscritos(models.Model):
-    """curso=Curso, inscrito=User, fecha_inscripcion=datetime.datetime
-    Contiene la relación entre cursos e inscritos.
-    """
-    curso=models.ForeignKey(Curso)
-    inscrito=models.ForeignKey(settings.AUTH_USER_MODEL)
-    fecha_inscripcion=models.DateField(verbose_name="Fecha de inscripción")
-    
-    class Meta:
-        verbose_name="Relación cursos e inscritos"
-        verbose_name_plural="Relaciones cursos e inscritos"
-    
-    def __unicode__(self):
-        return "Cursos e inscritos (relación)"
 
 #class Categoria(models.Model):
 #    nombre = models.CharField(max_length=150, help_text="Ojo con la ortografía de los títulos en español. Máximo 150 caracteres.")

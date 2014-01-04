@@ -89,7 +89,6 @@ def crear_cursos(cantidad):
             nombre="Curso llamado {0}".format(datetime.datetime.now().strftime("%d%m%d%H%M%S%f")),
             acceso='AB-L',
             fecha_inicio=datetime.datetime.now(),
-            fecha_fin=datetime.datetime.now(),
             cupos=10,
         )
         c.save()

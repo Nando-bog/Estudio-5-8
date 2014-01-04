@@ -59,10 +59,6 @@ class CursoListView(ListView):
 class RecursosListView(ListView):
     pass
 
-#Lista de recursos por tipo (landing del tipo)
-class RecursosTiposListView(ListView):
-    pass
-
 ##Editar recurso
 #Agregar recurso
 
