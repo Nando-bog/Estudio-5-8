@@ -84,7 +84,7 @@ class CursoAdmin(admin.ModelAdmin):
     #filter_horizontal = ['profesores', 'hilos_conductores', 'topicos_generativos', 'metas_de_comprension', 'inscritos']
     fieldsets = (
         ("Información´ básica: ", {'fields':('codigo', 'nombre', 'acceso')}),
-        ("Si requiere inscripción: ", {'fields':('cupos', 'fecha_inicio','fecha_fin',)}),
+        ("Si requiere inscripción: ", {'fields':('cupos', 'fecha_inicio')}),
         ("Metadatos: ", {'fields': ('tags', 'imagen_destacada', )}),
     )
     inlines = (CursosHilosConductoresInline, CursosTopicosGenerativosInline, CursosMetasDeComprensionInline, CursosDesempenosDeComprensionInline, CursosProfesoresInline)

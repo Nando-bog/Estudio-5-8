@@ -1,5 +1,6 @@
 {% extends "base.html" %}
-{% block title %} {{ desempeno.nombre }} {% endblock %}
+{% block my_title %} {{ desempeno.nombre }} {% endblock my_title %}
+{% block content_title %} {{desempeno.nombre}} {% endblock %}
 {% block content %}
 
     <h1>Nombre: {{ desempeno.nombre }}</h1>

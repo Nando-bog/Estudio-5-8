@@ -1,15 +1,14 @@
 {% extends "base.html" %}
-{% block title %} {{ curso.codigo }}: {{ curso.nombre }} {% endblock %}
+{% block my_title %} {{ curso.codigo }}: {{ curso.nombre }} {% endblock my_title %}
 {% block content %}
 
     <h1>Sección de información 1</h1>
     <h2>Nombre: {{ curso.codigo }}. {{ curso.nombre }}</h2>
     <p>Imagen destacada:<br/>
-        <img src="{% get_media_prefix %}{{ curso.imagen_destacada }}" width="150px" height="auto">
+        <img src="{{ MEDIA_URL }}{{ curso.imagen_destacada }}" width="150px" height="auto">
     </p>
     <p>Acceso: {{ curso.acceso }}</p>
-    <p>Fecha inicio: {{ curso.acceso }}</p>
-    <p>Acceso: {{ curso.acceso }}</p>
+    <p>Fecha inicio: {{ curso.fecha_inicio }}</p>
     <p>Destacado: {{ curso.destacado }}</p>
     <h2>Profesores:</h2>
     <ul>

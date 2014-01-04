@@ -5,11 +5,11 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="{% static "css/base_stylesheet.css/" %}">
-    <title>5-8 Carpintería</title>
+    <title>{% block my_title %}5-8 Carpintería{% endblock my_title %}</title>
 </head>
 <body>
     <div id="header">
-        <h1>{% block title %} 5-8 Carpintería {% endblock %}</h1>
+        <h1> 5-8 Carpintería</h1>
     </div>
     <nav id="main_nav">
     {% block sidebar %}

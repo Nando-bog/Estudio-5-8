@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-{% block title %} {{ recurso.nombre }} {% endblock %}
-
+{% block my_title %} {{ recurso.nombre }} {% endblock my_title %}
+{% block content_title %} {{recurso.nombre}} {% endblock %}
 {% block content %}
     <h1>Nombre: {{ recurso.nombre }} </h1>
     <h2>Nombre corto: {{ recurso.nombre_corto }}</h2>

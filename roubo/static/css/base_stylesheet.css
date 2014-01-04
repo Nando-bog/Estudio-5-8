@@ -61,7 +61,7 @@ th, td {
     margin: 0px;
 }
 
-p {
+p, li {
    color: rgb(100,100,100);
 }
 
