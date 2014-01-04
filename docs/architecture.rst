@@ -18,8 +18,8 @@ Ideas/Requerimientos
 
 Apps
 ----
-- Roubo: App padagógico/LMS. Nombrado en honor a André-Jacob Roubo (Ver más en: http://fr.wikipedia.org/wiki/Andr%C3%A9-Jacob_Roubo, http://en.wikipedia.org/wiki/Andr%C3%A9_Jacob_Roubo)
-- Studley: Caja de herramientas. Nombrado en honor a Henry O. Studley (Ver más en: http://en.wikipedia.org/wiki/Henry_O._Studley)
+- Roubo: App padagógico/LMS. Nombrado en honor a André-Jacob Roubo (Ver más en Wikipedia: _francés: http://fr.wikipedia.org/wiki/Andr%C3%A9-Jacob_Roubo, _inglés: http://en.wikipedia.org/wiki/Andr%C3%A9_Jacob_Roubo)
+- Studley: Caja de herramientas. Nombrado en honor a Henry O. Studley (Ver más en Wikipedia: _Henry O. Studley: http://en.wikipedia.org/wiki/Henry_O._Studley)
 
 Modelos
 -------
