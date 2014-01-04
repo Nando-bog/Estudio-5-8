@@ -18,11 +18,15 @@ Ideas/Requerimientos
 
 Apps
 ----
-- Roubo: App padagógico/LMS. Nombrado en honor a André-Jacob Roubo (Ver más sobre él en Wikipedia:
+- Roubo: App padagógico/LMS. Nombrado en honor a André-Jacob Roubo, ebanista y escritor francés del S.XVIII. Ver más sobre él en Wikipedia:
     - En francés: <http://fr.wikipedia.org/wiki/Andr%C3%A9-Jacob_Roubo>
     - En inglés: <http://en.wikipedia.org/wiki/Andr%C3%A9_Jacob_Roubo>
-- Studley: Caja de herramientas. Nombrado en honor a Henry O. Studley (Ver más en Wikipedia: _Henry O. Studley: http://en.wikipedia.org/wiki/Henry_O._Studley)
+- Studley: Caja de herramientas. Nombrado en honor a Henry O. Studley (Ver más en Wikipedia: _Henry O. Studley: http://en.wikipedia.org/wiki/Henry_O._Studley
 
 Modelos
 -------
-Diagrama de modelos (generado automáticamente con django-extensions, pygraphviz): 5-8.dot
+Diagrama de modelos (generado automáticamente con django-extensions, pygraphviz y graph-models http://django-extensions.readthedocs.org/en/latest/graph_models.html): 5-8.dot
+Reminders:
+- # Create a dot file $ ./manage.py graph_models -a > my_project.dot
+- # Create a png file $ ./manage.py graph_models -a -g -o my_project_visualized.png
+- #Create a dot file for only the 'foo' and 'bar' applications of your project $ ./manage.py graph_models foo bar > my_project.dot
