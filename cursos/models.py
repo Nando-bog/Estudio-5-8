@@ -317,7 +317,9 @@ class Curso(models.Model):
     def get_absolute_url(self):
         #return "cursos/%s/" % self.codigo
         return reverse('curso_inicio', kwargs={'codigo': self.codigo})
-    
+ 
+   
+
 
 # MODELOS PARA LAS RELACIONES THROUGH= DE LOS CAMPOS M2M.
 class RecursosAutores(models.Model):

@@ -39,6 +39,7 @@ DEFAULT_APPS = (
 THIRD_PARTY_APPS = (
     'taggit',
     'ckeditor',
+    'django_extensions',
 )
 
 LOCAL_APPS =  (
@@ -96,3 +97,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'../file-uploads')
 MEDIA_URL = '/media/'
 
 CKEDITOR_UPLOAD_PATH = 'ckeditor-uploads/'
+
+# For the database graph app
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+}

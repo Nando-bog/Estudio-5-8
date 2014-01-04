@@ -49,11 +49,11 @@ class CursoInicioDetailView(DetailView):
     slug_field='codigo'
     slug_url_kwarg='codigo'
 
-#Lista de cursos. Debe tener filtro y caja de búsqueda. Creo que sería con mixins y Javascript... phew...
+#Lista general de cursos (landing).
 class CursoListView(ListView):
     model=Curso
     context_object_name='cursos'
-    template_name='cursos_lista_todos.html'
+    template_name='cursos_index.html'
 
 #Lista de recursos. Debe tener filtro y caja de búsqueda.
 class RecursosListView(ListView):
