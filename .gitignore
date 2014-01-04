@@ -6,7 +6,6 @@
 *.psd
 *.svg
 file-uploads
-requirements.txt
 /_5_8/settings/local_settings.py
 *.xmind
 .DS_Store
