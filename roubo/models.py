@@ -1,5 +1,5 @@
 # coding=utf-8
-# Modelos para la aplicación "Cursos".
+# Modelos para la aplicación "Roubo".
 # VERSION 0.12
 
 # Standard Python/Django libraries

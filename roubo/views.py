@@ -1,5 +1,5 @@
 #coding=utf-8
-# Views para la aplicación "Cursos"
+# Views para la aplicación "Roubo"
 #Version 0.1
 
 from django.contrib.auth.models import User

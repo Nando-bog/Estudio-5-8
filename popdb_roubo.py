@@ -5,7 +5,7 @@ import datetime
 from django.contrib.auth.models import User
 from taggit.models import Tag
 from taggit.managers import TaggableManager
-from cursos.models import Recurso, HiloConductor, TopicoGenerativo, MetaDeComprension, DesempenoDeComprension, Curso, RecursosAutores, DesempenosDeComprensionAutores, DesempenosDeComprensionRecursos, CursosProfesores, CursosHilosConductores, CursosTopicosGenerativos, CursosMetasDeComprension, CursosDesempenosDeComprension, CursosInscritos
+from roubo.models import Recurso, HiloConductor, TopicoGenerativo, MetaDeComprension, DesempenoDeComprension, Curso, RecursosAutores, DesempenosDeComprensionAutores, DesempenosDeComprensionRecursos, CursosProfesores, CursosHilosConductores, CursosTopicosGenerativos, CursosMetasDeComprension, CursosDesempenosDeComprension
 
 CANTIDAD = 5
 ##TRAER EL PRIMER USUARIO REGISTRADO (ADMIN)
@@ -102,7 +102,6 @@ def crear_cursos(cantidad):
         desempeno=DesempenoDeComprension.objects.all()[0]
         CursosDesempenosDeComprension(curso=c, desempeno_de_comprension=desempeno, orden=1).save()
         c.tags.add("Tag {0}-{1}".format(str(n), datetime.datetime.now().strftime("%d%m%d%H%M%S%f")))
-        #CursosInscritos(curso=c).save()
         
 
 FUNCIONES = [crear_hilos_conductores, crear_topicos_generativos, crear_metas_de_comprension, crear_recursos, crear_tags, crear_desempenos_de_comprension, crear_cursos]

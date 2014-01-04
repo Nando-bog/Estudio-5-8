@@ -1,5 +1,5 @@
 #coding=utf-8
-# URLS para el app "Cursos"
+# URLS para el app "Roubo"
 # Version 0.1
 
 from django.conf.urls import patterns, url

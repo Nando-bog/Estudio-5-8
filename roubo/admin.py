@@ -1,5 +1,5 @@
 #coding=utf-8
-# Admin para aplicación Cursos
+# Admin para aplicación Roubo
 # VERSION 0.12
 
 from django.contrib import admin
