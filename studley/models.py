@@ -1,5 +1,5 @@
 #coding=utf-8
-# Modelos para la aplicación "Studley", una caja de herramientas.
+# Modelos para la aplicación "Roubo", una caja de herramientas.
 # La caja de herramientas personal de un usuario es una colección. Diseñar métodos para comparar, compartir, etc., colecciones. ¡Sigue siendo Studley!
 # Version 0.11
 from django.db import models
@@ -9,20 +9,21 @@ class ClaseHerramienta(models.Model):
     """Clase de harramienta según su función: Alisado, Atornillado, Corte, Labrado, Perforación, Sujeción, Afilado, Golpeo, Seguridad, Marcación, Medición, Aseo
     """
     CLASES_HERRAMIENTAS = (
-        (1, 'Afilado'),
-        (1, 'Alisado'),
-        (2, 'Atornillado'),
-        (3, 'Aseo'),
-        (4, 'Corte'),
-        (5, 'Labrado'),
-        (6, "Perforación"),
-        (7, "Sujeción"),
-        (8, 'Golpeo'),
-        (9, 'Seguridad'),
-        (10, "Marcación"),
-        (11, "Medición"),
+        ('Afilado', 'Afilado'),
+        ('Alisado', 'Alisado'),
+        ('Atornillado', 'Atornillado'),
+        ('Aseo', 'Aseo'),
+        ('Corte', 'Corte'),
+        ('Labrado', 'Labrado'),
+        ("Perforación", "Perforación"),
+        ("Sujeción", "Sujeción"),
+        ('Golpeo', 'Golpeo'),
+        ('Seguridad', 'Seguridad'),
+        ("Marcación", "Marcación"),
+        ("Medición", "Medición"),
     )
     nombre=models.CharField(max_length=50, unique=True, choices=CLASES_HERRAMIENTAS)
+    descripcion=models.CharField(max_length=255)
     creado_por=models.ForeignKey(settings.AUTH_USER_MODEL)
     
     class Meta:

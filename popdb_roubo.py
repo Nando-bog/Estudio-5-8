@@ -70,7 +70,7 @@ def crear_desempenos_de_comprension(cantidad):
         des=DesempenoDeComprension(
             nombre="Desempeño {0}".format(str(n)),
             nombre_corto="Desempeno-{0}".format(datetime.datetime.now().strftime("%d%m%d%H%M%S%f")),
-            fecha_publicacion=datetime.datetime.now(),
+            fecha_creacion=datetime.datetime.now(),
             fecha_actualizacion=datetime.datetime.now(),
             cuerpo=LOREM_IPSUM,
             notas_profesor=LOREM_IPSUM,
