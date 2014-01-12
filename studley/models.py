@@ -1,9 +1,10 @@
 #coding=utf-8
 # Modelos para la aplicación "Roubo", una caja de herramientas.
 # La caja de herramientas personal de un usuario es una colección. Diseñar métodos para comparar, compartir, etc., colecciones. ¡Sigue siendo Studley!
-# Version 0.11
+# Version 0.12
 from django.db import models
 from django.conf import settings
+from django.core.urlresolvers import reverse
 
 class ClaseHerramienta(models.Model):
     """Clase de harramienta según su función: Alisado, Atornillado, Corte, Labrado, Perforación, Sujeción, Afilado, Golpeo, Seguridad, Marcación, Medición, Aseo
@@ -85,8 +86,9 @@ class HerramientaBase(models.Model):
     clase=models.ForeignKey(ClaseHerramienta, help_text="Clase de herramienta.")
     tipo=models.ForeignKey(TipoHerramienta, blank=True, help_text="Tipo o nombre genérico. E.g. Serruco, el cual es el tipo de ´de corte fino´, ´de costilla´, etc.")
     nombre=models.CharField(max_length=150)
-    nombre_corto=models.SlugField(max_length=30)
+    nombre_corto=models.SlugField(max_length=30, unique=True)
     imagenes=models.ManyToManyField(Imagen, through='HerramientasBaseImagenes', blank=True)
+    detalle=models.TextField(help_text='Describa la herramienta.')
     
     class Meta:
         verbose_name='Herramienta base'
@@ -100,6 +102,7 @@ class HerramientaBase(models.Model):
     
     def get_absolute_url(self):
         return 'herramientas/{0}/'.format(self.id)
+        return reverse('herramientas_lista', kwargs={'nombre_corto':self.nombre_corto})
     
     
 class Marca(models.Model):
