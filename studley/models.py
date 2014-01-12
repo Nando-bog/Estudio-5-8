@@ -118,7 +118,7 @@ class Marca(models.Model):
 
 
 class Herramienta(models.Model):
-    herramienta_generica=models.ForeignKey(HerramientaBase, help_text="Herramienta genérica de la cual esta es una instancia. E.g. un serrucho de corte fino marca Veritas es una instancia de un Serrucho de corte fino.")
+    herramienta_base=models.ForeignKey(HerramientaBase, help_text="Herramienta genérica de la cual esta es una instancia. E.g. un serrucho de corte fino marca Veritas es una instancia de un Serrucho de corte fino.")
     marca=models.ForeignKey(Marca)
     modelo=models.CharField(max_length=150)
     detalle=models.TextField(blank=True)
