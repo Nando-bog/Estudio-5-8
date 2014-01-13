@@ -91,7 +91,7 @@ STATIC_URL = '/static/'
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, '../templates'),
-    os.path.join(BASE_DIR, '../cursos/templates/')
+    #os.path.join(BASE_DIR, '../cursos/templates/'),
 )
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'../file-uploads')
