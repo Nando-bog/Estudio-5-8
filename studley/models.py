@@ -38,7 +38,8 @@ class ClaseHerramienta(models.Model):
         return self.nombre
     
     def get_absolute_url(self):
-        return "/{0}/".format(self.nombre)
+        #return "clases/{0}/".format(self.nombre)
+        return reverse('herramientas_clase', kwargs={'nombre':self.nombre})
 
 
 class TipoHerramienta(models.Model):
@@ -84,7 +85,7 @@ class HerramientaBase(models.Model):
     """ Una herramienta de la cual distintas marcas hacen versiones. E. g. Cepillo #5 o Formón media caña para torno o Sierra circular.
     """
     clase=models.ForeignKey(ClaseHerramienta, help_text="Clase de herramienta.")
-    tipo=models.ForeignKey(TipoHerramienta, blank=True, help_text="Tipo o nombre genérico. E.g. Serruco, el cual es el tipo de ´de corte fino´, ´de costilla´, etc.")
+    tipo=models.ForeignKey(TipoHerramienta, blank=True, help_text="Tipo o nombre genérico. E.g. Serrucho, el cual es el tipo de ´de corte fino´, ´de costilla´, etc.")
     nombre=models.CharField(max_length=150)
     nombre_corto=models.SlugField(max_length=30, unique=True)
     imagenes=models.ManyToManyField(Imagen, through='HerramientasBaseImagenes', blank=True)
@@ -102,7 +103,7 @@ class HerramientaBase(models.Model):
     
     def get_absolute_url(self):
         return 'herramientas/{0}/'.format(self.id)
-        return reverse('herramientas_lista', kwargs={'nombre_corto':self.nombre_corto})
+        #return reverse('herramientas_lista', kwargs={'nombre_corto':self.nombre_corto})
     
     
 class Marca(models.Model):
