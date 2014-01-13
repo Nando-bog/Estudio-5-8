@@ -5,8 +5,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
-from .models import HerramientaBase
-
+from .models import HerramientaBase, ClaseHerramienta
 
 class HerramientaListView(ListView):
     model=HerramientaBase
@@ -14,5 +13,9 @@ class HerramientaListView(ListView):
     template_name='herramientas_index.html'
 
 
-class HerramientaDetailView(DetailView):
-    pass
+class HerramientaBaseDetailView(DetailView):
+    model=ClaseHerramienta
+    context_object_name='clase'
+    template_name='herramientas_clase.html'
+    slug_field='nombre'
+    slug_url_kwarg='nombre'
