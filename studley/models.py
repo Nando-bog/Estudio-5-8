@@ -24,7 +24,7 @@ class ClaseHerramienta(models.Model):
         ("Medición", "Medición"),
     )
     nombre=models.CharField(max_length=50, unique=True, choices=CLASES_HERRAMIENTAS)
-    descripcion=models.CharField(max_length=255)
+    descripcion=models.TextField()
     creado_por=models.ForeignKey(settings.AUTH_USER_MODEL)
     
     class Meta:
@@ -87,7 +87,7 @@ class HerramientaBase(models.Model):
     clase=models.ForeignKey(ClaseHerramienta, help_text="Clase de herramienta.")
     tipo=models.ForeignKey(TipoHerramienta, blank=True, help_text="Tipo o nombre genérico. E.g. Serrucho, el cual es el tipo de ´de corte fino´, ´de costilla´, etc.")
     nombre=models.CharField(max_length=150)
-    nombre_corto=models.SlugField(max_length=30, unique=True)
+    nombre_corto=models.SlugField(max_length=30, unique=True, help_text="Debe ser único.")
     imagenes=models.ManyToManyField(Imagen, through='HerramientasBaseImagenes', blank=True)
     detalle=models.TextField(help_text='Describa la herramienta.')
     
