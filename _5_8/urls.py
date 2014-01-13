@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^ckeditor/', include('ckeditor.urls')),
     url(r'^cursos/', include('roubo.urls')),
+    url(r'^studley/', include('studley.urls')),
     #url(r'^recursos/', include('cursos.urls')),
 )
 
