@@ -9,19 +9,19 @@
 </head>
 <body>
     <div id="header">
-        <h1> 5-8 Carpintería</h1>
+        <img src="{{ STATIC_URL }}images/logo.png" alt="Logo 5-8 Carpintería">
     </div>
     <nav id="main_nav">
     {% block sidebar %}
         <ul>
-            <li><a href="#">Cursos y proyectos</a></li>
-            <li><a href="#">Herramientas</a></li>
-            <li><a href="#">A la medida</a></li>
+            <li><a href="/cursos/">Cursos y proyectos</a></li>
+            <li><a href="/studley/">Herramientas</a></li>
+            <!--<li><a href="#">A la medida</a></li>
             <li><a href="#">Taller</a></li>
             <li><a href="#">Inscripciones</a></li>
             <li><a href="#">Discusión</a></li>
-            <li><a href="#">Mi cuenta</a></li>
-            <li><a href="#">Qué es 5-8</a></li>
+            <li><a href="#">Mi cuenta</a></li>-->
+            <li><a href="/quees/">Qué es 5-8</a></li>
         </ul>
     {% endblock %}
     </nav>
@@ -29,7 +29,7 @@
     <div id="content">
         {% block content %}
             <h1>Error</h1>
-            <p>Algo salió mal y esta página no está mostrando ningún contenido.</p>
+            <p>Algo salió mal y esta página no está mostrando ningún contenido. No llegó nada al bloque "content" de la página base.</p>
         {% endblock %}
     </div>
 
