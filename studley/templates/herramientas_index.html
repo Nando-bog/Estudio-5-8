@@ -17,9 +17,9 @@
     </tr>
     {% for herramienta in herramientas %}
     <tr>
-        <th><a href="">{{ herramienta.clase }}</a></th>
+        <th><a href="{{ herramienta.clase.get_absolute_url }}">{{ herramienta.clase }}</a></th>
         <th><a href="">{{ herramienta.tipo }}</a></th>
-        <td>{{ herramienta.nombre }}</td>
+        <td><a href="{{ herramienta.get_absolute_url }}">{{ herramienta.nombre }}</a></td>
         <td>{{ herramienta.nombre_corto }}</td>
         <td>
             {% for imagen in herramienta.imagenes.all %}
