@@ -1,15 +1,17 @@
 <!DOCTYPE html>
+    
 {% load static %}
 {% load staticfiles %}
+
 <html lang="es-CO">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="{% static "css/base_stylesheet.css/" %}">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/base_stylesheet.css/" %}">
     <title>{% block my_title %}5-8 Carpintería{% endblock my_title %}</title>
 </head>
 <body>
     <div id="header">
-        <img src="{{ STATIC_URL }}images/logo.png" alt="Logo 5-8 Carpintería">
+        <img src="{{ STATIC_URL }}logo.png" alt="Logo 5-8 Carpintería" width="150px" height="auto" />
     </div>
     <nav id="main_nav">
     {% block sidebar %}
