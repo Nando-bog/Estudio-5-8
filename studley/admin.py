@@ -2,9 +2,18 @@
 # Admin para aplicación Studley
 # VERSION 0.1
 from django.contrib import admin
-from .models import HerramientaBase, Herramienta, Coleccion, ClaseHerramienta, TipoHerramienta, Imagen
+from .models import HerramientaBase, Herramienta, Coleccion, ClaseHerramienta, TipoHerramienta, Imagen, HerramientasBaseImagenes
 
-admin.site.register(HerramientaBase)
+class HerramientaBaseImagenInline(admin.TabularInline):
+    model = HerramientasBaseImagenes
+    extra = 1
+
+
+class HerramientaBaseAdmin(admin.ModelAdmin):
+    inlines = (HerramientaBaseImagenInline, )
+
+
+admin.site.register(HerramientaBase, HerramientaBaseAdmin)
 admin.site.register(Herramienta)
 admin.site.register(Coleccion)
 admin.site.register(ClaseHerramienta)
