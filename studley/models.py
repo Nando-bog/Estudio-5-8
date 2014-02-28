@@ -1,13 +1,16 @@
 #coding=utf-8
 # Modelos para la aplicación "Roubo", una caja de herramientas.
-# La caja de herramientas personal de un usuario es una colección. Diseñar métodos para comparar, compartir, etc., colecciones. ¡Sigue siendo Studley!
+# La caja de herramientas personal de un usuario es una colección.
+# Diseñar métodos para comparar, compartir, etc., colecciones. ¡Sigue siendo Studley!
 # Version 0.12
 from django.db import models
 from django.conf import settings
 from django.core.urlresolvers import reverse
 
 class ClaseHerramienta(models.Model):
-    """Clase de harramienta según su función: Alisado, Atornillado, Corte, Labrado, Perforación, Sujeción, Afilado, Golpeo, Seguridad, Marcación, Medición, Aseo
+    """Clase de harramienta según su función: Alisado, Atornillado, Corte,
+    Labrado, Perforación, Sujeción, Afilado, Golpeo, Seguridad, Marcación,
+    Medición, Aseo
     """
     CLASES_HERRAMIENTAS = (
         ('Afilado', 'Afilado'),

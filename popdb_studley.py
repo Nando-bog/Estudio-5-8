@@ -6,7 +6,6 @@ from django.contrib.auth.models import User
 from taggit.models import Tag
 from taggit.managers import TaggableManager
 from studley.models import ClaseHerramienta, TipoHerramienta
-
 CANTIDAD = 5
 ##TRAER EL PRIMER USUARIO REGISTRADO (ADMIN)
 USUARIO=User.objects.all()[0]
@@ -40,4 +39,4 @@ def crear_tipos_herramientas(cantidad):
 
 FUNCIONES = [crear_tipos_herramientas]
 
-poblar(CANTIDAD,FUNCIONES)
+poblar(CANTIDAD, FUNCIONES)

@@ -7,6 +7,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from .models import HerramientaBase, ClaseHerramienta
 
+
 class HerramientaListView(ListView):
     model=HerramientaBase
     context_object_name='herramientas'

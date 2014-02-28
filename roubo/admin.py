@@ -73,7 +73,7 @@ class DesempenoDeComprensionAdmin(admin.ModelAdmin):
     fieldsets = (
         ("Información básica", {'fields': ('nombre', 'duracion', 'imagen_destacada')}),
         ("Cuerpo", {'fields': ('cuerpo',)}),
-        ("Metadatos", {'fields': ( 'fecha_publicacion', 'fecha_actualizacion', 'tags', 'notas_profesor' ),}),
+        ("Metadatos", {'fields': ( 'fecha_creacion', 'fecha_actualizacion', 'tags', 'notas_profesor' ),}),
     )
     inlines = (CursosDesempenosDeComprensionInline, DesempenosDeComprensionAutoresInline, DesempenosDeComprensionRecursosInline)    
     filter_horizontal=['autor', 'recursos',]
