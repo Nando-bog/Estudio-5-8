@@ -22,3 +22,5 @@ static
 *static
 *vagrant*
 *Thumbs
+.gitignore
+*personal_notes
