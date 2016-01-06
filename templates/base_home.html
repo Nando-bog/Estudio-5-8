@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+    
+{% load static %}
+{% load staticfiles %}
+
+<html lang="es-CO">
+<head>
+    <meta charset="UTF-8">
+    <!--Hoja de estilo generada como un template, usando el motor de Django para poder meterle lógica y variables si se requiere (como cambiar el fondo del home según el destacado o algún otro criterio. Tiene entrada en urls.py, views.py y una plantilla .css en /templates llamada 5-8-styles-dynamic.css.-->
+    <link rel="stylesheet" type="text/css" href="styles/5-8-styles.css/">
+    {% block other_imports %}
+    {% endblock %}
+    <title>{% block my_title %}Estudio 5-8{% endblock my_title %}</title>
+</head>
+<body>
+    <div id="header-cont">
+        <div class="navigation font-1">
+            {% block sidebar %}
+              <ul class="nav">
+                  <li class="logo"><a href="/home"><img src="{% static "images/5-8-logo.png" %}" width="120" height="56" alt="5-8 Estudio"></a>
+                  <!--<li class="btn"><a href="#" class="btn-link">&#9776;</a>-->
+                  <!--    <ul class="menu">-->
+                           <li><a href="/roubo/VID">Videos<p class="font-size-sub1">tutoriales</p></a></li>
+                           <li><a href="/roubo/cuaderno">Cuaderno <p class="font-size-sub1">de notas</p></a></li>
+                           <li><a href="/studley">Herramientas<p class="font-size-sub1">y colecciones</p></a></li>
+                           <li><a href="/roubo/GLR">Galería<p class="font-size-sub1">de proyectos</p></a></li>
+                          <li><a href="/el-estudio/">El estudio<p class="font-size-sub1">taller</p></a></li>
+                          <li><a href="/contacto">Contacto<p class="font-size-sub1"></p></a></li>
+                      <!--</ul>-->
+            {% endblock %}
+                  <!--</li>-->
+              </ul>
+          </div>
+        </div>
+
+
+{% block content_base %}
+        <h1>Error</h1>
+        <p>Algo salió mal y esta página no está mostrando ningún contenido. No llegó nada al bloque "content" de la página base.</p>
+{% endblock content_base %}
+
+{% block footer %}
+<div class="bckgrnd-color-8" id="site-footer">
+{% endblock footer %}
+<div class="pddng-ext">
+    <footer>
+      <img src="{% static "images/5-8-logo-blanco.png" %}" width="80" height="auto" alt="5-8 Estudio" class="logo">
+      <p class="font-color-2"><strong>Estudio 5-8</strong></p>
+      <small><p class="font-color-2">El taller que abre cuando el trabajo de 8-5 termina.</p></small>
+    </footer>
+  </div>
+</div>
+</body>
+</html>

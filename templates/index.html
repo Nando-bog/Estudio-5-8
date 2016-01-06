@@ -1,0 +1,67 @@
+
+{% extends "base.html" %}
+{% block other_imports %}
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/index_styles.css/" %}">
+{% endblock%}
+{% block content %}
+
+
+<div id="main_highlight" class="highlight_container_large">
+    <div class="highlight_container_large_image">
+        <img src="{{ STATIC_URL }}images/mango_formones.jpg"/>
+    </div>
+    <div class="highlight_container_small">
+        <div class="highlight_container_small_inner">
+            <div class="highlight_container_small_inner_image">
+                <img src="{{ STATIC_URL }}images/formones.jpg"/>
+            </div>
+            <h1>Title</h1>
+        </div>
+        <div class="highlight_container_small_inner">
+            <div class="highlight_container_small_inner_image">
+                <img src="{{ STATIC_URL }}images/formones.jpg"/>
+            </div>
+            <h1>Title</h1>
+        </div>
+        <div class="highlight_container_small_inner">
+            <div class="highlight_container_small_inner_image">
+                <img src="{{ STATIC_URL }}images/formones.jpg"/>
+            </div>
+            <h1>Title</h1>
+        </div>
+    </div>
+    <h1>This is the title of the highlight</h1>
+    <p>Pellentesque leo velit, suscipit sed adipiscing eu, faucibus eu erat. Etiam ac diam velit. Nulla lobortis, turpis eu posuere blandit, velit turpis volutpat diam, non congue mauris sapien sed est. Nam ut dolor quis lacus hendrerit pulvinar. Integer posuere lacus at dapibus ultricies.</p>
+</div>
+
+<div id="herramientas" class="section_intro">
+    <h1><a href='studley/'>Herramientas</a></h1>
+    <div class="section_intro_image">
+        <img src="{{ STATIC_URL }}images/formones.jpg"/>
+    </div>
+    <p>Pellentesque leo velit, suscipit sed adipiscing eu, faucibus eu erat. Etiam ac diam velit. Nulla lobortis, turpis eu posuere blandit, velit turpis volutpat diam, non congue mauris sapien sed est. Nam ut dolor quis lacus hendrerit pulvinar. Integer posuere lacus at dapibus ultricies.</p>
+    <!--<aside id="herramientas_aside" class="cuadro_destacado_aside">
+    <ul>
+        <li title="Piedras, dispositivos, emeriles."><a href="studlye/herramientas/afilado/">Afilado</a></li>
+        <li title="Cepillos, raspas, etc."><a href="studlye/herramientas/alisado/">Alisado</a></li>
+        <li title="Destronilladores."><a href="studlye/herramientas/alisado/">Atornillado</a></li>
+        <li title="Extractores, anticorrosivos."><a href="studlye/herramientas/atornillado/">Aseo</a></li>
+        <li title="Serruchos, discos, cintas."><a href="studlye/herramientas/corte/">Corte</a></li>
+        <li title="Formones, gubias."><a href="studlye/herramientas/labrado/">Labrado</a></li>
+        <li title="Brocas, berbiquíes, taladros."><a href="studlye/herramientas/perforacion/">Perforación</a></li>
+        <li title="Prensas, bancos."><a href="studley/herramientas/sujecion/">Sujeción</a></li>
+        <li title="Mazos, martillos."><a href="studlye/herramientas/golpeo/">Golpeo</li>
+        <li title="Delantales, monogafas, respiradores, máscaras, etc."><a href="studlye/herramientas/seguridad/">Seguridad</a></li>
+        <li title="Escuadras, reglas, compases, cuchillos, lápices."><a href="studlye/herramientas/afilado/">Marcación y medición</a></li>
+    </ul>
+</aside>-->
+</div>
+<div id="videos" class="section_intro">
+    <h1><a href="#">Título de un video o tutorial que es bien largo y no cabe en la caja</a></h1>
+    <div class="section_intro_image">
+        <img src="{{ STATIC_URL }}images/mango_formones.jpg"/>
+    </div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas egestas faucibus mollis. Duis at malesuada nibh, vitae posuere magna. Aenean. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas egestas faucibus mollis. Duis at malesuada nibh, vitae posuere magna. Aenean.</p>
+</div>
+
+{% endblock content %}

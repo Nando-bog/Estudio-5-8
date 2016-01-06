@@ -1,0 +1,38 @@
+{% extends "studley_base.html" %}
+{% load static %}
+{% block other_imports %}
+   <!-- <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/index_styles.css/" %}">-->
+{% endblock%}
+{% block content_studley %}
+  
+<div class="bckgrnd-color-3" id="cont">
+      <section>
+        <div id="page-title" class="bckgrnd-color-1 font-color-2 pddng-ext">
+          <h2>{{ tipo.nombre }}</h2>
+        </div>
+        <div class="header-clase">
+      <img src="{{ MEDIA_URL }}{{ tipo.imagen.imagen }}" width="1024" class="width-100" >
+        <!--<img src="{% static "images/page-header-img-1.jpg" %}" width="1024" height="214" class="width-100 height-prop">-->
+        </div>
+        <div id="page-cont" class="pddng-ext font-color-1">
+          <p>{{ tipo.descripcion |safe }}</p>    
+            
+            {% if herramientas|length > 0 %}
+            <h3>{{ tipo.nombre_plural|capfirst }}</h3>
+                  <ul class="cont-col-2-max">
+                  {% for herramienta in herramientas %}
+                        <li><article>
+                              <h3><a class="font-color-3" href="{{ herramienta.get_absolute_url }}"><img src="{{ MEDIA_URL }}{{ herramienta.imagenes.all.0.imagen }}" width="240" height="240" class="img-fx-1">{{ herramienta.nombre }}</a></h3>
+                              <p class="clearfix">{{ herramienta.descripcion |striptags |safe |truncatechars:130 }}</p>
+                        </article></li>
+                        
+                  {% endfor %}
+                  </ul>
+            {% endif %}
+            </div>
+        
+        </div>
+      </section>
+    </div>
+
+{% endblock content_studley %}

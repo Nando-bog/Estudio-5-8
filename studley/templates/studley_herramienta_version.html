@@ -1,0 +1,44 @@
+{% extends "studley_base.html" %}
+{% load static %}
+{% block other_imports %}
+   <!-- <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/index_styles.css/" %}">-->
+{% endblock%}
+{% block content_studley %}
+<div class="bckgrnd-color-3" id="cont">
+    <div id="page-title" class="bckgrnd-color-1 pddng-ext">
+      <h2 class="font-color-2">{{ herramienta.herramienta_base.nombre }} {{ herramienta.marca }} </h2>
+      <p class="font-color-2"><a href="{{ herramienta.modelo }}">{{ herramienta.modelo }}</a></p>
+    </div>
+        
+  <div id="page-cont" class="pddng-ext">
+    <h2 class="font-fx-2 font-color-1">{{ herramienta.nombre }}</h2>
+    <div class="clearfix">
+      {% for imagen in herramienta.imagenes.all %}
+        <img src="{{ MEDIA_URL }}{{ imagen.imagen }}" width="350" height="350" class="img-fx-2" alt="Imagen: {{ imagen.nombre }}" />
+      {% endfor %}
+    </div>
+    
+    {% if otras_versiones|length > 0 %}
+    <div class="relacionadas-marcas font-color-1">
+      <small>
+        <h4 class="font-color-2">Más como <i>{{ herramienta.herramienta_base.nombre |lower }}</i></h4>
+        <ul>
+          {% for version in otras_versiones %}
+          <li><article>
+            <a href="{{ version.get_absolute_url }}"><img src="{{ MEDIA_URL }}{{ version.imagenes.all.0.imagen }}" class="img-fx-3" alt=""> {{ version.marca }}, {{ version.modelo }}</a>
+          </article></li>
+          {% endfor %}
+        </ul>
+      </small>
+    </div>
+  {% endif %}
+    </br>      
+    <div class="font-color-1">
+      <p>{{ herramienta.detalle |safe }}</p>
+    </div>
+  </div>
+</div>
+<br />
+
+
+{% endblock content_studley %}

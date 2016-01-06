@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+{% block other_imports %}
+   <!-- <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/index_styles.css/" %}">-->
+{% endblock%}
+{% block content_base %}
+  <div class="font-color-2 font-fx-1 pddng-ext clearfix" id="page-header">
+    <header>
+        {% block titulo_pagina %}
+            <h1 class="font-color-2"><a href="/">Estudio 5-8</a></h1>
+        {% endblock titulo_pagina %}
+        <!--<nav>
+        <ul class="font-fx-3">
+          <li><h2><a href="/studley/categorias/" class="page-header-nav-item">Categorías</a></h2></li>
+          <li><h2><a href="/studley/colecciones/" class="page-header-nav-item">Colecciones</a></h2></li>
+        </ul>
+        </nav>-->
+      </header>
+    </div>
+{% block content_roubo %}
+<p>Algo salió mal.</p>
+{% endblock content_roubo %}
+
+{% endblock content_base %}
+
+{% block footer %}
+<div class="bckgrnd-color-5" id="site-footer">
+{% endblock footer %}
+    <footer>
+      <img src="{% static "images/5-8-logo-blanco.png" %}" width="80" height="auto" alt="5-8 Estudio" class="logo">
+      <p class="font-color-2"><strong>Estudio 5-8</strong></p>
+      <small><p class="font-color-2">Un taller con el horario de los ratos libres.</p></small>
+    </footer>
+  </div>
+</div>
+
+
+{% block section_background %}
+<div id="site-background">
+<img src="{% static "images/background-2.jpg" %}" width="3872" height="2592" alt="Estudio 5-8">
+<div class="site-width" id="page-cont-fx">
+</div>
+</div>
+{% endblock section_background %}

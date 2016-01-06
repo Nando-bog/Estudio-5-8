@@ -1,0 +1,61 @@
+{% extends "studley_base.html" %}
+{% load static %}
+{% block other_imports %}
+   <!-- <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/index_styles.css/" %}">-->
+{% endblock%}
+{% block content_studley %}
+    <div class="bckgrnd-color-3" id="cont">
+      <section>
+        <div id="page-title" class="bckgrnd-color-1 font-color-2 pddng-ext">
+          <h2>{{ clase_herramienta.get_nombre_display }}</h2>
+        </div>
+        <div class="header-clase">
+      <img src="{{ MEDIA_URL }}{{ clase_herramienta.imagen.imagen }}" width="1024px" class="width-100" >
+        <!--<img src="{% static "images/page-header-img-1.jpg" %}" width="1024" height="214" class="width-100 height-prop">-->
+        </div>
+        <div id="page-cont" class="pddng-ext font-color-1">
+          <p>{{ clase_herramienta.descripcion |striptags |safe |truncatechars:200 }}</p>    
+                    
+          <!--HERRAMIENTAS DE ESTA CATEGORÍA (TIPOS) -->
+          <ul class="cont-col-2-max">
+            {% for tipo, herramientas in tipos_herramientas.items %}
+                  <li><article>
+                        <h3><a class="font-color-3" href="{{ tipo.get_absolute_url }}"><img src="{{ MEDIA_URL }}{{ tipo.imagen.imagen }}" width="240" height="240" class="img-fx-1">{{ tipo.nombre }}</a></h3>
+                        <!--<small class="tag"><a href="">{{ tipo.tipo.nombre }}</a></small>-->
+                        <p class="clearfix">{{ tipo.descripcion |striptags |safe |truncatechars:130 }}</p>
+                  </article>
+                  
+                  <ul class="lista-en-lista">
+                        {% for herramienta in herramientas %}
+                              <li class="lista-en-lista-li"><strong><a class="font-color-3" href="{{ herramienta.get_absolute_url }}"><img src="{{ MEDIA_URL }}{{ herramienta.imagenes.all.0.imagen }}" width="80" height="80" class="img-fx-4">{{ herramienta.nombre }}</a></strong></li>
+                        {% endfor %}
+                  </ul>
+                  
+                  </li>
+            {% endfor %}
+          </ul>
+ 
+          <div>
+            
+            {% if herramientas|length > 0 %}
+                  
+            <h3>Otras herramientas de {{ clase_herramienta.get_nombre_display |lower }}</h3>
+            <!--OTRAS HERRAMIENTAS RELACIONADAS. misma categoría, sin tipo-->
+            
+                  <ul class="cont-col-2-max">
+                  {% for herramienta in herramientas %}
+                        <li><article>
+                              <h3><a class="font-color-3" href="{{ herramienta.get_absolute_url }}"><img src="{{ MEDIA_URL }}{{ herramienta.imagenes.all.0.imagen }}" width="240" height="240" class="img-fx-1">{{ herramienta.nombre }}</a></h3>
+                              <small class="tag"><a href="">{{ herramienta.tipo.nombre }}</a></small>
+                              <p class="clearfix">{{ herramienta.descripcion |striptags |safe |truncatechars:130 }}</p>
+                        </article></li>
+                  {% endfor %}
+                  </ul>
+            {% endif %}
+            </div>
+        
+        </div>
+      </section>
+    </div>
+
+{% endblock content_studley %}
