@@ -6,14 +6,16 @@ import dj_database_url
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+SECRET_KEY = 'testproductionremotesecretkeythisisaterriblekey'
+
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        # 'NAME': 'estudio5_8',
-        # 'USER': 'admin5_8',
-        # 'PASSWORD': 'admin',
-        # 'HOST': 'localhost',
-        # 'PORT': '5432',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'estudio5_8',
+        'USER': 'admin5_8',
+        'PASSWORD': 'admin',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 #HEROKU CONFIGURATION
