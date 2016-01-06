@@ -1,71 +1,73 @@
 /*Base stylesheet for the 5-8 sites.*/
 /*Import fonts from Google Fonts*/
-@import url(http://fonts.googleapis.com/css?family=Lusitana:400,700|Roboto+Slab:400,300,700);
+@import url(http://fonts.googleapis.com/css?family=Tangerine:400,700|Belleza|Lusitana:400,700);
+@import url(http://fonts.googleapis.com/css?family=Neuton:400,200,300,400italic,700,800|Crimson+Text:400,400italic,600,600italic,700,700italic|Quattrocento:400,700);
 * {
-    margin:0px;
-    padding:0px;
+    margin:0;
+    padding:0;
+}
+html, body {
+    height: 100%;
 }
 body {
+    background: rgb(239,132,15);
     font-family: 'Lusitana', serif;
     font-size: 16px;
 }
-nav {
-    background-color: #3B2FBD;
-    font-weight: bold;
-    color: #FFFFFF;
+#header {
+    background-color: #fff;
     width: 100%;
+    /*min-width: 850px;*/
+    min-height: 75px;
+    border-bottom: 4px solid #000000;
 }
-
-nav h1 {
-    padding: 10px 10px 10px 10px;
+#header img {
+    width: 150px;
+    height: 75px;
+    display: inline-block;
+    margin-right: 50px;
+    margin-left: 20px;
 }
-
-nav ul {
-    padding: 0 0 0 10px;
-    background-color: #000;
+#main_nav {
+    display: inline-block;
+    vertical-align: bottom;
+    text-align: center;
 }
-
-nav li {
-    font-size: 1em;
+#main_nav ul {
+    background-color: #fff;
+    position: relative;
+    top: -10px;
+}
+#main_nav li {
+    margin: 0 2em 0 2em;
+    font-family: 'Crimson Text', serif;
+    font-weight: bold;
+    font-size: 1.3em;
+    line-height: 0.9em; 
     display: inline-block;
     list-style: none;
-    margin: 0 5px 0 0;
-    color: #FFF;
 }
-
-nav a {
+#main_nav a {
     text-decoration: none;
-    display: block;
-    padding: 3px 10px 3px 10px;
-    color: #FFF;
+    color: #000;
+    /*border-bottom: 3px solid #000;*/
 }
-
-nav a:hover {
-    background-color: #3B2FBD;
+#main_nav a:hover {
+    color: rgb(239,132,15);
+    /*border-bottom: 3px solid rgb(239,132,15);*/
+    /*background-color: #3B2FBD;*/
 }
-
-h1, h2, h3 {
-    font-family: 'Roboto Slab', serif;
-    margin-top: .3em;
-    margin-bottom: .3em;
+#content_wrapper {
+    padding: 15px;
+    position: relative;
+    /*border: 1px solid yellow;
+    background-image: url('../../images/colasdemilano.jpg');
+    background-size: 100% 100%;
+    background-repeat: repeat;*/
 }
-
-table {
-    padding: 0px;
-    margin: 0px;
-}
-
-th, td {
-    border: solid 2px black;
-    padding: 0px;
-    margin: 0px;
-}
-
-p, li {
-   color: rgb(100,100,100);
-}
-
 #content {
-    padding-top: 4em;
-    margin-left: 3em;
+    background-color: rgba(255,255,255, 0.8);
+    padding: 10px;
+    /*border: 1px solid red;*/
+    min-width: 380px;
 }

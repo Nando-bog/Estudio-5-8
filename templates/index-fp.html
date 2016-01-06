@@ -1,0 +1,43 @@
+{% extends "base_home.html" %}
+{% load static %}
+{% load staticfiles %}
+{% block other_imports %}
+    <!--<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/index_styles.css/" %}">-->
+{% endblock%}
+
+{% block content_base %}
+    <div class="font-color-2 pddng-ext" id="content-home">
+        
+         <div class = "herramientas-home">
+            <h2>Herramientas</h2>
+            <ul>
+                {% for herramienta in herramientas %}
+                <li><a href="{{ herramienta.get_absolute_url }}"><img src="{{ MEDIA_URL }}{{ herramienta.imagen.imagen }}" class="img-fx-7" /> {{ herramienta.get_nombre_display }} <!--<small>{{ herramienta.descripcion |truncatechars:80 |striptags }}</small>--></a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+        {% for destacado in destacados_roubo %}
+        <div class="destacado-home">
+            <a class="font-color-3" href="{{ destacado.recurso.get_absolute_url }}">
+            <div class="img-fx-6"><img src="{{ MEDIA_URL }}{{ destacado.recurso.imagen_destacada }}" alt=""/></div>
+            <h2>{{ destacado.recurso.nombre }}</h2>
+            </a>
+            <a href="roubo/{{ destacado.recurso.tipo }}" class="tag-home"><small>[{{ destacado.recurso.get_tipo_display }}]</small></a> 
+            <p>{{ destacado.recurso.cuerpo |striptags |truncatechars:230 }}</p>
+            <!--{% for tag in destacado.recurso.tags.all %}-->
+            <!--    <ul class="tag-home">-->
+            <!--        <li>{{ tag |lower }}</li>-->
+            <!--    </uL>-->
+            <!--{% endfor %}-->
+        </div>
+    {% endfor %}
+        
+    
+    </div>
+{% endblock content_base %}
+
+{% block footer %}
+<div class="bckgrnd-color-8" id="site-footer">
+{% endblock footer %}

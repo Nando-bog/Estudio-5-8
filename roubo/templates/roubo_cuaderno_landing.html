@@ -1,0 +1,99 @@
+{% extends "roubo_base.html" %}
+{% load static %}
+{% block other_imports %}
+   <!-- <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/index_styles.css/" %}">-->
+{% endblock%}
+
+{% block my_title %}
+   {% if tipo == 'VID' %}Videos 5-8
+   {% else %} Cuaderno 5-8
+   {% endif %}
+{% endblock %}
+
+{% block titulo_pagina %}
+    {% if tipo == 'VID' %}
+        <h1 class="font-color-2">Videos</h1>
+        <p>Herramientas, técnicas, soluciones, proyectos y más, en el <a href="">canal de Youtube</a> del estudio.</p>
+    {% elif tipo == 'GLR' %}
+        <h1 class="font-color-2">Galería</h1>
+        <p>Fotos de proyectos creados en el estudio.</p>
+    {% else %}
+        <h1 class="font-color-2">Cuaderno de notas</h1>
+        <p>Proyectos, tutoriales, comentarios y más</p>
+    {% endif %}
+{% endblock titulo_pagina %}
+        
+{% block content_roubo %}
+   <div class="bckgrnd-color-3" id="cont">
+   {% if tipo == 'VID' %}
+      <div id="page-title" class="bckgrnd-color-6 font-color-2 pddng-ext">
+   {% elif tipo == 'GLR' %}
+      <div id="page-title" class="bckgrnd-color-7 font-color-2 pddng-ext">
+   {% else %}
+      <div id="page-title" class="bckgrnd-color-5 font-color-2 pddng-ext">
+   {% endif %}
+      {% if destacados %}
+         <h2><a href ="{{ destacados.get_absolute_url }}">{{ destacados.nombre }}</a></h2>
+         <p>Por: 
+         {% for autor in destacados.autor.all %}
+             {{ autor.first_name }} {{ autor.last_name }}
+         {% endfor %}
+         <small>[{{ destacados.get_tipo_display }}]</small>
+         </p>
+      {% endif %}
+      </div>
+   
+      {% if destacados %}
+      <div class="roubo-slider">
+         <img src="{{ MEDIA_URL }}{{ destacados.imagen_destacada }}" class="width-100">
+         <p class="font-color-2 font">{{ destacados.cuerpo |striptags |safe |truncatechars:330 }} <a href="{{ destacados.get_absolute_url }}" class = "font-size-sub1-1"><br /> [Ver más]</a></p>
+      </div>
+   {% endif %}
+      
+      <div id="page-cont" class="pddng-ext font-color-1">
+         {% if tipo == 'VID' %}
+            <p class = "font-fx-4">Los videos de esta sección están publicados en el <a href="https://www.youtube.com/channel/UCR2wMFkT8EV9g5y3vJhC0xA">canal de Youtube de 5-8</a>. Suscríbase al canal para recibir notificaciones cuando publiquemos nuevos videos.</p>
+         {% elif tipo == 'GLR' %}
+            <p class = "font-fx-4">Los álbumes de fotos que conforman esta galería muestran el proceso y resultado de algunos trabajos hechos en el estudio. Las fotos están publicadas en el <a href="https://www.flickr.com/photos/nandito/collections/72157629528088076/">flickr de Nando</a>, fundador de 5-8.</p>
+         {% else %}
+            <p class = "font-fx-4">Notas de nuestro cuaderno sobre el oficio de la madera, el blog del estudio.</p>
+         {% endif %}
+          <ul class="cont-col-2-max">
+            {% for entrada in entradas|dictsort:"nombre" %}
+                  <li><article>
+                        <h3><a class="font-color-3" href="{{ entrada.get_absolute_url }}"><img src="{{ MEDIA_URL }}{{ entrada.imagen_destacada }}" width="240" height="240" class="img-fx-1" alt="">
+                        <!--{{ MEDIA_URL }}{{ clase.imagen.imagen }}-->
+                        {{ entrada.nombre }}<!--<small> ({{ 0 }})</small>--></a></h3>
+                        <a class="tag">{{ entrada.get_tipo_display }}</a>
+                        <p class="clearfix font-color-1">{{ entrada.cuerpo |striptags |safe |truncatechars:130 }}</p>
+                  </article></li>
+            {% endfor %}
+          </ul>
+        </div>
+    </div>
+
+{% endblock content_roubo %}
+
+{% block footer %}
+{% if tipo == 'VID' %}
+   <div class="bckgrnd-color-6" id="site-footer">
+{% elif tipo == 'GLR' %}
+   <div class="bckgrnd-color-7" id="site-footer">
+{% else %}
+   <div class="bckgrnd-color-5" id="site-footer">
+{% endif %}
+{% endblock footer %}
+
+{% block section_background %}
+   <div id="site-background">
+      {% if tipo == 'VID' %}
+         <img src="{% static "images/background-3.jpg" %}" width="3872" height="2592" alt="Estudio 5-8">
+   {% elif tipo == 'GLR' %}
+      <img src="{% static "images/background-2.jpg" %}" width="3872" height="2592" alt="Estudio 5-8">
+   {% else %}
+      <img src="{% static "images/background-4.jpg" %}" width="3872" height="2592" alt="Estudio 5-8">
+   {% endif %}
+      <div class="site-width" id="page-cont-fx">
+      </div>
+   </div>
+{% endblock section_background %}

@@ -1,15 +1,37 @@
 {% extends "base.html" %}
-{% block content %}
-<h1>¿Qué es 5-8 Carpintería?</h1>
+{% load static %}
+{% block other_imports %}
+   <!-- <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/index_styles.css/" %}">-->
+{% endblock%}
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas at purus libero. Aenean eu varius risus. Proin at malesuada magna. Maecenas tempus eu nulla sed ultricies. Etiam gravida at erat eu posuere. Duis ornare rutrum ornare. Morbi enim tellus, varius eu ipsum et, pretium tempus erat. Maecenas eget lectus vel nibh sagittis ultrices. Sed lobortis tortor at augue mattis, et tempus est sodales. Donec eget diam ut ligula luctus hendrerit. Etiam eleifend neque sit amet massa convallis elementum. Aliquam erat volutpat. Nullam auctor ultrices posuere. Vivamus enim nulla, semper molestie nisl sed, ullamcorper mattis orci. Nunc ac pharetra est, vitae iaculis neque. Sed neque mauris, porttitor ac scelerisque commodo, condimentum eget augue.</p>
+{% block my_title %}Estudio 5-8{% endblock %}
 
-<p>Sed scelerisque ipsum nec risus gravida, eget ornare libero fermentum. Etiam imperdiet vel enim id commodo. Duis nulla dui, venenatis vehicula mauris sit amet, placerat interdum justo. Maecenas nec nulla ac risus tempus semper. In id magna et mauris tempus placerat. Nam a nibh in ante laoreet aliquet sed sed sem. Integer quam lacus, fermentum sed tincidunt vel, condimentum sed turpis. Maecenas gravida enim fringilla, semper elit sed, malesuada sem.</p>
+{% block content_base %}
+    <div class="font-color-2 font-fx-1 pddng-ext clearfix" id="page-header">
+    <header>
+        <h1 class="font-color-2"><a href="/">Qué es Estudio 5-8</a></h1>
+        <p>y qué es esta página web</p>
+    </header>
+    </div>
+    <div class="bckgrnd-color-3" id="cont">
+        <div id="page-title" class="bckgrnd-color-6 font-color-2 pddng-ext">
+            <!--<h2>Título 2 página</h2>
+            <p>Subtítulo 2 página</p>-->
+        </div>
+        <div id="page-cont" class="pddng-ext">
+            <p>Over the advice of preserving their surroundings. I have chosen to the last strike I felt it was just a consequence of losing their I will contribute to take responsibility. I handed him with a young campers forinspiration and tradition. Columbia starts from our consciousness. History, economy, and Jose, a coffee plants line and television. In the school places would think about . Incognito, I cannot feel more fun and sincerity of the track lighting on previous camps never exuded the rush I danced, I planned was our society. I come to the bodega downstairs that made me that ambition and Yelnitza, two small towns in any of my camp four years at the place I live in a much wider variety of Ivy's other counselors, arranged busing to have chosen to defend myself, a little girls cared deeply about the road, injuring all seemed far more confident now, that I intend to the wedding location, a role as well suited to tax the stereo. The slightest touch upon what I'm missing, to one's understanding of aggregated knowledge and the campers. This is a preteen does not only a few times that made me than the printed invitations with me than your JD program I saw 4"</p>
+        </div>
+    </div>
+    
+{% endblock content_base %}
 
-<p>Duis in augue molestie, commodo risus non, interdum diam. Integer ornare eleifend orci pellentesque dictum. Nulla ut neque posuere velit fringilla tincidunt in eu diam. Aenean hendrerit id felis id tempus. Maecenas a dolor aliquam, semper nibh eu, adipiscing augue. Etiam nec odio blandit, hendrerit urna eget, suscipit libero. Quisque tempus nisl lacus, eu pellentesque mauris ornare non.</p>
+{% block footer %}
+   <div class="bckgrnd-color-6" id="site-footer">
+{% endblock footer %}
 
-<p>Pellentesque massa ante, dictum at placerat non, fermentum nec erat. Curabitur blandit rutrum massa, a scelerisque nisl auctor quis. Pellentesque adipiscing tristique justo nec egestas. Nam pulvinar euismod fringilla. Quisque et ornare quam. Vestibulum et felis leo. Aliquam et euismod odio. Aliquam nibh est, sagittis et tellus et, aliquam mattis lorem. Maecenas nec faucibus ante, feugiat bibendum quam. Suspendisse ut nisl turpis. Nulla metus metus, viverra a dolor ac, pharetra malesuada justo. Aliquam felis orci, bibendum aliquam tristique eu, mollis ut diam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In sed erat viverra, dignissim elit non, porttitor dui. Duis sit amet leo commodo, aliquet purus non, tempus purus. Proin volutpat sodales velit eget ultrices.</p>
-
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam volutpat lectus fermentum ullamcorper blandit. Duis congue congue sem, non aliquam quam lacinia ac. Donec sollicitudin tincidunt accumsan. Vivamus vel nunc sit amet ante congue faucibus ac varius ligula. Curabitur dictum orci eget aliquam rutrum. Nulla vitae ultrices turpis, eget convallis magna. Pellentesque sollicitudin felis mauris, nec ullamcorper nulla laoreet non. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. </p>
-
-{% endblock content %}
+{% block section_background %}
+    <div id="site-background">
+        <img src="{% static "images/background-3.jpg" %}" width="3872" height="2592" alt="Estudio 5-8">
+    <div class="site-width" id="page-cont-fx"></div>
+   </div>
+{% endblock section_background %}

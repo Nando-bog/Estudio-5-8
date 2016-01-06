@@ -1,0 +1,69 @@
+{% extends "roubo_base.html" %}
+{% load static %}
+{% block other_imports %}
+   <!-- <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/index_styles.css/" %}">-->
+{% endblock%}
+
+{% block titulo_pagina %}
+   <h1 class="font-color-2"><a href="/studley/videos">Videos</a></h1>
+   <p>Herramientas, técnicas, soluciones, proyectos y más, en el <a href="https://www.youtube.com/channel/UCR2wMFkT8EV9g5y3vJhC0xA">canal de Youtube</a> del estudio.</p>
+   <!--<nav>
+      <ul class="font-fx-3">
+          <li><h2><a href="#" class="page-header-nav-item">Blog</a></h2></li>
+          <li><h2><a href="#" class="page-header-nav-item">Proyectos</a></h2></li>
+          <li><h2><a href="#" class="page-header-nav-item">Tutoriales</a></h2></li>
+      </ul>
+   </nav>-->
+{% endblock titulo_pagina %}
+        
+{% block content_roubo %}
+   <div class="bckgrnd-color-3" id="cont">
+      <div id="page-title" class="bckgrnd-color-6 font-color-2 pddng-ext">
+         <h2><a href="{{ destacados.get_absolute_url }}">{{ destacados.nombre }}</a></h2>
+         <p>Por: 
+         {% for autor in destacados.autor.all %}
+             {{ autor.first_name }} {{ autor.last_name }}
+         {% endfor %}
+         </p>
+      </div>
+      <div class="roubo-slider">
+         
+         <a href="{{ destacados.get_absolute_url }}"><img src="{{ MEDIA_URL }}{{ destacados.imagen_destacada }}" class="width-100" /><a href="{{ destacados.get_absolute_url }}"></a>
+         <p class="font-color-2 font">{{ destacados.cuerpo |striptags |safe |truncatechars:330 }} <a href="{{ destacados.recurso.get_absolute_url }}" class = "font-size-sub1-1">[Ver más]</a></p>
+      </div>
+
+      <div id="page-cont" class="pddng-ext font-color-1">
+       
+          <p class = "font-fx-4">Normally, both your asses would be dead as fucking fried chicken, but you happen to pull this shit while I'm in a transitional period so I don't wanna kill you, I wanna help you. But I can't give you this case, it don't belong to me. Besides, I've already been through too much shit this morning over this case to hand it over to your dumb ass.</p>
+          <ul class="cont-col-2-max">
+
+            {% for entrada in entradas|dictsort:"nombre" %}
+                  <li><article>
+                        <h3><a class="font-color-3" href="{{ entrada.get_absolute_url }}"><img src="{{ MEDIA_URL }}{{ entrada.imagen_destacada }}" width="240" height="240" class="img-fx-1" alt="">
+                        <!--{{ MEDIA_URL }}{{ clase.imagen.imagen }}-->
+                        {{ entrada.nombre }}<!--<small> ({{ 0 }})</small>--></a></h3>
+                        <a class="tag">{{ entrada.get_tipo_display }}</a>
+                        <p class="clearfix font-color-1">{{ entrada.cuerpo |striptags |safe |truncatechars:130 }}</p>
+                  </article></li>
+            {% endfor %}
+          </ul>
+        </div>
+    </div>
+
+{% endblock content_roubo %}
+
+{% block footer %}
+{% if tipo == 'VID' %}
+   <div class="bckgrnd-color-6" id="site-footer">
+{% else %}
+   <div class="bckgrnd-color-5" id="site-footer">
+{% endif %}
+  <div class="site-width pddng-ext">
+    <footer>
+      <img src="{% static "images/5-8-logo-blanco.png" %}" width="80" height="auto" alt="5-8 Estudio" class="logo">
+      <p class="font-color-2"><strong>Estudio 5-8</strong></p>
+      <small><p class="font-color-2">Un taller con el horario de los ratos libres.</p></small>
+    </footer>
+  </div>
+</div>
+{% endblock footer %}

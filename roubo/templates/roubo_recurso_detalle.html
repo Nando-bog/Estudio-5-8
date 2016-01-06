@@ -1,0 +1,115 @@
+{% extends "roubo_base.html" %}
+{% load static %}
+{% block other_imports %}
+   <!-- <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/index_styles.css/" %}">-->
+{% endblock%}
+
+{% block my_title %}Qué es Estudio 5-8{% endblock my_title %}
+
+{% block titulo_pagina %}
+    {% if recurso.tipo == 'VID' %}
+        <h1 class="font-color-2"><a href="/studley/">Videos</a></h1>
+        <p>Herramientas, técnicas, soluciones, proyectos y más, en el <a href="">canal de Youtube</a> del estudio.</p>
+    {% elif recurso.tipo == 'GLR' %}
+        <h1 class="font-color-2"><a href="/studley/">Galería</a></h1>
+        <p>Fotos de proyectos creados en el estudio.</p>
+    {% else %}
+        <h1 class="font-color-2"><a href="/studley/">Cuaderno de notas</a></h1>
+        <p>Proyectos, tutoriales, comentarios y más</p>
+    {% endif %}
+{% endblock titulo_pagina %}
+
+{% block content_roubo %}
+    <div class="bckgrnd-color-3" id="cont">
+        {% if recurso.tipo == 'VID' %}
+            <div id="page-title" class="bckgrnd-color-6 font-color-2 pddng-ext">
+        {% else %}
+            <div id="page-title" class="bckgrnd-color-5 pddng-ext font-color-2">
+        {% endif %}
+            <h2>{{ recurso.nombre }}</h2>
+            <p><small>Creado: {{ recurso.fecha_creacion }}. Actualizado: {{ recurso.fecha_actualizacion }}</small></p>
+        </div>
+
+        <div class="header-cuaderno">
+        <img src="{{ MEDIA_URL }}{{ recurso.imagen_destacada }}" class="width-100">
+        </div>
+        
+        <div id="page-cont" class="pddng-ext">
+          <!--<h2 class="font-fx-2 font-color-1">{{ herramienta.nombre }}</h2>-->
+            <!--<p><img src="img/retrato.jpg" width="240" height="240" class="img-fx-1"></p>-->
+            <p>Por:
+                {% for autor in recurso.autor.all %}
+                    {{ autor.first_name }} {{ autor.last_name }}
+                    {% if not forloop.last %}
+                        {% ifequal forloop.revcounter 2 %} y
+                        {% else %},
+                        {% endifequal %}
+                    {% endif %}
+                {% endfor %}
+            </p>
+            
+          <div class="clearfix">
+            {% for imagen in herramienta.imagenes.all %}
+              <img src="{{ MEDIA_URL }}{{ imagen.imagen }}" width="350" height="350" class="img-fx-2" alt="Imagen: {{ imagen.nombre }}" />
+            {% endfor %}
+          </div>
+        
+          <div class="clearfix font-color-1">
+            {{ recurso.cuerpo |safe }}
+            
+            <h3>Etiquetas</h3>
+            <div class="tag-cuaderno">
+                <ul> 
+                {% for tag in recurso.tags.all %}
+                    <li>{{ tag }}</li>
+                {% endfor %}
+                </ul>
+            </div>
+            <div>
+              <h3>Relacionados</h3>
+                <ul class="cont-col-2-max">
+                  {% for relacionado in relacionados_tags %}              
+                  <li>
+                    <h4><a href="{{ relacionado.get_absolute_url }}"><img src="{{ MEDIA_URL }}{{ relacionado.imagen_destacada }}" class="img-fx-3">{{ relacionado.nombre }}</a></h4>
+                    <small class="tag"><a href="../{{ relacionado.tipo }}">{{ relacionado.get_tipo_display }}</a></small>
+                    <p class="clearfix">{{ relacionado.cuerpo |truncatechars:150 |safe |striptags }}</p>
+                      </li>
+                  {% endfor %}
+                </ul>
+            </div>
+            
+          </div>
+        </div>
+    </div>
+  </article>
+</div>
+
+<!--<div id="site-background">
+<img src="img/background-1.jpg" width="3872" height="2592" alt="Estudio 5-8">
+<div class="site-width" id="page-cont-fx">
+</div>
+</div>-->
+
+{% endblock content_roubo %}
+
+{% block footer %}
+    {% if recurso.tipo == 'VID' %}
+<div class="bckgrnd-color-6" id="site-footer">
+    {% else %}
+<div class="bckgrnd-color-5" id="site-footer">
+{% endif %}
+{% endblock footer %}
+
+{% block section_background %}
+   <div id="site-background">
+      {% if recurso.tipo == 'VID' %}
+         <img src="{% static "images/background-3.jpg" %}" width="3872" height="2592" alt="Estudio 5-8">
+   {% elif recurso.tipo == 'GLR' %}
+      <img src="{% static "images/background-2.jpg" %}" width="3872" height="2592" alt="Estudio 5-8">
+   {% else %}
+      <img src="{% static "images/background-4.jpg" %}" width="3872" height="2592" alt="Estudio 5-8">
+   {% endif %}
+      <div class="site-width" id="page-cont-fx">
+      </div>
+   </div>
+{% endblock section_background %}

@@ -1,0 +1,94 @@
+{% extends "roubo_base.html" %}
+{% load static %}
+{% block other_imports %}
+   <!-- <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/index_styles.css/" %}">-->
+{% endblock%}
+
+{% block titulo_pagina %}
+   <h1 class="font-color-2"><a href="/studley/">Videos</a></h1>
+   <p>Proyectos, tutoriales, comentarios y más, todo en un <a href="">canal de Youtube</a></p>
+   <!--<nav>
+      <ul class="font-fx-3">
+          <li><h2><a href="#" class="page-header-nav-item">Blog</a></h2></li>
+          <li><h2><a href="#" class="page-header-nav-item">Proyectos</a></h2></li>
+          <li><h2><a href="#" class="page-header-nav-item">Tutoriales</a></h2></li>
+      </ul>
+   </nav>-->
+{% endblock titulo_pagina %}
+
+{% block content_roubo %}
+    <div class="bckgrnd-color-3" id="cont">
+        <div id="page-title" class="bckgrnd-color-5 pddng-ext font-color-2">
+            <h2>{{ recurso.nombre }}</h2>
+            <div class="tag-cuaderno">
+                <ul> 
+                {% for tag in recurso.tags.all %}
+                    <li>{{ tag }}</li>
+                {% endfor %}
+                </ul>
+            </div>
+            <p><small>Creado: {{ recurso.fecha_creacion }}. Actualizado: {{ recurso.fecha_actualizacion }}</small></p>
+        </div>
+        <!--IMAGEN DEL HEADER (DEMASIADO CON LAS DE ABAJO)-->
+        <div class="header-cuaderno">
+        <img src="{{ MEDIA_URL }}{{ recurso.imagen_destacada }}" class="width-100">
+        </div>
+        <div id="page-cont" class="pddng-ext">
+          <!--<h2 class="font-fx-2 font-color-1">{{ herramienta.nombre }}</h2>-->
+            <!--<p><img src="img/retrato.jpg" width="240" height="240" class="img-fx-1"></p>-->
+            <p>Por:
+                {% for autor in recurso.autor.all %}
+                    {{ autor.first_name }} {{ autor.last_name }}
+                    {% if not forloop.last %}
+                        {% ifequal forloop.revcounter 2 %} y
+                        {% else %},
+                        {% endifequal %}
+                    {% endif %}
+                {% endfor %}
+            </p>
+            
+          <div class="clearfix">
+            {% for imagen in herramienta.imagenes.all %}
+              <img src="{{ MEDIA_URL }}{{ imagen.imagen }}" width="350" height="350" class="img-fx-2" alt="Imagen: {{ imagen.nombre }}" />
+            {% endfor %}
+          </div>
+        
+          <div class="clearfix font-color-1">
+            {{ recurso.cuerpo |safe }}
+            
+            <!--<h3>Etiquetas</h3>
+            <ul>
+              <li class="tag bckgrnd-color-4 font-color-2">Todas</li>
+              <li class="tag bckgrnd-color-4 font-color-2">Acabado largo</li>
+              <li class="tag bckgrnd-color-4 font-color-2">Otro acabado</li>
+              <li class="tag bckgrnd-color-4 font-color-2">Llenando espacio</li>
+              <li class="tag bckgrnd-color-4 font-color-2">Opaco</li>
+              <li class="tag bckgrnd-color-4 font-color-2">Lijado</li>
+            </ul>-->
+            
+            <!--<h3>Herramientas similares</h3>-->
+            <div class="relacionadas-tipo">
+              <h3>Relacionados <i>{{ herramienta.tipo.nombre_plural |lower }}</i></h3>
+                <ul>
+                  {% for primo in mismo_tipo %}              
+                  <li><article>
+                            <h4><a class="font-color-3" href="{{ primo.get_absolute_url }}"><img src="{{ MEDIA_URL }}{{ primo.imagenes.all.0.imagen }}" class="img-fx-3">{{ primo.nombre }}</a></h4>
+                            <small class="tag"><a href="">{{ herramienta.tipo.nombre }}</a></small>
+                      </article></li>
+                  {% endfor %}
+                </ul>
+            </div>
+            
+          </div>
+        </div>
+    </div>
+  </article>
+</div>
+
+<!--<div id="site-background">
+<img src="img/background-1.jpg" width="3872" height="2592" alt="Estudio 5-8">
+<div class="site-width" id="page-cont-fx">
+</div>
+</div>-->
+
+{% endblock content_roubo %}

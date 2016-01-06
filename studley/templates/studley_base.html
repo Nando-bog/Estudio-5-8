@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% block other_imports %}
+{% endblock%}
+{% block content_base %}
+  <div class="font-color-2 font-fx-1 pddng-ext clearfix" id="page-header">
+      <header>
+        {% block titulo_pagina %}
+        <h1 class="font-color-2"><a href="/studley/">Herramientas</a></h1>
+        <nav>
+        <ul class="font-fx-3">
+          <li><h2><a href="/studley/categorias/" class="page-header-nav-item">Categorías</a></h2></li>
+          <li><h2><a href="/studley/colecciones/" class="page-header-nav-item">Colecciones</a></h2></li>
+        </ul>
+        </nav>
+        {% endblock titulo_pagina %}
+      </header>
+    </div>
+  
+{% block content_studley %}
+<p>Algo salió mal.</p>
+{% endblock content_studley %}
+
+{% endblock content_base %}
+
+{% block footer %}
+<div class="bckgrnd-color-1" id="site-footer">
+{% endblock footer %}
+
+{% block section_background %}
+<div id="site-background">
+<img src="{% static "images/background-studley.jpg" %}" width="3872" height="2592" alt="Estudio 5-8">
+<div class="site-width" id="page-cont-fx">
+</div>
+</div>
+{% endblock %}

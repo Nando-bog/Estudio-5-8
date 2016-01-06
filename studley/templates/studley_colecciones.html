@@ -1,0 +1,35 @@
+{% extends "studley_base.html" %}
+{% load static %}
+{% block other_imports %}
+   <!-- <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/index_styles.css/" %}">-->
+{% endblock%}
+{% block content_studley %}
+    <div class="bckgrnd-color-3" id="cont">
+      <section>
+        <div id="page-title" class="bckgrnd-color-1 font-color-2 pddng-ext">
+          <h2 >Colecciones</h2>
+        </div>
+        <div class="header-clase">
+        <img src="{% static "images/background-colecciones.jpg" %}" width="1024" class="width-100">
+        </div>
+        <div id="page-cont" class="pddng-ext font-color-1">
+          <p class = "font-fx-4">Cada una de estas colecciones está inspirada en un contexto particular, como un taller manual completo o una caja básica para comenzar a aprender. Algunas son creadas por 5-8 y otras tomadas de publicaciones sobre el oficio de la madera.</p>
+          <p class = "font-fx-4">Los usuarios registrados de Estudio 5-8 pueden crear sus propias colecciones, sus baúles de herramientas para compartir con otros o para llevar privadamente su inventario.</p>
+          <h3>Colecciones destacadas</h3>
+          <ul class="cont-col-2-max">
+            
+            {% for coleccion in colecciones|dictsort:"nombre" %}
+                  <li><article>
+                        <h3><a class="font-color-3" href="{{ coleccion.get_absolute_url }}"><img src="{{ MEDIA_URL }}{{ coleccion.imagenes.all.0.imagen }}" width="240" height="240" class="img-fx-1">
+                        <!--{{ MEDIA_URL }}{{ clase.imagen.imagen }}-->
+                        {{ coleccion.nombre }}</a></h3>
+                        <p> Por: <a href = "{{ coleccion.url_creador }}">{{ coleccion.creador }}</a></p>
+                        <p class="font-color-1">{{ coleccion.descripcion |striptags |safe |truncatechars:130 }}</p>
+                  </article></li>
+            {% endfor %}
+          </ul>
+        </div>
+      </section>
+    </div>
+
+{% endblock content_studley %}

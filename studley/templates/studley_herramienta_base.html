@@ -1,0 +1,57 @@
+{% extends "studley_base.html" %}
+{% load static %}
+{% block other_imports %}
+   <!-- <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/index_styles.css/" %}">-->
+{% endblock%}
+{% block content_studley %}
+  <div class="bckgrnd-color-3" id="cont">
+    <div id="page-title" class="bckgrnd-color-1 pddng-ext">
+      <h2 class="font-color-2"><a href="{{ herramienta.clase.get_absolute_url }}">{{ herramienta.clase.nombre }}</a></h2>
+      <p class="font-color-2"><a href="{{ herramienta.tipo.get_absolute_url }}">{{ herramienta.tipo.nombre }}</a></p>
+    </div>
+    
+    <div id="page-cont" class="pddng-ext">
+      <h2 class="font-fx-2 font-color-1">{{ herramienta.nombre }}</h2>
+      
+      <div class="clearfix">
+        {% for imagen in herramienta.imagenes.all %}
+          <img src="{{ MEDIA_URL }}{{ imagen.imagen }}" width="350" height="350" class="img-fx-2" alt="Imagen: {{ imagen.nombre }}" />
+        {% endfor %}
+      </div>
+      
+        <div class="relacionadas-marcas font-color-1">
+          <small>
+            <h4 class="font-color-2">Versiones de <i>{{ herramienta.nombre |lower }}</i></h4>
+            <ul>
+              {% for version in misma_base %}
+                <li><article>
+                  <a href="{{ version.get_absolute_url }}"><img src="{{ MEDIA_URL }}{{ version.imagenes.all.0.imagen }}" class="img-fx-3" alt="">{{ version.modelo }} {{ version.marca.nombre }}</a>
+                </article></li>
+              {% endfor %}
+            </ul>
+          </small>
+        </div>
+      
+      <div class="font-color-1">
+        <br/>
+        <p>{{ herramienta.descripcion |safe }}</p>
+      </div>
+            
+      <!--<h3>Herramientas similares</h3>-->
+      <div>
+        <h3>Otros <i>{{ herramienta.tipo.nombre_plural |lower }}</i></h3>
+        <ul>
+          {% for primo in mismo_tipo %}              
+            <li>
+              <h4><a class="font-color-3" href="{{ primo.get_absolute_url }}"><img src="{{ MEDIA_URL }}{{ primo.imagenes.all.0.imagen }}" class="img-fx-3">{{ primo.nombre }}</a></h4>
+              <!--<small class="tag"><a href="">{{ herramienta.tipo.nombre }}</a></small>-->
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+            
+         
+    </div>
+  </div>
+
+{% endblock content_studley %}
