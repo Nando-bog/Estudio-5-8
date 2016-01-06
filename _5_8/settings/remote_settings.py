@@ -9,14 +9,14 @@ DEBUG = True
 SECRET_KEY = 'testproductionremotesecretkeythisisaterriblekey'
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'estudio5_8',
-        'USER': 'admin5_8',
-        'PASSWORD': 'admin',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'estudio5_8',
+    #     'USER': 'admin5_8',
+    #     'PASSWORD': 'admin',
+    #     'HOST': 'localhost',
+    #     'PORT': '5432',
+    # }
 }
 #HEROKU CONFIGURATION
 # Parse database configuration from $DATABASE_URL
