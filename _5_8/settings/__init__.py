@@ -5,3 +5,7 @@ try:
     from .local_settings import *
 except ImportError:
     pass
+try:
+    from .remote_settings import *
+except ImportError:
+    pass
