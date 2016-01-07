@@ -18,9 +18,12 @@ Thumbs.db
 personal_notes
 notas_personales*
 *py_cache*
-static
-*static
 *vagrant*
 *Thumbs
 .gitignore
 *personal_notes
+static/admin
+static/css
+static/django-extensions
+static/uploads
+static
