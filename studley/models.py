@@ -64,8 +64,8 @@ class ClaseHerramienta(models.Model):
         return self.get_nombre_display()
     
     def get_absolute_url(self):
-        #return "{0}".format(u'self.nombre')
-        return reverse('herramienta_clase_detalle', kwargs={'nombre':self.nombre})
+        #return "/studley/categorias/{0}".format(self.nombre)
+        return reverse('herramienta_clase_detalle', kwargs={'nombre': self.nombre})
 
 
 class TipoHerramienta(models.Model):
