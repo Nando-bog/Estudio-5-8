@@ -24,6 +24,6 @@ notas_personales*
 *personal_notes
 static/admin
 static/css
-static/django-extensions
+static/django_extensions
 static/uploads
 static/images*
