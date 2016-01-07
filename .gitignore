@@ -26,4 +26,4 @@ static/admin
 static/css
 static/django-extensions
 static/uploads
-static
+static/images*
