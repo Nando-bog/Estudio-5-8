@@ -8,6 +8,14 @@ DEBUG = True
 
 SECRET_KEY = 't-5s+-dalv%cd1nk_!-l*y8i2nr7nwdm#!b#q3=9p23snk_!qr'
 
+##HEROKU DATABASE
+# Parse database configuration from $DATABASE_URL
+import dj_database_url
+DATABASES['default'] =  dj_database_url.config()
+
+# Enable Persistent Connections
+DATABASES['default']['CONN_MAX_AGE'] = 500
+
 ### HEROKU ###
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
