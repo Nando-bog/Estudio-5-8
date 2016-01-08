@@ -6,6 +6,7 @@
 *.psd
 *.svg
 file-uploads
+
 /_5_8/settings/local_settings.py
 *.xmind
 .DS_Store
@@ -22,9 +23,7 @@ notas_personales*
 *Thumbs
 .gitignore
 *personal_notes
+templates/montaje-html/*
 static/admin
-static/css
 static/django_extensions
-static/uploads
-static/images*
-templates/montaje-html*
+static/staticfiles.json
