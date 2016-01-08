@@ -7,7 +7,7 @@
 	<meta property="og:type"          content="website" />
 	<meta property="og:title"         content="Estudio 5-8: {{ recurso.nombre }}" />
 	<meta property="og:description"   content="{{ recurso.cuerpo |striptags |truncatechars:200 }}" />
-	<meta property="og:image"         content="{{ MEDIA_URL }}{{ recurso.imagen_destacada }}" />
+	<meta property="og:image"         content="https://estudio5-8-dev.herokuapp.com/{{ MEDIA_URL }}{{ recurso.imagen_destacada }}" />
 {% endblock other_meta_tags%}
 
 {% block my_title %}Estudio 5-8: {{ recurso.nombre }}{% endblock my_title %}
