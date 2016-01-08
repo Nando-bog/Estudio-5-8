@@ -9,6 +9,8 @@ DEBUG = True
 
 SECRET_KEY = 't-5s+-dalv%cd1nk_!-l*y8i2nr7nwdm#!b#q3=9p23snk_!qr'
 
+ALLOWED_HOSTS = ['*']
+
 ##HEROKU DATABASE
 # Parse database configuration from $DATABASE_URL
 DATABASES = {}
@@ -24,7 +26,7 @@ DATABASES['default']['CONN_MAX_AGE'] = 500
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 #BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 #STATIC_ROOT = os.path.join(BASE_DIR, '../static')
-STATIC_ROOT = 'static'
+STATIC_ROOT = '../static'
 STATIC_URL = '/static/'
 
 # STATICFILES_DIRS = (
@@ -35,4 +37,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, '../static/uploads')
 
 MEDIA_URL = '/media/'
 
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+#STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
