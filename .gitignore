@@ -27,3 +27,4 @@ static/css
 static/django_extensions
 static/uploads
 static/images*
+templates/montaje-html
