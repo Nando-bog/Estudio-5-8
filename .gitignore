@@ -23,7 +23,7 @@ notas_personales*
 *Thumbs
 .gitignore
 *personal_notes
-templates/montaje-html/*
+templates/montaje-html
 static/admin
 static/django_extensions
 static/staticfiles.json
