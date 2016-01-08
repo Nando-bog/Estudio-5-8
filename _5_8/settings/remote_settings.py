@@ -9,7 +9,7 @@ DEBUG = False
 
 ##### VARIABLES TOMADAS DEL OS -en versión local están "hard coded" ######
 ##### NO OLVIDE CAMBIAR ESTO PARA PRODUCCION ######
-SECRET_KEY = os.environ('DJANGO_SECRET_KEY')
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 
 
