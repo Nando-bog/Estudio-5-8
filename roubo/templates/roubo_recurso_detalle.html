@@ -3,7 +3,7 @@
 {% block other_imports %}{% endblock%}
 {% block other_meta_tags %}
     <!--    #FACEBOOK LIKE/SHARE BUTTON CONFITURATION: https://developers.facebook.com/docs/plugins/like-button-->
-    <meta property="og:url"           content="{{ recurso.get_absolute_url }}" />
+    <meta property="og:url"           content="https://estudio5-8-dev.herokuapp.com/{{ recurso.get_absolute_url }}" />
 	<meta property="og:type"          content="website" />
 	<meta property="og:title"         content="Estudio 5-8: {{ recurso.nombre }}" />
 	<meta property="og:description"   content="{{ recurso.cuerpo |striptags |truncatechars:200 }}" />
@@ -76,7 +76,7 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
             
-           <div class="fb-like" data-href="https://estudio5-8-dev.herokuapp.com/roubo/recurso/VID/introduccion-al-afilado" data-width="200" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
+           <div class="fb-like" data-href="https://estudio5-8-dev.herokuapp.com/{{ recurso.get_absolute_url }}" data-width="200" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
             </div>
         
             <h3>Etiquetas</h3>
