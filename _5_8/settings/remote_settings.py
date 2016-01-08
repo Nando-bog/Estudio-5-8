@@ -7,9 +7,12 @@ import dj_database_url
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+##### VARIABLES TOMADAS DEL OS -en versión local están "hard coded" ######
 ##### NO OLVIDE CAMBIAR ESTO PARA PRODUCCION ######
-#SECRET_KEY = 't-5s+-dalv%cd1nk_!-l*y8i2nr7nwdm#!b#q3=9p23snk_!qr'
 SECRET_KEY = os.environ('DJANGO_SECRET_KEY')
+
+
+
 ALLOWED_HOSTS = ['*']
 
 ##HEROKU DATABASE

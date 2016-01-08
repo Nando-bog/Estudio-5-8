@@ -17,7 +17,12 @@
         
     <div id="page-cont" class="pddng-ext font-color-1">
       <p>{{ coleccion.descripcion |safe }}</p>    
-        
+    
+      <div class="like-me">
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <g:plusone></g:plusone>
+      </div>
+    
       <div class="font-size-sub1-1">
         <h2 class="margin-fx">Herramientas de la colección</h2>
         {% for clase, dict_herramientas in clases.items %}

@@ -1,10 +1,16 @@
 {% extends "roubo_base.html" %}
 {% load static %}
-{% block other_imports %}
-   <!-- <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/index_styles.css/" %}">-->
-{% endblock%}
+{% block other_imports %}{% endblock%}
+{% block other_meta_tags %}
+    <!--    #FACEBOOK LIKE/SHARE BUTTON CONFITURATION: https://developers.facebook.com/docs/plugins/like-button-->
+    <meta property="og:url"           content="{{ recurso.get_absolute_url }}" />
+	<meta property="og:type"          content="website" />
+	<meta property="og:title"         content="Estudio 5-8: {{ recurso.nombre }}" />
+	<meta property="og:description"   content="{{ recurso.cuerpo |striptags |truncatechars:200 }}" />
+	<meta property="og:image"         content="{{ MEDIA_URL }}{{ recurso.imagen_destacada }}" />
+{% endblock other_meta_tags%}
 
-{% block my_title %}Qué es Estudio 5-8{% endblock my_title %}
+{% block my_title %}Estudio 5-8: {{ recurso.nombre }}{% endblock my_title %}
 
 {% block titulo_pagina %}
     {% if recurso.tipo == 'VID' %}
@@ -57,6 +63,25 @@
           <div class="clearfix font-color-1">
             {{ recurso.cuerpo |safe }}
             
+        <div class="like-me">
+            <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <g:plusone></g:plusone>
+            <div id="fb-root"></div>
+            <script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+            <div class="fb-like" 
+            data-href="{{ recurso.get_absolute_url }}" 
+        	data-layout="standard" 
+        	data-action="like" 
+        	data-show-faces="false">
+	</div>
+            </div>
+        
             <h3>Etiquetas</h3>
             <div class="tag-cuaderno">
                 <ul> 
@@ -65,6 +90,8 @@
                 {% endfor %}
                 </ul>
             </div>
+            
+
             <div>
               <h3>Relacionados</h3>
                 <ul class="cont-col-2-max">

@@ -855,6 +855,10 @@ input {
 	margin-top=5em;
 }
 
+.like-me {
+	margin: 0 0 2em 0;
+}
+
 /* PANTALLAS PEQUEÑAS: 768px hacia arriba */
 @media (min-width: 768px) {
 	
