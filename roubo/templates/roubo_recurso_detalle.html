@@ -10,7 +10,7 @@
 	<meta property="og:image"         content="https://{{ request.META.HTTP_HOST }}{{ MEDIA_URL }}{{ recurso.imagen_destacada }}" />
 {% endblock other_meta_tags%}
 
-{% block my_title %}Estudio 5-8: {{ recurso.nombre }}{% endblock my_title %}
+{% block my_title %}{{ recurso.nombre }} en Estudio 5-8{% endblock my_title %}
 
 {% block titulo_pagina %}
     {% if recurso.tipo == 'VID' %}

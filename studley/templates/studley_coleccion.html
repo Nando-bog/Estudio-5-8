@@ -11,6 +11,8 @@
 	<meta property="og:image"         content="https://{{ request.META.HTTP_HOST }}{{ MEDIA_URL }}{{ coleccion.imagenes.all.0.imagen }}" />
 {% endblock other_meta_tags%}
 
+{% block my_title %}{{ coleccion.nombre }} en Estudio 5-8{% endblock my_title %}
+
 {% block content_studley %}
   <div class="bckgrnd-color-3" id="cont">
     
