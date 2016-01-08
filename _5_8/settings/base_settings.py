@@ -12,7 +12,10 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+
+#Assume its not running locally. local_settings will set it to true if it is.
 LOCAL=False
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
