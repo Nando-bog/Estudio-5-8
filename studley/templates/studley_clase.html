@@ -11,7 +11,6 @@
         </div>
         <div class="header-clase">
       <img src="{{ MEDIA_URL }}{{ clase_herramienta.imagen.imagen }}" width="1024px" class="width-100" >
-        <!--<img src="{% static "images/page-header-img-1.jpg" %}" width="1024" height="214" class="width-100 height-prop">-->
         </div>
         <div id="page-cont" class="pddng-ext font-color-1">
           <p>{{ clase_herramienta.descripcion |striptags |safe |truncatechars:200 }}</p>    
