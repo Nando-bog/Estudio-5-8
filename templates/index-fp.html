@@ -32,6 +32,7 @@
         
         {% for destacado in destacados_roubo %}
         <div class="destacado-home">
+         
             <a class="font-color-3" href="{{ destacado.recurso.get_absolute_url }}">
             <div class="img-fx-6"><img src="{{ MEDIA_URL }}{{ destacado.recurso.imagen_destacada }}" alt=""/></div>
             <h2>{{ destacado.recurso.nombre }}</h2>

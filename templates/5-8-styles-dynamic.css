@@ -316,7 +316,7 @@ a:hover {
 }
 
 #content-home {
-	background-image: url("{% static "background-home-1.jpg" %}");
+	background-image: url({% static '' %}images/{{ background }});
 	background-position: top left;
 	background-size: cover;
 	background-repeat: repeat;
