@@ -2,6 +2,7 @@
 
 import os
 import dj_database_url
+from storages.backends.s3boto import S3BotoStorage
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -53,9 +54,6 @@ MEDIA_ROOT = "https://{0}/{1}/".format(AWS_S3_CUSTOM_DOMAIN, 'uploads')
 ##-------- SEPARATE STORAGE FOR MEDIA FILES --------##
 
 # custom_storages.py
-from django.conf import settings
-from storages.backends.s3boto import S3BotoStorage
-
 class MediaStorage(S3BotoStorage):
         location = 'uploads'
 
