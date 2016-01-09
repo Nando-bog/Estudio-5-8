@@ -6,6 +6,7 @@
 
 {% block my_title %}
    {% if tipo == 'VID' %}Videos 5-8
+   {% elif tipo == 'GLR' %} Galería Estudio 5-8
    {% else %} Cuaderno 5-8
    {% endif %}
 {% endblock %}
@@ -56,7 +57,7 @@
          {% elif tipo == 'GLR' %}
             <p class = "font-fx-4">Los álbumes de fotos que conforman esta galería muestran el proceso y resultado de algunos trabajos hechos en el estudio. Las fotos están publicadas en el <a href="https://www.flickr.com/photos/nandito/collections/72157629528088076/">flickr de Nando</a>, fundador de 5-8.</p>
          {% else %}
-            <p class = "font-fx-4">Notas de nuestro cuaderno sobre el oficio de la madera, el blog del estudio.</p>
+            <p class = "font-fx-4">Notas sobre el oficio de la madera, el blog del estudio.</p>
          {% endif %}
           <ul class="cont-col-2-max">
             {% for entrada in entradas|dictsort:"nombre" %}

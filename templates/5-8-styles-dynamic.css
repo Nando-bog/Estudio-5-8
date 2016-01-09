@@ -333,10 +333,15 @@ a:hover {
 	background-color: rgba(0,0,0,.55);
 	margin: 2em 2em 0 2em;
 	padding: 1em;
+	overflow: hidden;
 }
 
 .destacado-home h2 {
 	margin: 0 0 .2em 0;
+}
+
+.destacado-home p {
+	font-size: 1.3em;
 }
 
 .herramientas-home {
@@ -352,6 +357,9 @@ a:hover {
 	padding: 0 0 .5em 0;
 }
 
+.herramientas-home li {
+	font-size: 1.3em;
+}
 /* FORMS */
 
 label {
