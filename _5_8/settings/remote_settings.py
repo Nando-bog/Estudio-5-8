@@ -50,7 +50,16 @@ STATIC_ROOT = "https://{0}/".format(AWS_S3_CUSTOM_DOMAIN)
 MEDIA_URL = "https://{0}/{1}/".format(AWS_S3_CUSTOM_DOMAIN, 'uploads')
 MEDIA_ROOT = "https://{0}/{1}/".format(AWS_S3_CUSTOM_DOMAIN, 'uploads')
 
-    
+##-------- SEPARATE STORAGE FOR MEDIA FILES --------##
+
+# custom_storages.py
+from django.conf import settings
+from storages.backends.s3boto import S3BotoStorage
+
+class MediaStorage(S3BotoStorage):
+        location = 'uploads'
+
+ 
 STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+DEFAULT_FILE_STORAGE = 'MediaStorage'
 
