@@ -6,7 +6,7 @@
 <!--    #FACEBOOK LIKE/SHARE BUTTON CONFITURATION: https://developers.facebook.com/docs/plugins/like-button-->
     <meta property="og:url"           content="https://{{ request.META.HTTP_HOST }}{{ clase_herramienta.get_absolute_url }}" />
 	<meta property="og:type"          content="website" />
-	<meta property="og:title"         content="Estudio 5-8: {{ clase_herramienta.nombre }}" />
+	<meta property="og:title"         content="Herramientas de {{ clase_herramienta.nombre |lower }} en Estudio 5-8" />
 	<meta property="og:description"   content="{{ clase_herramienta.descripcion |striptags |truncatechars:200 }}" />
 	<meta property="og:image"         content="https://{{ request.META.HTTP_HOST }}{{ MEDIA_URL }}{{ clase_herramienta.imagen.imagen }}" />    
     <!-- Google +1 -->
