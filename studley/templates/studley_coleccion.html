@@ -8,7 +8,7 @@
       {lang: 'es-419'}
     </script
   <!--#FACEBOOK LIKE/SHARE BUTTON CONFITURATION: https://developers.facebook.com/docs/plugins/like-button-->
-    <meta property="og:url"           content="https://{{ request.META.HTTP_HOST }}{{ coleccion.get_absolute_url }}" />
+    <meta property="og:url"           content="https://{{ request.build_absolute_uri |urlencode:":/" }}" />
 	<meta property="og:type"          content="website" />
 	<meta property="og:title"         content="{{ coleccion.nombre }} en Estudio 5-8" />
 	<meta property="og:description"   content="{{ coleccion.descripcion |striptags |truncatechars:200 }}" />
@@ -47,7 +47,7 @@
               fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
             </script>
-            <div class="fb-like" data-href="https://{{ request.META.HTTP_HOST }}{{ coleccion.get_absolute_url }}" data-width="200" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
+            <div class="fb-like" data-href="{{ request.build_absolute_uri |urlencode:":/" }}" data-width="200" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
         <!--END FACEBOOK LIKE-->
         
         </div>
