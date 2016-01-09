@@ -9,7 +9,7 @@
 	<meta property="og:type"          content="website" />
 	<meta property="og:title"         content="Estudio 5-8" />
 	<meta property="og:description"   content="El taller que empieza cuando el trabajo de 8-5 termina." />
-	<meta property="og:image"         content="http://{% static "images/5-8-logo.png" %}" />
+	<meta property="og:image"         content="http://{{ request.META.HTTP_HOST }}{% static "images/5-8-logo.png" %}" />
     
     <script src="https://apis.google.com/js/platform.js" async defer>
       {lang: 'es-419'}
