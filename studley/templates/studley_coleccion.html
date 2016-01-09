@@ -3,7 +3,11 @@
 {% block other_imports %}{% endblock%}
 
 {% block other_meta_tags %}
-    <!--    #FACEBOOK LIKE/SHARE BUTTON CONFITURATION: https://developers.facebook.com/docs/plugins/like-button-->
+  <!-- Google +1 -->
+    <script src="https://apis.google.com/js/platform.js" async defer>
+      {lang: 'es-419'}
+    </script
+  <!--#FACEBOOK LIKE/SHARE BUTTON CONFITURATION: https://developers.facebook.com/docs/plugins/like-button-->
     <meta property="og:url"           content="https://{{ request.META.HTTP_HOST }}{{ coleccion.get_absolute_url }}" />
 	<meta property="og:type"          content="website" />
 	<meta property="og:title"         content="{{ coleccion.nombre }} en Estudio 5-8" />
@@ -29,9 +33,10 @@
       <p>{{ coleccion.descripcion |safe }}</p>    
     
       <div class="like-me">
-        <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <g:plusone></g:plusone>
-      
+        
+        <!--G+1 BUTTON-->
+        <div class="g-plusone display-inline" data-size="medium" data-annotation="none"></div>
+  
         <!--FACEBOOK LIKE BUTTON-->
         <div id="fb-root"></div>
             <script>(function(d, s, id) {
@@ -44,7 +49,8 @@
             </script>
             <div class="fb-like" data-href="https://{{ request.META.HTTP_HOST }}{{ coleccion.get_absolute_url }}" data-width="200" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
         <!--END FACEBOOK LIKE-->
-      </div>
+        
+        </div>
       
       <div class="font-size-sub1-1">
         <h2 class="margin-fx">Herramientas de la colección</h2>
