@@ -47,6 +47,9 @@ STATIC_ROOT = "https://{0}/{1}".format(AWS_S3_CUSTOM_DOMAIN, 'static')
     # Tell the staticfiles app to use S3Boto storage when writing the collected static files (when
     # you run `collectstatic`).
     
+MEDIA_URL = "https://{0}/{1}/".format(AWS_S3_CUSTOM_DOMAIN, 'uploads')
+MEDIA_ROOT = "https://{0}/{1}".format(AWS_S3_CUSTOM_DOMAIN, 'uploads')
+    
 STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
