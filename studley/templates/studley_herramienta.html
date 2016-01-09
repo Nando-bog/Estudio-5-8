@@ -1,8 +1,21 @@
 {% extends "studley_base.html" %}
 {% load static %}
 {% block other_imports %}
-   <!-- <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/index_styles.css/" %}">-->
 {% endblock%}
+
+{% block other_meta_tags %}
+<!--    #FACEBOOK LIKE/SHARE BUTTON CONFITURATION: https://developers.facebook.com/docs/plugins/like-button-->
+    <meta property="og:url"           content="https://{{ request.META.HTTP_HOST }}{{ herramienta.get_absolute_url }}" />
+	<meta property="og:type"          content="website" />
+	<meta property="og:title"         content="{{ herramienta.nombre }} en Estudio 5-8" />
+	<meta property="og:description"   content="Herramientas de {{ herramienta.descripcion |lower |striptags |truncatechars:200 }}" />
+	<meta property="og:image"         content="https://{{ request.META.HTTP_HOST }}{{ MEDIA_URL }}{{ herramienta.imagenes.all.0.imagen }}" />    
+    <!-- Google +1 -->
+    <script src="https://apis.google.com/js/platform.js" async defer>
+      {lang: 'es-419'}
+    </script
+{% endblock other_meta_tags%}
+
 {% block content_studley %}
     <div class="bckgrnd-color-3" id="cont">
       <section>
@@ -10,18 +23,10 @@
           <h2 class="font-color-2"><a href="{{ herramienta.clase.get_absolute_url }}">{{ herramienta.clase.nombre }}</a></h2>
         <p class="font-color-2"><a href="{{ herramienta.tipo.get_absolute_url }}">{{ herramienta.tipo.nombre }}</a></p>
         </div>
-        <!--IMAGEN DEL HEADER (DEMASIADO CON LAS DE ABAJO)
-        <div class="header-clase">
-        <img src="{{ MEDIA_URL }}{{ herramienta.imagenes.all.0.imagen }}" width="1024" height="214" class="width-100">
-        </div>-->
+        
         <div id="page-cont" class="pddng-ext">
           <h2 class="font-fx-2 font-color-1">{{ herramienta.nombre }}</h2>
-          <footer>
-            <!--INFORMACIÓN DEL AUTOR
-            <p><img src="img/retrato.jpg" width="240" height="240" class="img-fx-1"></p>-->
-           <!-- <p>por: <a href="#"><strong>El Profe</strong></a></p>
-            <small>--algún dato sobre el autor--</small>-->
-</footer>
+          
           <div class="clearfix">
             {% for imagen in herramienta.imagenes.all %}
               <img src="{{ MEDIA_URL }}{{ imagen.imagen }}" width="350" height="350" class="img-fx-2" alt="Imagen: {{ imagen.nombre }}" />
@@ -41,10 +46,7 @@
         </div>
           <div class="clearfix font-color-1">
             <p>{{ herramienta.descripcion |safe }}</p>
-                        <div class="like-me">
-            <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <g:plusone></g:plusone>
-            </div>
+
             <!--<h3>Etiquetas</h3>
             <ul>
               <li class="tag bckgrnd-color-4 font-color-2">Todas</li>
@@ -69,6 +71,25 @@
             </div>
             
           </div>
+          
+          <div class="like-me">
+        
+        <!--G+1 BUTTON-->
+        <div class="g-plusone display-inline" data-size="medium" data-annotation="none"></div>
+  
+        <!--FACEBOOK LIKE BUTTON-->
+        <div id="fb-root"></div>
+            <script>(function(d, s, id) {
+              var js, fjs = d.getElementsByTagName(s)[0];
+              if (d.getElementById(id)) return;
+              js = d.createElement(s); js.id = id;
+              js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+              fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+            </script>
+            <div class="fb-like" data-href="https://{{ request.META.HTTP_HOST }}{{ recurso.get_absolute_url }}" data-width="200" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
+        <!--END FACEBOOK LIKE-->
+          
         </div>
       </section>
     </div>
