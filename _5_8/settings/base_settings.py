@@ -37,6 +37,7 @@ DEFAULT_APPS = [
 THIRD_PARTY_APPS = [
     'taggit',
     'django_extensions',
+    'storages',
 ]
 
 LOCAL_APPS = [

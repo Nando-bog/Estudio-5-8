@@ -28,7 +28,7 @@ urlpatterns += staticfiles_urlpatterns()
 #    ]
 urlpatterns += static.static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
-urlpatterns += static.static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static.static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)#
 
 # urlpatterns += [
 #     url(r'^media/(?P<path>.*)$', django.views.static.serve, {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
