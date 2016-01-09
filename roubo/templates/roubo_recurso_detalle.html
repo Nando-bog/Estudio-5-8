@@ -5,8 +5,8 @@
 <!--    #FACEBOOK LIKE/SHARE BUTTON CONFITURATION: https://developers.facebook.com/docs/plugins/like-button-->
     <meta property="og:url"           content="https://{{ request.META.HTTP_HOST }}{{ recurso.get_absolute_url }}" />
 	<meta property="og:type"          content="website" />
-	<meta property="og:title"         content="Estudio 5-8: {{ recurso.nombre }}" />
-	<meta property="og:description"   content="{{ recurso.cuerpo |striptags |truncatechars:200 }}" />
+	<meta property="og:title"         content="{{ recurso.nombre }} en Estudio 5-8" />
+	<meta property="og:description"   content="Herramientas de {{ recurso.cuerpo |lower |striptags |truncatechars:200 }}" />
 	<meta property="og:image"         content="https://{{ request.META.HTTP_HOST }}{{ MEDIA_URL }}{{ recurso.imagen_destacada }}" />    
     <!-- Google +1 -->
     <script src="https://apis.google.com/js/platform.js" async defer>
