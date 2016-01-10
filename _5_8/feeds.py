@@ -4,6 +4,7 @@
 from django.contrib.syndication.views import Feed
 from django.core.urlresolvers import reverse
 from roubo.models import Recurso
+import settings
 
 class SiteFeed(Feed):
     """Feed RSS de todo el sitio. Incluye el contenido nuevo de Studley y Roubo: herramientas y entradas de blog.
@@ -13,6 +14,7 @@ class SiteFeed(Feed):
     link = '/rss/'
     description = 'Publicaciones del taller que comienza cuando el trabajo de 8-5 termina.'
     item_enclosures_mime_type = "image/jpeg"
+    uri = request.build_absolute_uri()
     
     def items(self, request):
         blogs = Recurso.objects.all().order_by('-fecha_actualizacion')
@@ -25,4 +27,4 @@ class SiteFeed(Feed):
         return item.cuerpo[:800]
         
     def item_enclosure_url(self, item):
-        return item.imagen_destacada
+        return '{0}{1}'.format(settings.MEDIA_URL, (item.image_destacada))
