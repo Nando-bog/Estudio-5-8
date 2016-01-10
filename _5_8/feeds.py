@@ -25,4 +25,4 @@ class SiteFeed(Feed):
         return item.cuerpo[:800]
         
     def item_enclosure_url(self, item):
-        return item.image_destacada
+        return item.imagen_destacada
