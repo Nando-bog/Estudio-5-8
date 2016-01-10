@@ -107,6 +107,7 @@ class HerramientaBase(models.Model):
     nombre_corto=models.SlugField(max_length=30, unique=True, help_text="Debe ser único.")
     imagenes=models.ManyToManyField(Imagen, through='HerramientasBaseImagenes', blank=True)
     descripcion=models.TextField(help_text='Describa la herramienta.')
+    creado_por=models.ForeignKey(settings.AUTH_USER_MODEL)
     fecha_creacion = models.DateField(default=datetime.date.today)
     fecha_actualizacion = models.DateField(default=datetime.date.today)
     
@@ -131,6 +132,7 @@ class Marca(models.Model):
     pagina_web=models.URLField(blank=True)
     fecha_creacion = models.DateField(default=datetime.date.today)
     fecha_actualizacion = models.DateField(default=datetime.date.today)
+    creado_por=models.ForeignKey(settings.AUTH_USER_MODEL)
 
     class Meta:
         verbose_name='Marca'
@@ -151,6 +153,7 @@ class Herramienta(models.Model):
     modelo=models.CharField(max_length=150)
     detalle=models.TextField(blank=True)
     notas=models.TextField(blank=True)
+    creado_por=models.ForeignKey(settings.AUTH_USER_MODEL)
     imagenes=models.ManyToManyField(Imagen, through='HerramientasImagenes', blank=True)
     fecha_creacion = models.DateField(default=datetime.date.today)
     fecha_actualizacion = models.DateField(default=datetime.date.today)
