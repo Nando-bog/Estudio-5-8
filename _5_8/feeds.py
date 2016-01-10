@@ -4,6 +4,7 @@
 from django.contrib.syndication.views import Feed
 from django.core.urlresolvers import reverse
 from roubo.models import Recurso
+from studley.models import TipoHerramienta, HerramientaBase, Herramienta, Coleccion
 # import settings
 
 class SiteFeed(Feed):
@@ -17,6 +18,7 @@ class SiteFeed(Feed):
     
     def items(self, request):
         blogs = Recurso.objects.all().order_by('-fecha_actualizacion')
+        
         return blogs
     
     def item_title(self, item):

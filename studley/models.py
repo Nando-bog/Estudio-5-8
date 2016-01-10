@@ -2,7 +2,9 @@
 # Modelos para la aplicación "Roubo", una caja de herramientas.
 # La caja de herramientas personal de un usuario es una colección.
 # Diseñar métodos para comparar, compartir, etc., colecciones. ¡Sigue siendo Studley!
-# Version 0.13
+# Version 0.14
+
+import datetime
 from django.db import models
 from django.conf import settings
 from django.core.urlresolvers import reverse
@@ -78,6 +80,8 @@ class TipoHerramienta(models.Model):
     imagen=models.ForeignKey(Imagen, blank=True)
     descripcion=models.TextField(blank=True)
     creado_por=models.ForeignKey(settings.AUTH_USER_MODEL)
+    fecha_creacion = models.DateField(default=datetime.date.today)
+    fecha_actualizacion = models.DateField(default=datetime.date.today)
 
     class Meta:
         verbose_name='Tipo'
@@ -103,6 +107,8 @@ class HerramientaBase(models.Model):
     nombre_corto=models.SlugField(max_length=30, unique=True, help_text="Debe ser único.")
     imagenes=models.ManyToManyField(Imagen, through='HerramientasBaseImagenes', blank=True)
     descripcion=models.TextField(help_text='Describa la herramienta.')
+    fecha_creacion = models.DateField(default=datetime.date.today)
+    fecha_actualizacion = models.DateField(default=datetime.date.today)
     
     class Meta:
         verbose_name='Herramienta base'
@@ -123,6 +129,8 @@ class Marca(models.Model):
     """ Marca o fabricante de herramientas. P. ej. Stanley, Veritas, Lie-Nielsen."""
     nombre=models.CharField(unique=True, max_length=150)
     pagina_web=models.URLField(blank=True)
+    fecha_creacion = models.DateField(default=datetime.date.today)
+    fecha_actualizacion = models.DateField(default=datetime.date.today)
 
     class Meta:
         verbose_name='Marca'
@@ -144,6 +152,8 @@ class Herramienta(models.Model):
     detalle=models.TextField(blank=True)
     notas=models.TextField(blank=True)
     imagenes=models.ManyToManyField(Imagen, through='HerramientasImagenes', blank=True)
+    fecha_creacion = models.DateField(default=datetime.date.today)
+    fecha_actualizacion = models.DateField(default=datetime.date.today)
     
     class Meta:
         verbose_name='Herramienta'
