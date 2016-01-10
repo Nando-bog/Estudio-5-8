@@ -1,7 +1,7 @@
 {% load static from staticfiles %}
 /* Google Fonts */
 
-@import url(http://fonts.googleapis.com/css?family=Bitter:400,700|Raleway:900,400,300);
+@import url(https://fonts.googleapis.com/css?family=Bitter:400,700|Raleway:900,400,300);
 
 /* RESET  */
 
@@ -358,7 +358,7 @@ a:hover {
 }
 
 .herramientas-home li {
-	font-size: 1.3em;
+	font-size: 1.2em;
 }
 /* FORMS */
 
