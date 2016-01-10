@@ -7,6 +7,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
 from .views import ElEstudio, HomePage, dynamic_css, home_page
 from roubo.views import contacto
+from .feeds import SiteFeed
 admin.autodiscover()
 
 urlpatterns = [
@@ -18,6 +19,7 @@ urlpatterns = [
     url(r'el-estudio/?$',  ElEstudio.as_view(), name='el-estudio'),
     url(r'styles/5-8-styles.css/?$', dynamic_css, name='css'),
     url(r'contacto/?$', contacto, name='contacto_sitio'),
+    url(r'rss/?$', SiteFeed()),
     #url(r'^recursos/', include('cursos.urls')),
 ]
 
