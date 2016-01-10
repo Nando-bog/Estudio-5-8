@@ -5,7 +5,7 @@ from django.contrib.syndication.views import Feed
 from django.core.urlresolvers import reverse
 from roubo.models import Recurso
 
-class SiteFeed(Feed):
+class SiteFeed(Feed, request):
     """Feed RSS de todo el sitio. Incluye el contenido nuevo de Studley y Roubo: herramientas y entradas de blog.
     """
     
