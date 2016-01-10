@@ -24,5 +24,5 @@ class SiteFeed(Feed):
     def item_description(self, item):
         return item.cuerpo[:800]
         
-    def item_enclosure_url(self, item, request):
-        return request.build_absolute_uri(item.image_destacada)
+    def item_enclosure_url(self, item):
+        return item.image_destacada
