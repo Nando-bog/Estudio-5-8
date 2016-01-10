@@ -5,7 +5,8 @@ import dj_database_url
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
+
 
 ##### VARIABLES TOMADAS DEL OS -en versión local están "hard coded" ######
 ##### NO OLVIDE CAMBIAR ESTO PARA PRODUCCION ######
