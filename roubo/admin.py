@@ -45,7 +45,7 @@ class RecursosAutoresInline(admin.TabularInline):
 
 
 class RecursoAdmin(admin.ModelAdmin):
-    list_display = ('nombre', 'nombre_corto', 'url', 'tipo')
+    list_display = ('nombre', 'nombre_corto', 'tipo', 'fecha_actualizacion')
     prepopulated_fields = {'nombre_corto': ('nombre',)}
     fieldsets = (
         (None, {'fields': ('nombre', 'imagen_destacada', 'nombre_corto', 'fecha_creacion', 'fecha_actualizacion', 'url', 'tipo', 'cuerpo', 'tags')}),

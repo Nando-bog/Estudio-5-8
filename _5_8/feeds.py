@@ -46,7 +46,7 @@ class SiteFeed(Feed):
             items_feed.append(FeedItem(herramienta.nombre, herramienta.descripcion, herramienta.creado_por, herramienta.fecha_actualizacion, '', herramienta.get_absolute_url(), herramienta.imagenes.all()[0].imagen))
         for version_herramienta in versiones_herramientas:
             items_feed.append(FeedItem(version_herramienta.__str__(), version_herramienta.detalle, version_herramienta.creado_por, version_herramienta.fecha_actualizacion, '', version_herramienta.get_absolute_url(), version_herramienta.imagenes.all()[0].imagen))
-        return sorted(items_feed)
+        return sorted(items_feed, reverse=True)
     
     def item_title(self, item):
         return item.titulo
