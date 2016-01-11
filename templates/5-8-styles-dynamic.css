@@ -330,6 +330,7 @@ a:hover {
 	background-position: top left;
 	background-size: cover;
 	background-repeat: repeat;
+	min-width: 590px;
 	/*height: 900px;*/
 }
 
