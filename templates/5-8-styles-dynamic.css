@@ -224,6 +224,16 @@ a:hover {
     margin: -0.5em 0 0 0;
 }
 
+.social-links {
+	position: absolute;
+	right: 0;
+	top: 0;
+	padding: 1.5em 1em 0 0;
+}
+
+.social-links li {
+	display: inline-block;
+}
 
 /* Navegación responsive */
 /*@media (min-width: 768px) {*/

@@ -20,7 +20,7 @@ class FeedItem:
         self.url_item = url_item
         
     def __lt__(self, other):
-        return other.fecha_actualizacion < self.fecha_actualizacion
+        return self.fecha_actualizacion < other.fecha_actualizacion 
     
     
 class SiteFeed(Feed):
