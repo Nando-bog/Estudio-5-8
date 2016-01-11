@@ -28,24 +28,25 @@
                 </li>
                 {% endfor %}
             </ul>
-        </div>
-        
-        {% for destacado in destacados_roubo %}
-        <div class="destacado-home">
+         </div>
          
-            <a class="font-color-3" href="{{ destacado.recurso.get_absolute_url }}">
-            <div class="img-fx-6"><img src="{{ MEDIA_URL }}{{ destacado.recurso.imagen_destacada }}" alt=""/></div>
-            <h2>{{ destacado.recurso.nombre }}</h2>
-            </a>
-            <p><small><a href="roubo/{{ destacado.recurso.tipo }}" class="tag-home">[{{ destacado.recurso.get_tipo_display }}]</a> {{ destacado.recurso.fecha_actualizacion }} </small></p>
-            <p>{{ destacado.recurso.cuerpo |striptags |truncatechars:230 }}</p>
-            <!--{% for tag in destacado.recurso.tags.all %}-->
-            <!--    <ul class="tag-home">-->
-            <!--        <li>{{ tag |lower }}</li>-->
-            <!--    </uL>-->
-            <!--{% endfor %}-->
-        </div>
-    {% endfor %}
+        <div class = "entradas-destacadas">
+          {% for destacado in destacados_roubo %}
+          <div class="destacado-home">
+              <a class="font-color-3" href="{{ destacado.recurso.get_absolute_url }}">
+              <div class="img-fx-6"><img src="{{ MEDIA_URL }}{{ destacado.recurso.imagen_destacada }}" alt=""/></div>
+              <h2>{{ destacado.recurso.nombre }}</h2>
+              </a>
+              <p><small><a href="roubo/{{ destacado.recurso.tipo }}" class="tag-home">[{{ destacado.recurso.get_tipo_display }}]</a> {{ destacado.recurso.fecha_actualizacion }} </small></p>
+              <p>{{ destacado.recurso.cuerpo |striptags |truncatechars:230 }}</p>
+              <!--{% for tag in destacado.recurso.tags.all %}-->
+              <!--    <ul class="tag-home">-->
+              <!--        <li>{{ tag |lower }}</li>-->
+              <!--    </uL>-->
+              <!--{% endfor %}-->
+          </div>
+          {% endfor %}
+          </div>
           <br/>
           <br/>
           <br/>
