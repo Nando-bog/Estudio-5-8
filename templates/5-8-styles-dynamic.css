@@ -378,6 +378,22 @@ a:hover {
 .herramientas-home li {
 	font-size: 1.2em;
 }
+
+.html-content {
+	
+}
+
+#page-cont .html-content p {
+	margin: 0 0 1em 0;
+}
+
+#page-cont .html-content li {
+	list-style: square inside;
+	padding: 0 0 0 2em;
+	margin: 0 0 .5em 0;
+	/*border: red 1px solid;*/
+}
+
 /* FORMS */
 
 label {
