@@ -54,6 +54,9 @@ class ClaseHerramienta(models.Model):
     descripcion=models.TextField()
     imagen=models.ForeignKey(Imagen, blank=True)
     creado_por=models.ForeignKey(settings.AUTH_USER_MODEL)
+    fecha_creacion = models.DateField(default=datetime.date.today)
+    fecha_actualizacion = models.DateField(default=datetime.date.today)
+    publicado = models.BooleanField(default=False)
     
     class Meta:
         verbose_name='Clase'
@@ -82,6 +85,7 @@ class TipoHerramienta(models.Model):
     creado_por=models.ForeignKey(settings.AUTH_USER_MODEL)
     fecha_creacion = models.DateField(default=datetime.date.today)
     fecha_actualizacion = models.DateField(default=datetime.date.today)
+    publicado = models.BooleanField(default=False)
 
     class Meta:
         verbose_name='Tipo'
@@ -110,7 +114,8 @@ class HerramientaBase(models.Model):
     creado_por=models.ForeignKey(settings.AUTH_USER_MODEL)
     fecha_creacion = models.DateField(default=datetime.date.today)
     fecha_actualizacion = models.DateField(default=datetime.date.today)
-    
+    publicado = models.BooleanField(default=False)
+        
     class Meta:
         verbose_name='Herramienta base'
         verbose_name_plural='Herramientas base'
@@ -133,6 +138,7 @@ class Marca(models.Model):
     fecha_creacion = models.DateField(default=datetime.date.today)
     fecha_actualizacion = models.DateField(default=datetime.date.today)
     creado_por=models.ForeignKey(settings.AUTH_USER_MODEL)
+    publicado = models.BooleanField(default=False)
 
     class Meta:
         verbose_name='Marca'
@@ -157,6 +163,7 @@ class Herramienta(models.Model):
     imagenes=models.ManyToManyField(Imagen, through='HerramientasImagenes', blank=True)
     fecha_creacion = models.DateField(default=datetime.date.today)
     fecha_actualizacion = models.DateField(default=datetime.date.today)
+    publicado = models.BooleanField(default=False)
     
     class Meta:
         verbose_name='Herramienta'
@@ -204,6 +211,7 @@ class Coleccion(models.Model):
         help_text="Autor del recurso en el sistema. ")
     fecha_creacion = models.DateField()
     fecha_actualizacion = models.DateField()
+    publicado = models.BooleanField(default=False)
     
     class Meta:
         verbose_name="Colección"

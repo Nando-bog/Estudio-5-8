@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
-# import watson
+import watson
 
 #Assume its not running locally. local_settings will set it to true if it is.
 LOCAL=False
@@ -39,7 +39,7 @@ THIRD_PARTY_APPS = [
     'taggit',
     'django_extensions',
     'storages',
-    # 'watson',
+    'watson',
 ]
 
 LOCAL_APPS = [
@@ -59,7 +59,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # 'django.middleware.transaction.TransactionMiddleware',
-    # 'watson.middleware.SearchContextMiddleware',
+    'watson.middleware.SearchContextMiddleware',
 ]
 
 ROOT_URLCONF = '_5_8.urls'
@@ -73,6 +73,7 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.core.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media'
@@ -82,9 +83,9 @@ TEMPLATES = [
     },
 ]
 
-TEMPLATE_CONTEXT_PROCESSORS = (
-  'django.core.context_processors.request',
-)
+# TEMPLATE_CONTEXT_PROCESSORS = (
+#   'django.core.context_processors.request',
+# )
 
 WSGI_APPLICATION = '_5_8.wsgi.application'
 
