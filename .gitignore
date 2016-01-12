@@ -6,6 +6,7 @@
 *.psd
 *.svg
 file-uploads
+
 /_5_8/settings/local_settings.py
 *.xmind
 .DS_Store
@@ -18,9 +19,11 @@ Thumbs.db
 personal_notes
 notas_personales*
 *py_cache*
-static
-*static
 *vagrant*
 *Thumbs
 .gitignore
 *personal_notes
+templates/montaje-html
+static/admin
+static/django_extensions
+static/staticfiles.json

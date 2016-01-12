@@ -3,6 +3,20 @@
 {% block other_imports %}
    <!-- <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/index_styles.css/" %}">-->
 {% endblock%}
+
+{% block other_meta_tags %}
+<!--    #FACEBOOK LIKE/SHARE BUTTON CONFITURATION: https://developers.facebook.com/docs/plugins/like-button-->
+    <meta property="og:url"           content="https://{{ request.build_absolute_uri |urlencode:":/" }}" />
+	<meta property="og:type"          content="website" />
+	<meta property="og:title"         content="{{ tipo.nombre_plural }} en Estudio 5-8" />
+	<meta property="og:description"   content="{{ tipo.descripcion |striptags |truncatechars:200 }}" />
+	<meta property="og:image"         content="https://{{ request.META.HTTP_HOST }}{{ MEDIA_URL }}{{ tipo.imagen.imagen }}" />    
+    <!-- Google +1 -->
+    <script src="https://apis.google.com/js/platform.js" async defer>
+      {lang: 'es-419'}
+    </script
+{% endblock other_meta_tags%}
+
 {% block content_studley %}
   
 <div class="bckgrnd-color-3" id="cont">
@@ -16,7 +30,7 @@
         </div>
         <div id="page-cont" class="pddng-ext font-color-1">
           <p>{{ tipo.descripcion |safe }}</p>    
-            
+      
             {% if herramientas|length > 0 %}
             <h3>{{ tipo.nombre_plural|capfirst }}</h3>
                   <ul class="cont-col-2-max">
@@ -29,7 +43,28 @@
                   {% endfor %}
                   </ul>
             {% endif %}
-            </div>
+        
+            <div class="like-me">
+        
+        <!--G+1 BUTTON-->
+        <div class="g-plusone display-inline" data-size="medium" data-annotation="none"></div>
+  
+        <!--FACEBOOK LIKE BUTTON-->
+        <div id="fb-root"></div>
+            <script>(function(d, s, id) {
+              var js, fjs = d.getElementsByTagName(s)[0];
+              if (d.getElementById(id)) return;
+              js = d.createElement(s); js.id = id;
+              js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+              fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+            </script>
+            <div class="fb-like" data-href="{{ request.build_absolute_uri |urlencode:":/" }}" data-width="200" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
+        <!--END FACEBOOK LIKE-->
+        
+        </div>
+        
+        </div>
         
         </div>
       </section>

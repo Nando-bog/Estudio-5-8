@@ -1,9 +1,21 @@
 {% extends "base_home.html" %}
 {% load static %}
 {% load staticfiles %}
-{% block other_imports %}
-    <!--<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/index_styles.css/" %}">-->
-{% endblock%}
+{% block other_imports %}{% endblock other_imports %}
+
+{% block other_meta_tags %}
+<!--    #FACEBOOK LIKE/SHARE BUTTON CONFITURATION: https://developers.facebook.com/docs/plugins/like-button-->
+    <meta property="og:url"           content="{{ request.build_absolute_uri |urlencode:":/" }}" />
+	<meta property="og:type"          content="website" />
+	<meta property="og:title"         content="Estudio 5-8" />
+	<meta property="og:description"   content="El taller que empieza cuando el trabajo de 8-5 termina." />
+	<meta property="og:image"         content="{% static "images/5-8-logo.png" %}" />
+    
+    <script src="https://apis.google.com/js/platform.js" async defer>
+      {lang: 'es-419'}
+    </script>
+    
+{% endblock other_meta_tags%}
 
 {% block content_base %}
     <div class="font-color-2 pddng-ext" id="content-home">
@@ -16,25 +28,49 @@
                 </li>
                 {% endfor %}
             </ul>
-        </div>
+         </div>
+         
+        <div class = "entradas-destacadas">
+          {% for destacado in destacados_roubo %}
+          <div class="destacado-home">
+              <a class="font-color-3" href="{{ destacado.recurso.get_absolute_url }}">
+              <div class="img-fx-6"><img src="{{ MEDIA_URL }}{{ destacado.recurso.imagen_destacada }}" alt=""/></div>
+              <h2>{{ destacado.recurso.nombre }}</h2>
+              </a>
+              <p><small><a href="roubo/{{ destacado.recurso.tipo }}" class="tag-home">[{{ destacado.recurso.get_tipo_display }}]</a> {{ destacado.recurso.fecha_actualizacion }} </small></p>
+              <p>{{ destacado.recurso.cuerpo |striptags |truncatechars:230 }}</p>
+              <!--{% for tag in destacado.recurso.tags.all %}-->
+              <!--    <ul class="tag-home">-->
+              <!--        <li>{{ tag |lower }}</li>-->
+              <!--    </uL>-->
+              <!--{% endfor %}-->
+          </div>
+          {% endfor %}
+          </div>
+          <br/>
+          <br/>
+          <br/>
+          <div class="like-me">
+             <!--G+1 BUTTON-->
+        <div class="g-plusone display-inline" data-size="medium" data-annotation="none"></div>
         
-        {% for destacado in destacados_roubo %}
-        <div class="destacado-home">
-            <a class="font-color-3" href="{{ destacado.recurso.get_absolute_url }}">
-            <div class="img-fx-6"><img src="{{ MEDIA_URL }}{{ destacado.recurso.imagen_destacada }}" alt=""/></div>
-            <h2>{{ destacado.recurso.nombre }}</h2>
-            </a>
-            <a href="roubo/{{ destacado.recurso.tipo }}" class="tag-home"><small>[{{ destacado.recurso.get_tipo_display }}]</small></a> 
-            <p>{{ destacado.recurso.cuerpo |striptags |truncatechars:230 }}</p>
-            <!--{% for tag in destacado.recurso.tags.all %}-->
-            <!--    <ul class="tag-home">-->
-            <!--        <li>{{ tag |lower }}</li>-->
-            <!--    </uL>-->
-            <!--{% endfor %}-->
-        </div>
-    {% endfor %}
+          <!--TWITTER-->
+          <div><a href="https://twitter.com/share" class="twitter-share-button"{count} data-text="Conozca Estudio 5-8, el taller que empieza cuando el trabajo de 8-5 terrmina." data-lang="es" data-hashtags="carpintería, 5-8">Twittear</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div>
         
-    
+             <!--FACEBOOK LIKE BUTTON-->
+             <div id="fb-root"></div>
+                 <script>(function(d, s, id) {
+                   var js, fjs = d.getElementsByTagName(s)[0];
+                   if (d.getElementById(id)) return;
+                   js = d.createElement(s); js.id = id;
+                   js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+                   fjs.parentNode.insertBefore(js, fjs);
+                 }(document, 'script', 'facebook-jssdk'));
+                 </script>
+                 <div class="fb-like" data-href="{{ request.build_absolute_uri |urlencode:":/" }}" data-width="200" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
+             <!--END FACEBOOK LIKE-->
+          </div>
     </div>
 {% endblock content_base %}
 

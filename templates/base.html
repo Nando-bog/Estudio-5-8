@@ -1,6 +1,6 @@
 <!DOCTYPE html>
     
-{% load static %}
+{% load static from staticfiles %}
 {% load staticfiles %}
 
 <html lang="es-CO">
@@ -11,6 +11,8 @@
     {% block other_imports %}
     {% endblock %}
     <title>{% block my_title %}Estudio 5-8{% endblock my_title %}</title>
+    {% block other_meta_tags %}
+    {% endblock other_meta_tags%}
 </head>
 <body>
     <div id="header-cont">
@@ -26,12 +28,13 @@
                            <li><a href="/roubo/GLR">Galería<p class="font-size-sub1">de proyectos</p></a></li>
                           <li><a href="/el-estudio/">El estudio<p class="font-size-sub1">taller</p></a></li>
                           <li><a href="/contacto">Contacto<p class="font-size-sub1"></p></a></li>
+                          <!--<li><a href="/rss">RSS<p class="font-size-sub1"></p></a></li>-->
                       <!--</ul>-->
             {% endblock %}
                   <!--</li>-->
               </ul>
-          </div>
-        </div>
+        </div>    
+    </div>
 
 <div class="site-width font-color-1"> <!--id="site-content"-->
  
@@ -53,10 +56,17 @@
 <div class="bckgrnd-color-8" id="site-footer">
 {% endblock footer %}
 <div class="site-width pddng-ext">
+     <div class = "social-links">
+            <ul>
+                <li><a href ="https://www.youtube.com/channel/UCR2wMFkT8EV9g5y3vJhC0xA"><img src="{% static 'images/youtube.png' %}" alt="Youtube" title = "Youtube"/></a></li>
+                <li><a href ="https://www.flickr.com/photos/nandito/collections/72157629528088076/"><img src="{% static 'images/flickr.png' %}" alt="Flickr" title="Fotos"/></a></li>
+                <li><a href = "/rss/"><img src="{% static 'images/rss.png' %}" alt="RSS" title = "Suscríbase con RSS"/></a></li>
+            </ul>
+        </div>
     <footer>
       <img src="{% static "images/5-8-logo-blanco.png" %}" width="80" height="auto" alt="5-8 Estudio" class="logo">
       <p class="font-color-2"><strong>Estudio 5-8</strong></p>
-      <small><p class="font-color-2">El taller que abre cuando el trabajo de 8-5 termina.</p></small>
+      <small><p class="font-color-2">El taller que empieza cuando el trabajo de 8-5 termina.</p></small>
     </footer>
   </div>
 </div>

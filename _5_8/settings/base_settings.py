@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+# import watson
+
+#Assume its not running locally. local_settings will set it to true if it is.
+LOCAL=False
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -34,6 +38,8 @@ DEFAULT_APPS = [
 THIRD_PARTY_APPS = [
     'taggit',
     'django_extensions',
+    'storages',
+    # 'watson',
 ]
 
 LOCAL_APPS = [
@@ -52,6 +58,8 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'django.middleware.transaction.TransactionMiddleware',
+    # 'watson.middleware.SearchContextMiddleware',
 ]
 
 ROOT_URLCONF = '_5_8.urls'
@@ -70,8 +78,13 @@ TEMPLATES = [
                 'django.template.context_processors.media'
             ],
         },
+        # 'TEMPLATE_CONTEXT_PROCESSORS': 'django.core.context_processors.request',
     },
 ]
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+  'django.core.context_processors.request',
+)
 
 WSGI_APPLICATION = '_5_8.wsgi.application'
 

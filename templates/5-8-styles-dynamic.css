@@ -1,7 +1,7 @@
-{% load static %}
+{% load static from staticfiles %}
 /* Google Fonts */
 
-@import url(http://fonts.googleapis.com/css?family=Bitter:400,700|Raleway:900,400,300);
+@import url(https://fonts.googleapis.com/css?family=Bitter:400,700|Raleway:900,400,300);
 
 /* RESET  */
 
@@ -23,7 +23,7 @@ body {
 	position: relative;
 	color: #3C1132;
 	background-color: #DCD9BF;
-	background-image: url({% static 'images/bg-pttrn.png' %});
+	background-image: url({% static "bg-pttrn.png" %});
 	padding: 5.16em 0 0 0;
 	font-family: 'Raleway', sans-serif;
 	font-weight: 400;
@@ -224,6 +224,17 @@ a:hover {
     margin: -0.5em 0 0 0;
 }
 
+.social-links {
+	position: absolute;
+	right: 0;
+	top: 0;
+	/*bottom: 0;*/
+	padding: 1.5em 1em 1em 0;
+}
+
+.social-links li {
+	display: inline-block;
+}
 
 /* Navegación responsive */
 /*@media (min-width: 768px) {*/
@@ -316,10 +327,11 @@ a:hover {
 }
 
 #content-home {
-	background-image: url("/static/images/{{ background }}");
+	background-image: url({% static '' %}images/{{ background }});
 	background-position: top left;
 	background-size: cover;
 	background-repeat: repeat;
+	min-width: 590px;
 	/*height: 900px;*/
 }
 
@@ -327,29 +339,60 @@ a:hover {
 	color: rgb(220, 100, 0);
 }
 
-.destacado-home {
-	width: 45em;
-	height: 10em;
-	background-color: rgba(0,0,0,.55);
+.entradas-destacadas {
+	/*border: white solid 3px;*/
+	width: 60%;
+	padding: 0;
 	margin: 2em 2em 0 2em;
-	padding: 1em;
+}
+
+.destacado-home {
+	/*height: 10em;*/
+	background-color: rgba(0,0,0,.55);
+	margin: 0 0 2em 0;
+	padding: 1em 1em 1.6em 1em;
+	overflow: hidden;
 }
 
 .destacado-home h2 {
 	margin: 0 0 .2em 0;
 }
 
+.destacado-home p {
+	font-size: 1.2em;
+}
+
 .herramientas-home {
-	position: absolute;
-	right: 0;
-	width: 15em;
+	float: right;
+	/*position: absolute;*/
+	/*right: 0;*/
+	width: 25%;
 	background-color: rgba(0,0,0,.55);
-	margin: 2em 0;
+	margin: 2em 2em 0 0;
 	padding: 1em;
 }
 
 .herramientas-home h2 {
 	padding: 0 0 .5em 0;
+}
+
+.herramientas-home li {
+	font-size: 1.2em;
+}
+
+.html-content {
+	
+}
+
+#page-cont .html-content p {
+	margin: 0 0 1em 0;
+}
+
+#page-cont .html-content li {
+	list-style: square inside;
+	padding: 0 0 0 2em;
+	margin: 0 0 .5em 0;
+	/*border: red 1px solid;*/
 }
 
 /* FORMS */
@@ -851,8 +894,13 @@ input {
 }
 
 #site-footer {
+	position: relative;
 	bottom:0;
 	margin-top=5em;
+}
+
+.like-me {
+	margin: 0 0 2em 0;
 }
 
 /* PANTALLAS PEQUEÑAS: 768px hacia arriba */

@@ -24,7 +24,7 @@ def home_page(request, *args, **kwargs):
     destacado_video = Q(recurso__tipo = 'VID')
     destacado_galeria = Q(recurso__tipo = 'GLR')
     q_filter_destacado = destacado_proyecto | destacado_blog | destacado_tutorial | destacado_documento | destacado_video | destacado_galeria
-    destacados = Destacado.objects.filter(q_filter_destacado).order_by('-sticky', 'orden')
+    destacados = Destacado.objects.filter(q_filter_destacado).order_by('-sticky', 'orden', '-recurso__fecha_actualizacion')
     contexto['destacados_roubo'] = destacados
     clases_herramientas = ClaseHerramienta.objects.all().order_by('nombre')
     contexto['herramientas'] = clases_herramientas
