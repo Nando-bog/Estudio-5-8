@@ -6,13 +6,19 @@ from django.shortcuts import get_object_or_404
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from .models import ClaseHerramienta, TipoHerramienta, HerramientaBase, Herramienta, Coleccion, ColeccionesHerramientas, ColeccionesHerramientasBase
+from _5_8.forms import SiteSearch
 
 
 class HerramientaClaseListView(ListView):
     model=ClaseHerramienta
     context_object_name='clases_herramientas'
     template_name='studley_landing.html'
+    search_form = SiteSearch()
     
+    def get_context_data(self, **kwargs):
+        context=super(HerramientaClaseListView, self).get_context_data(**kwargs)
+        context['search_form'] = self.search_form
+        return context
 #class HerramientaTestView(ListView):
     #model=ClaseHerramienta
     #context_object_name='clases_herramientas'
@@ -25,6 +31,7 @@ class HerramientaClaseDetailView(DetailView):
     template_name='studley_clase.html'
     slug_field='nombre'
     slug_url_kwarg='nombre'
+    search_form = SiteSearch()
     
     def get_context_data(self, **kwargs):
         #Call the base implementation first to get a context
@@ -41,6 +48,7 @@ class HerramientaClaseDetailView(DetailView):
         context['tipos']=tipos
         context['tipos_herramientas']=tipos_herramientas
         context['herramientas']=herramientas
+        context['search_form'] = self.search_form
         return context
 
 
@@ -50,12 +58,14 @@ class HerramientaTipoDetailView(DetailView):
     template_name='studley_tipo.html'
     slug_field='nombre_corto'
     slug_url_kwarg='nombre_corto'
+    search_form = SiteSearch()
     
     def get_context_data(self, **kwargs):
         context=super(HerramientaTipoDetailView, self).get_context_data(**kwargs)
         tipo=TipoHerramienta.objects.filter(nombre_corto=self.kwargs['nombre_corto'])
         herramientas=HerramientaBase.objects.filter(tipo=tipo).order_by('nombre')
         context['herramientas']=herramientas
+        context['search_form'] = self.search_form
         return context
 
 
@@ -65,6 +75,7 @@ class HerramientaBaseDetailView(DetailView):
     template_name='studley_herramienta_base.html'
     slug_field='nombre_corto'
     slug_url_kwarg='nombre_corto'
+    search_form = SiteSearch()
     
     def get_context_data(self, **kwargs):
         context=super(HerramientaBaseDetailView, self).get_context_data(**kwargs)
@@ -75,6 +86,7 @@ class HerramientaBaseDetailView(DetailView):
         if len(misma_base) == 0:
             misma_base=[{'modelo':'No hay versiones registradas.'}]
         context['misma_base']=misma_base
+        context['search_form'] = self.search_form
         return context
     
 
@@ -84,11 +96,13 @@ class HerramientaDetailView(DetailView):
     template_name='studley_herramienta_version.html'
     slug_field='pk'
     slug_url_kwarg='pk'
+    search_form = SiteSearch()
     
     def get_context_data(self, **kwargs):
         context=super(HerramientaDetailView, self).get_context_data(**kwargs)
         otras_versiones=Herramienta.objects.filter(herramienta_base=context['herramienta'].herramienta_base).exclude(pk=context['herramienta'].pk)
         context['otras_versiones']=otras_versiones
+        context['search_form'] = self.search_form
         return context
     
     
@@ -97,6 +111,13 @@ class ColeccionesListView(ListView):
     context_object_name = 'colecciones'
     template_name='studley_colecciones.html'
     slug_field='nombre_corto'
+    search_form = SiteSearch()
+    
+    def get_context_data(self, **kwargs):
+        context=super(ColeccionesListView, self).get_context_data(**kwargs)
+        context['search_form'] = self.search_form
+        return context
+    
     
 
 class ColeccionDetailView(DetailView):
@@ -105,6 +126,7 @@ class ColeccionDetailView(DetailView):
     template_name = 'studley_coleccion.html'
     slug_field = 'nombre_corto'
     slug_url_kwarg = 'nombre_corto'
+    search_form = SiteSearch()
     
     def get_context_data(self, **kwargs):
         context = super(ColeccionDetailView, self).get_context_data(**kwargs)
@@ -125,4 +147,5 @@ class ColeccionDetailView(DetailView):
         context['clases'] = clases
         #context['herramientas']=herramientas
         #context['herramientas_recomendadas']=herramientas_recomendadas
+        context['search_form'] = self.search_form
         return context

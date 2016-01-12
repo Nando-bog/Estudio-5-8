@@ -8,8 +8,7 @@
     <meta charset="UTF-8">
     <!--Hoja de estilo generada como un template, usando el motor de Django para poder meterle lógica y variables si se requiere (como cambiar el fondo del home según el destacado o algún otro criterio. Tiene entrada en urls.py, views.py y una plantilla .css en /templates llamada 5-8-styles-dynamic.css.-->
     <link rel="stylesheet" type="text/css" href="styles/5-8-styles.css/">
-    {% block other_imports %}
-    {% endblock %}
+    {% block other_imports %}{% endblock other_imports %}
     <title>{% block my_title %}Estudio 5-8{% endblock my_title %}</title>
     {% block other_meta_tags %}
     {% endblock other_meta_tags %}
@@ -32,7 +31,16 @@
             {% endblock %}
                   <!--</li>-->
               </ul>
-        </div>   
+        </div>
+                <div id="search-box">    
+            <form action="/q/" method="POST">
+                {% block site-search %}
+                    {% csrf_token %}
+                    {{ search_form }}
+                    <input type="submit" value="Buscar" />
+                {% endblock site-search %}
+            </form>
+        </div>
     </div>
 
 

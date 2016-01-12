@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+{% block other_imports %}
+   <!-- <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/index_styles.css/" %}">-->
+{% endblock%}
+
+{% block my_title %}{{ query }}{% endblock %}
+
+{% block content_base %}
+    <div class="font-color-2 font-fx-1 pddng-ext clearfix" id="page-header">
+    </div>
+    <div class="bckgrnd-color-3" id="cont">
+        <div id="page-title" class="bckgrnd-color-6 font-color-2 pddng-ext">
+             <form class = "search-page-form" action="/q/" method="POST">
+                {% csrf_token %}
+                {{ super_search_form }}
+                <input type="submit" value="Buscar" />
+            </form>
+            <!--<p>Subtítulo 2 página</p>-->
+        </div>
+        <div id="page-cont" class="pddng-ext">
+            
+            <ul class="cont-col-2-max">
+            {% for result in results %}
+                <li><h3><a href = "{{ result.url }}"><img src="{{ MEDIA_URL }}{{ result.object.imagen_destacada }}{{ result.object.imagen.imagen }}{{ result.object.imagenes.all.0.imagen }}" class="img-fx-3" alt="">{{ result.title }}</a></h3>
+                <p><small>{{ result.meta.fecha_actualizacion |date:"d E Y" }}</small></p>
+                <p>{{ result.meta.descripcion |striptags |truncatechars:150 }}{{ result.meta.detalle |striptags |truncatechars:150 }}{{ result.meta.cuerpo |striptags |truncatechars:150 }}</p></li>
+            {% endfor %}
+            </ul>
+            
+            <!--{{ req }}-->
+        </div>
+    </div>
+    
+{% endblock content_base %}
+
+{% block footer %}
+   <div class="bckgrnd-color-6" id="site-footer">
+{% endblock footer %}
+
+{% block section_background %}
+    <div id="site-background">
+        <img src="{% static "images/background-3.jpg" %}" width="3872" height="2592" alt="Estudio 5-8">
+    <div class="site-width" id="page-cont-fx"></div>
+   </div>
+{% endblock section_background %}

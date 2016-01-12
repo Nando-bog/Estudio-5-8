@@ -5,7 +5,7 @@ from django.conf import settings
 from django.conf.urls import include, url, static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
-from .views import ElEstudio, HomePage, dynamic_css, home_page
+from .views import ElEstudio, dynamic_css, home_page, site_search
 from roubo.views import contacto
 from .feeds import SiteFeed
 admin.autodiscover()
@@ -20,6 +20,7 @@ urlpatterns = [
     url(r'styles/5-8-styles.css/?$', dynamic_css, name='css'),
     url(r'contacto/?$', contacto, name='contacto_sitio'),
     url(r'rss/?$', SiteFeed()),
+    url(r'q/?$', site_search, name='busqueda'),
     #url(r'^recursos/', include('cursos.urls')),
 ]
 
