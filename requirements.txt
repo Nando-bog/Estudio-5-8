@@ -4,6 +4,7 @@ Django==1.9
 django-extensions==1.6.1
 -e git+https://github.com/jschneier/django-storages.git@8ec6b3246da24eeed0c9f4925de611df1911b2bd#egg=django_storages_redux-master
 django-taggit==0.17.6
+django-watson==1.2.0
 gunicorn==19.4.5
 Pillow==3.0.0
 psycopg2==2.6.1
