@@ -84,7 +84,7 @@ class Recurso(models.Model):
         pass
     
     def __str__(self):
-        return '{0} [{1}]'.format(self.nombre_corto, self.tipo)
+        return '{0} [{1}]'.format(self.nombre, self.tipo)
 
     def get_absolute_url(self):
         return reverse('recurso_detalle', kwargs={'tipo': self.tipo, 'nombre_corto': self.nombre_corto})

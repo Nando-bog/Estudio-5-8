@@ -11,13 +11,14 @@ from django.forms import ValidationError
 from random import choice
 from .models import Recurso, Destacado #, DesempenoDeComprension, Curso
 from .forms import ContactoForm
-
+from _5_8.forms import SiteSearch
 
 
 class CuadernoListView(ListView):
     model = Recurso
     template_name = 'roubo_cuaderno_landing.html'
     context_object_name = 'entradas'
+    search_form = SiteSearch()
     
     destacado_blog = Q(recurso__tipo = 'BLG')
     destacado_tutorial = Q(recurso__tipo = 'TUT')
@@ -69,6 +70,7 @@ class CuadernoListView(ListView):
             destacados = destacados[0].recurso
         context['destacados'] = destacados
         context['tipo'] = self.kwargs['tipo']
+        context['search_form'] = self.search_form
         return context
 
 
@@ -79,6 +81,7 @@ class RecursoDetailView(DetailView):
     context_object_name = 'recurso'
     slug_url_kwarg= 'nombre_corto'
     slug_field = 'nombre_corto'
+    search_form = SiteSearch()
     
     # def get_queryset(self, **kwargs):
     #    recurso=Recurso.objects.filter(nombre_corto=self.kwargs['nombre_corto'])
@@ -91,6 +94,7 @@ class RecursoDetailView(DetailView):
         context = super(RecursoDetailView, self).get_context_data(**kwargs)
         relacionados_tags = context['recurso'].tags.similar_objects()
         context['relacionados_tags'] = relacionados_tags
+        context['search_form'] = self.search_form
         return context
 
 
@@ -98,6 +102,7 @@ def contacto(request):
     """Muestra el formulario de contacto del sitio.
     """
     
+    search_form = SiteSearch()
     politica=False
     if request.method == "POST":
         form = ContactoForm(request.POST)
@@ -112,7 +117,8 @@ def contacto(request):
         'contacto.html',
         {'form': form,
          'datos': request.POST,
-         'politica': politica
+         'politica': politica,
+         'search_form': search_form
         }
         )
 

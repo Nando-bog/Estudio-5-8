@@ -33,7 +33,20 @@
             {% endblock %}
                   <!--</li>-->
               </ul>
-        </div>    
+        </div>
+        
+        {% if search_form %}
+        <div id="search-box">  
+            <form action="/q/" method="POST">
+                {% block site-search %}
+                {% csrf_token %}
+                {{ search_form }}
+                <input type="submit" value="Buscar" />
+                {% endblock site-search %}
+            </form>
+        </div>
+        {% endif %}
+        
     </div>
 
 <div class="site-width font-color-1"> <!--id="site-content"-->
