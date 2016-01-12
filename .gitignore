@@ -6,7 +6,6 @@
 *.psd
 *.svg
 file-uploads
-
 /_5_8/settings/local_settings.py
 *.xmind
 .DS_Store
@@ -27,3 +26,4 @@ templates/montaje-html
 static/admin
 static/django_extensions
 static/staticfiles.json
+*.dump
