@@ -6,7 +6,7 @@ try:
 except ImportError:
     pass
 
-print('Local={0}'.format(LOCAL))
+#print('Local={0}'.format(LOCAL))
 
 if not LOCAL:
     try:

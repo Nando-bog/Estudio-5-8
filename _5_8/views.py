@@ -43,21 +43,34 @@ def dynamic_css(request):
         request,
         '5-8-styles-dynamic.css',
         {'background' : 'background-home-1.jpg'},
-        content_type="text/css")
+        content_type="text/css",
+        )
 
 def site_search(request):
     """Site wide search implemented with django-watson
     """
     if request.POST:
+        # if request.POST['query'] == '':
+        #     results = watson.search.search('')
+        #     super_search_form = SiteSearch()
+        #     return render(
+        #         request,
+        #         'search_results.html',
+        #         {'super_search_form': super_search_form,'results': results, 'query': request.POST['query']}
+        #     )
         super_search_form = SiteSearch(request.POST)
         if super_search_form.is_valid():
             results = watson.search.search(request.POST['query'])
-            #results = ''
             return render(
                 request,
                 'search_results.html',
-                # {'super_search_form': super_search_form,'results': results, 'req': request.POST}
                 {'super_search_form': super_search_form,'results': results, 'query': request.POST['query']}
+            )
+        else:
+            return render(
+                request,
+                'search_results.html',
+                {'super_search_form': SiteSearch(), }
             )
     else:
         super_search_form = SiteSearch()
