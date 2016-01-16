@@ -67,10 +67,12 @@ def site_search(request):
                 {'super_search_form': super_search_form,'results': results, 'query': request.POST['query']}
             )
         else:
+            query = 'Búsqueda 5-8'
+            results = [{'title': 'No buscó nada. Por favor inténtelo de nuevo.'}]
             return render(
                 request,
                 'search_results.html',
-                {'super_search_form': SiteSearch(), }
+                {'super_search_form': SiteSearch(), 'results': results, 'query': query}
             )
     else:
         super_search_form = SiteSearch()

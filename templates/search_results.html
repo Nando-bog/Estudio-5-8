@@ -19,7 +19,6 @@
             <!--<p>Subtítulo 2 página</p>-->
         </div>
         <div id="page-cont" class="pddng-ext">
-            
             <ul class="cont-col-2-max">
             {% for result in results %}
                 <li><h3><a href = "{{ result.url }}"><img src="{{ MEDIA_URL }}{{ result.object.imagen_destacada }}{{ result.object.imagen.imagen }}{{ result.object.imagenes.all.0.imagen }}" class="img-fx-3" alt="">{{ result.title }}</a></h3>
