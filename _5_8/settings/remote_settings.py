@@ -57,11 +57,11 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 ### ------ EMAIL CONFIGURATION ------ ###
 
-EMAIL_HOST = os.environ('EMAIL_HOST')
-EMAIL_PORT = os.environ('EMAIL_PORT')
-EMAIL_USE_SSL = os.environ('EMAIL_USE_SSL')
-EMAIL_HOST_USER = os.environ('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.environ('EMAIL_HOST_PASSWORD') ##DO NOT UPLOAD TO GIT. USE os.environ('EMAIL_HOST_PASSWORD')
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_PORT = os.environ.get('EMAIL_PORT')
+EMAIL_USE_SSL = os.environ.get('EMAIL_USE_SSL')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD') ##DO NOT UPLOAD TO GIT. USE os.environ('EMAIL_HOST_PASSWORD')
 
 
 ##---RECAPTCHA CONFIGURATION ---##
