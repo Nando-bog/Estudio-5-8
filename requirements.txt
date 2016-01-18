@@ -2,7 +2,7 @@ boto==2.38.0
 dj-database-url==0.3.0
 Django==1.9
 django-extensions==1.6.1
-django-recaptcha2==0.1.6
+-e git+https://github.com/kbytesys/django-recaptcha2.git@a768c33bdaf2a1b18f27b86a2c79751aa4d8675f#egg=django_recaptcha2-master
 -e git+https://github.com/jschneier/django-storages.git@8ec6b3246da24eeed0c9f4925de611df1911b2bd#egg=django_storages_redux-master
 django-taggit==0.17.6
 django-watson==1.2.0
