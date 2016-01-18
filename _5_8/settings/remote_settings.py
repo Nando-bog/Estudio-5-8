@@ -54,6 +54,16 @@ MEDIA_ROOT = "https://{0}/".format(AWS_S3_CUSTOM_DOMAIN)
 STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
+
+### ------ EMAIL CONFIGURATION ------ ###
+
+EMAIL_HOST = os.environ('EMAIL_HOST')
+EMAIL_PORT = os.environ('EMAIL_PORT')
+EMAIL_USE_SSL = os.environ('EMAIL_USE_SSL')
+EMAIL_HOST_USER = os.environ('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ('EMAIL_HOST_PASSWORD') ##DO NOT UPLOAD TO GIT. USE os.environ('EMAIL_HOST_PASSWORD')
+
+
 ##---RECAPTCHA CONFIGURATION ---##
 RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_PRIVATE_KEY')
 RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTCHA_PUBLIC_KEY')

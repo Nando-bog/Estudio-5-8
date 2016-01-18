@@ -20,7 +20,7 @@ class ContactoForm(ModelForm):
         label = 'Acepto la política de tratamiento de datos que se encuentra en la parte inferior de esta página.'
         )
     captcha = ReCaptchaField(
-        widget = ReCaptchaWidget(explicit = True, attrs = {'hl': 'es'})
+        widget = ReCaptchaWidget(explicit = True, attrs = {'hl': 'es-419'})
         )
 
     class Meta:
