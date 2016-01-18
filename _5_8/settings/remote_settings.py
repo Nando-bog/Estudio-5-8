@@ -53,3 +53,7 @@ MEDIA_ROOT = "https://{0}/".format(AWS_S3_CUSTOM_DOMAIN)
     
 STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
+##---RECAPTCHA CONFIGURATION ---##
+RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_PRIVATE_KEY')
+RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTCHA_PUBLIC_KEY')
