@@ -4,8 +4,8 @@
    <!--<script src='https://www.google.com/recaptcha/api.js'></script>
    -->
    {% load recaptcha2 %}
-   {% recaptcha_init %}
-{% endblock%}
+   {% recaptcha_explicit_support %}
+{% endblock other_imports %}
 
 {% block my_title %}Contacto Estudio 5-8{% endblock %}
 
@@ -18,10 +18,7 @@
     <div class="bckgrnd-color-3 pddng-ext" id="cont">
         
         <div id="page-title" class="bckgrnd-color-0 font-color-2 pddng-ext">
-        <!--{% if politica %}
-            <h2>No aceptó la política.</h2>
-        {% endif %}-->
-        
+
     {% if form.errors %}
         <h2>Su mensaje no se pudo enviar.</h2>
         {% for field, error in form.errors.items %}
@@ -34,22 +31,19 @@
         {% if datos and not form.errors%}
             <h2>Mensaje enviado</h2>
             <p>Responderemos pronto</p>
-        {% endif %}
-    {% endif %}
         </div>
-        {% if datos %}
-        <div class="pddng-ext">
-            <ul>
-                <li><b>Nombre:</b> {{ datos.autor }}</li>
-                <li><b>Correo electrónico de contacto:</b> {{ datos.email }}</li>
-                <li><b>Página web:</b> {{ datos.url }}</li>
-                <li><b>Mensaje:</b>
-                <i><p>{{ datos.texto }}</p></i>
-                </li>
-            </ul>
-        </div>
+            <div class="pddng-ext">
+                <ul>
+                    <li><b>Nombre:</b> {{ datos.autor }}</li>
+                    <li><b>Correo electrónico de contacto:</b> {{ datos.email }}</li>
+                    <li><b>Página web:</b> {{ datos.url }}</li>
+                    <li><b>Mensaje:</b>
+                    <i><p>{{ datos.texto }}</p></i>
+                    </li>
+                </ul>
+            </div>
         {% else %}
-        
+        </div>
         <div id="page-cont" class="pddng-ext">
         <p class="font-fx-4"><i>Las instalaciones físicas de Estudio 5-8 están distribuidas en un grupo de talleres privados en Bogotá, donde trabajan amigos aficionados al oficio en sus ratos libres. Estamos preparándonos para abrir las puertas al público en una sede central en el segudo semestre de 2016, donde ofreceremos cursos, préstamo y venta de herramientas y acceso por horas, días o meses al taller.</p>
         <p class="font-fx-4">Nos puede contactar utilizando el formulario que encuentra a continuación o dejando comentarios en <a href="https://www.youtube.com/channel/UCR2wMFkT8EV9g5y3vJhC0xA">nuestro canal de Youtube</a>.</i></p>
@@ -58,13 +52,24 @@
                         
             <form action="/contacto/" method="POST">
                 {% csrf_token %}
-                <div>{{ form }}</div>
+                {{ form.id }}
+                <p>{{ form.fecha.label_tag }}{{ form.fecha }}</p>
+                <p>{{ form.autor.label_tag }}{{ form.autor }}</p>
+                <p>{{ form.email.label_tag }}{{ form.email }}</p>
+                <p>{{ form.url.label_tag }}{{ form.url }}</p>
+                <p>{{ form.texto.label_tag }}</p>
+                <p>{{ form.texto }}</p>
+                <p>{{ form.acepto_tratamiento }} {{ form.acepto_tratamiento.label_tag }} </p>
+                <p>{{ form.acepto_contacto }} {{ form.acepto_contacto.label_tag }}</p>
+                <div>{{ form.captcha }}</div>
             <input type="submit" value="Enviar" />
+            {% recaptcha_explicit_init %}
             </form>
         </div>
         {% endif %}
+    {% endif %}
     
-    <p><small>Nuestra política de tratamiento de datos personales es muy sencilla: no le daremos sus datos a nadie, nunca, excepto por una autoridad competente que nos lo exija con una orden judicial válida. Usaremos su nombre y correo para responder a su mensaje si es necesario y si aceptó recibir información de 5-8, le enviaremos esa información.</small></p>
+    <p><small>Nuestra política de tratamiento de datos personales es muy sencilla: no le daremos sus datos a nadie, nunca, excepto a una autoridad competente que nos lo exija con una orden judicial válida (lo cual consultaremos con abogados especialistas en tratamiento de datos). Usaremos su nombre y correo para responder a su mensaje si es necesario y si aceptó recibir información de 5-8, le enviaremos dicha información.</small></p>
     
     </div>
 {% endblock content_base %}

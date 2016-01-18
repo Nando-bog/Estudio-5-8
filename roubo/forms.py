@@ -17,10 +17,10 @@ class ContactoForm(ModelForm):
     acepto_tratamiento = BooleanField(
         required = True,
         error_messages = {'required':'Debe aceptar la política de tratamiento.'},
-        label = 'Acepto la política de tratamiento de datos.'
+        label = 'Acepto la política de tratamiento de datos que se encuentra en la parte inferior de esta página.'
         )
     captcha = ReCaptchaField(
-        widget = ReCaptchaWidget
+        widget = ReCaptchaWidget(explicit = True)
         )
 
     class Meta:
@@ -39,7 +39,7 @@ class ContactoForm(ModelForm):
             'autor': TextInput(attrs={'size': 50, 'required': True}),
             'email': EmailInput(attrs={'size': 50, 'required': True}),
             'url': URLInput(attrs={'size': 50}),
-            'texto': Textarea(attrs={'cols': 42, 'rows': 10, 'required': True})
+            'texto': Textarea(attrs={'cols': 65, 'rows': 12, 'required': True})
         }
         
 

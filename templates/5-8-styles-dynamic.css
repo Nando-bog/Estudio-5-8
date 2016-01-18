@@ -405,16 +405,36 @@ a:hover {
 	right: 0.2em;
 }
 
+#search-box input[type="submit"] {
+	margin: 0;
+	padding: 0 .5em 0 .5em;
+	font-size: 0.7em;
+	border: .5px solid #b3b3b3;
+}
+
+
 label {
 	font-size: 1.2em;
-	font-weight: bold;
-	display: block;
+	font-weight: 400;
 	
 }
 
 input {
 	line-height: 2em;
 	margin: .5em;
+}
+
+input[type="submit"] {
+	font-size: 1.2em;
+	font-weight: bold;
+	padding: 0.5em;
+	margin: 1em 0 0 0;
+}
+
+input[type="checkbox"] {
+	width: 2.2em;
+	height: 2.2em;
+	margin: 0;
 }
 
 .search-page-form {
