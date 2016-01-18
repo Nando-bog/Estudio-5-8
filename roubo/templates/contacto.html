@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 {% block other_imports %}
-   <!-- <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/index_styles.css/" %}">-->
+   <!--<script src='https://www.google.com/recaptcha/api.js'></script>
+   -->
+   {% load recaptcha2 %}
+   {% recaptcha_init %}
 {% endblock%}
 
 {% block my_title %}Contacto Estudio 5-8{% endblock %}
@@ -57,7 +60,7 @@
                 {% csrf_token %}
                 <div>{{ form }}</div>
             <input type="submit" value="Enviar" />
-             </form>
+            </form>
         </div>
         {% endif %}
     

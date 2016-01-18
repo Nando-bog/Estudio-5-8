@@ -40,6 +40,7 @@ THIRD_PARTY_APPS = [
     'django_extensions',
     'storages',
     'watson',
+    'snowpenguin.django.recaptcha2',
 ]
 
 LOCAL_APPS = [

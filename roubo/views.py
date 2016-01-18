@@ -8,7 +8,8 @@ from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.db.models import Q
 from django.forms import ValidationError
-from random import choice
+#from random import choice
+from django.core.mail import send_mail
 from .models import Recurso, Destacado #, DesempenoDeComprension, Curso
 from .forms import ContactoForm
 from _5_8.forms import SiteSearch
@@ -108,6 +109,7 @@ def contacto(request):
         form = ContactoForm(request.POST)
         if form.is_valid():
             form.save()
+            send_mail('Contacto estudio 5-8 {0}'.format(date.today()), 'Hola, {0} ({1}). Gracias por contactar a Estudio 5-8. Su mensaje ha sido enviado. Espere una respuesta pronto. Su mensaje dice: {2}'.format(request.POST['autor'], request.POST['email'], request.POST['texto']), '5a8estudio@gmail.com', [request.POST['email'], '5a8estudio@gmail.com'])
         #else:
             #raise ValidationError('Debe aceptar la política de tratamiento.')
     else:

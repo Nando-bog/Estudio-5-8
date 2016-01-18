@@ -1,10 +1,13 @@
 #coding=utf-8
 # Formularios para la aplicación "Roubo"
-#Version 0.1
+#Version 0.2
 
 from django.forms import ModelForm, DateInput, TextInput, EmailInput, URLInput, Textarea,CheckboxInput, BooleanField, CharField
 #from django import forms
 from .models import Contacto
+#from third-party apps
+from snowpenguin.django.recaptcha2.fields import ReCaptchaField
+from snowpenguin.django.recaptcha2.widgets import ReCaptchaWidget
 
 
 class ContactoForm(ModelForm):
@@ -14,7 +17,10 @@ class ContactoForm(ModelForm):
     acepto_tratamiento = BooleanField(
         required = True,
         error_messages = {'required':'Debe aceptar la política de tratamiento.'},
-        label='Acepto la política de tratamiento de datos.'
+        label = 'Acepto la política de tratamiento de datos.'
+        )
+    captcha = ReCaptchaField(
+        widget = ReCaptchaWidget
         )
 
     class Meta:
@@ -22,7 +28,7 @@ class ContactoForm(ModelForm):
         fields = ['fecha','autor', 'email', 'url', 'texto', 'acepto_tratamiento', 'acepto_contacto']
         labels = {
             'fecha': 'Fecha',
-            #'autor': 'Nombre*',
+            'autor': 'Nombre*',
             'email': 'Correo electrónico*',
             'url': 'Página web o perfil',
             'texto': 'Mensaje*',
