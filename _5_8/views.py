@@ -82,3 +82,13 @@ def site_search(request):
             'search_results.html',
             {'super_search_form': super_search_form}
         )
+    
+    
+def handler404(request):
+    response = render(request, '404.html', {'request': request})
+    return response
+
+
+def handler500(request):
+    response = render(request, '500.html', {'request': request})
+    return response

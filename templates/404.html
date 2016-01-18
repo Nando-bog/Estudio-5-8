@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+{% block other_imports %}
+   <!--<script src='https://www.google.com/recaptcha/api.js'></script>
+   -->
+   {% load recaptcha2 %}
+   {% recaptcha_explicit_support %}
+{% endblock other_imports %}
+
+{% block my_title %}Estudio 5-8: error{% endblock %}
+
+{% block content_base %}
+
+<div class="bckgrnd-color-3 pddng-ext" id="cont">
+        
+    <div id="page-title" class="bckgrnd-color-0 font-color-2 pddng-ext">
+        <h3>Página perdida (error 404)</h3>
+    </div>
+    <div id="page-cont" class="pddng-ext">
+        <p class="font-fx-4">La página que estå buscando, <i>"{{ request.get_full_path }}"</i>, no aparece.</p>
+        <p class="font-fx-4">Se fue a comprar madera o está cepillando una tabla.</p>
+        {% if request.META.HTTP_REFERER %}
+            <p class="font-fx-4">Regresar a <a href="{{ request.META.HTTP_REFERER }}">{{ request.META.HTTP_REFERER }}</a>.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock content_base %}
+
+{% block footer %}
+   <div class="bckgrnd-color-0" id="site-footer">
+{% endblock footer %}
+
+{% block section_background %}
+    <div id="site-background">
+        <img src="{% static "images/error.jpg" %}" width="3872" height="2592" alt="Estudio 5-8">
+    <div class="site-width" id="page-cont-fx"></div>
+   </div>
+{% endblock section_background %}
