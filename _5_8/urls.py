@@ -1,4 +1,4 @@
-#coding=utf-8
+# coding=utf-8
 # URLS para el proyecto _5_8
 # Version 0.2
 from django.conf import settings
@@ -11,22 +11,21 @@ from .feeds import SiteFeed
 admin.autodiscover()
 
 urlpatterns = [
-    url(r'^(index)?(home)?(.html)?/?$',  home_page),
+    url(r'^(index)?(home)?(.html)?/?$', home_page),
     url(r'^admin/', include(admin.site.urls)),
-    #url(r'^ckeditor/', include('ckeditor.urls')),
     url(r'^roubo/', include('roubo.urls')),
     url(r'^studley/', include('studley.urls')),
-    url(r'el-estudio/?$',  ElEstudio.as_view(), name='el-estudio'),
+    url(r'el-estudio/?$', ElEstudio.as_view(), name='el-estudio'),
     url(r'styles/5-8-styles.css/?$', dynamic_css, name='css'),
     url(r'contacto/?$', contacto, name='contacto_sitio'),
     url(r'rss/?$', SiteFeed()),
     url(r'q/?$', site_search, name='busqueda'),
-    #url(r'^recursos/', include('cursos.urls')),
+    url(r'cuentas/', include('registration.backends.hmac.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
 
-#urlpatterns += [
+# urlpatterns += [
 #    static.static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
 #    ]
 urlpatterns += static.static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
@@ -36,7 +35,7 @@ urlpatterns += static.static(settings.MEDIA_URL, document_root=settings.MEDIA_RO
 # urlpatterns += [
 #     url(r'^media/(?P<path>.*)$', django.views.static.serve, {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
 #     ]
-# 
+#
 # urlpatterns += [
 #     url(r'^static/(?P<path>.*)$', django.views.static.serve, {'document_root': settings.STATIC_ROOT, 'show_indexes': True}),
 #     ]

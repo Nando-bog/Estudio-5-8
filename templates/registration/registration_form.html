@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+{% block other_imports %}
+   <!-- <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/index_styles.css/" %}">-->
+{% endblock%}
+
+{% block my_title %}Estudio 5-8{% endblock %}
+
+{% block content_base %}
+    <div class="font-color-2 font-fx-1 pddng-ext clearfix" id="page-header">
+    <header>
+        <h1 class="font-color-2"><a href="/">Qué es Estudio 5-8</a></h1>
+        <p>y qué es esta página web</p>
+    </header>
+    </div>
+    <div class="bckgrnd-color-3" id="cont">
+        <div id="page-title" class="bckgrnd-color-6 font-color-2 pddng-ext">
+            <!--<h2>Título 2 página</h2>
+            <p>Subtítulo 2 página</p>-->
+        </div>
+        <div id="page-cont" class="pddng-ext">
+            {{ form }}
+        </div>
+    </div>
+    
+{% endblock content_base %}
+
+{% block footer %}
+   <div class="bckgrnd-color-6" id="site-footer">
+{% endblock footer %}
+
+{% block section_background %}
+    <div id="site-background">
+        <img src="{% static "images/background-3.jpg" %}" width="3872" height="2592" alt="Estudio 5-8">
+    <div class="site-width" id="page-cont-fx"></div>
+   </div>
+{% endblock section_background %}

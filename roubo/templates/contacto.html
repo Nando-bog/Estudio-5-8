@@ -49,7 +49,7 @@
         <p class="font-fx-4">Nos puede contactar utilizando el formulario que encuentra a continuación o dejando comentarios en <a href="https://www.youtube.com/channel/UCR2wMFkT8EV9g5y3vJhC0xA">nuestro canal de Youtube</a>.</i></p>
         <hr/>
         <br/>
-                        
+                          
             <form action="/contacto/" method="POST">
                 {% csrf_token %}
                 {{ form.id }}
@@ -63,7 +63,7 @@
                 <p>{{ form.acepto_contacto }} {{ form.acepto_contacto.label_tag }}</p>
                 <div>{{ form.captcha }}</div>
             <input type="submit" value="Enviar" />
-            {% recaptcha_explicit_init 'es' %}
+            {% recaptcha_explicit_init 'es-419' %}
             </form>
         </div>
         {% endif %}

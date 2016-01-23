@@ -18,6 +18,7 @@ class HerramientaClaseListView(ListView):
     def get_context_data(self, **kwargs):
         context=super(HerramientaClaseListView, self).get_context_data(**kwargs)
         context['search_form'] = self.search_form
+        cuenta_clase = 
         return context
 #class HerramientaTestView(ListView):
     #model=ClaseHerramienta
@@ -117,8 +118,8 @@ class ColeccionesListView(ListView):
         context=super(ColeccionesListView, self).get_context_data(**kwargs)
         context['search_form'] = self.search_form
         return context
-    
-    
+
+
 
 class ColeccionDetailView(DetailView):
     model = Coleccion
@@ -127,7 +128,7 @@ class ColeccionDetailView(DetailView):
     slug_field = 'nombre_corto'
     slug_url_kwarg = 'nombre_corto'
     search_form = SiteSearch()
-    
+
     def get_context_data(self, **kwargs):
         context = super(ColeccionDetailView, self).get_context_data(**kwargs)
         coleccion = context['coleccion']

@@ -13,9 +13,10 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 import watson
+from maloof.paises import PAISES
 
-#Assume its not running locally. local_settings will set it to true if it is.
-LOCAL=False
+# Assume its not running locally. local_settings will set it to true if it is.
+LOCAL = False
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -46,6 +47,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     'studley',
     'roubo',
+    'maloof',
 ]
 
 INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -120,4 +122,6 @@ USE_L10N = True
 
 USE_TZ = True
 
+# ### ----DJANGO-REGISTRATION-----
 
+ACCOUNT_ACTIVATION_DAYS = 1
