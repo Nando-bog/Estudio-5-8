@@ -23,7 +23,7 @@
                         <h3><a class="font-color-3" href="{{ clase.get_absolute_url }}"><img src="{{ MEDIA_URL }}{{ clase.imagen.imagen }}" width="240" height="240" class="img-fx-1">
                         <!--{{ MEDIA_URL }}{{ clase.imagen.imagen }}-->
                         {{ clase.get_nombre_display }}<!--<small> ({{ 0 }})</small>--></a></h3>
-                        <p class="clearfix font-color-1">{{ clase.descripcion |striptags |safe |truncatechars:130 }}</p>
+                        <p class="clearfix font-color-1">{{ clase.descripcion |striptags |safe |truncatechars:72 }}</p>
                   </article></li>
             {% endfor %}
           </ul>
