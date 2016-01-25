@@ -1,2 +1,4 @@
-Gracias por crear una cuenta en Estudio 5-8. Para terminar el proceso, por favor verifique su cuenta de correo vistando el siguiente enlace (copie y pegue en su navegador):
-http://{{ site.domain |urlencode:":/" }}/cuentas/activate/{{ activation_key }}">
+Gracias por crear una cuenta en Estudio 5-8. Para terminar el proceso, por favor verifique su cuenta de correo vistando el siguiente enlace:
+http://{{ site.domain |urlencode:":/" }}/cuentas/activate/{{ activation_key }}">.
+
+Si usted no creó una cuenta en Estudio 5-8, por favor ignore este correo y discúlpenos.

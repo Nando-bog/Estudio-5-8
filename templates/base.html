@@ -46,9 +46,9 @@
             </form>
         </div>
         {% endif %}
-        
+
         <div id="user-info">
-            {% if request.user.perfil.nick %}
+            {% if request.user.perfil %}
                 <p>Hola, <a href="/cuentas/perfil/{{ request.user.username }}">{{ request.user.perfil.nick }} </a><a href="/cuentas/logout/">[Salir]</a>
             {% else %}<a href="/cuentas/login/">Ingresar</a> || <a href="/cuentas/register/">Crear cuenta</a>
             </p>
