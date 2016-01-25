@@ -42,6 +42,7 @@
             </form>
         </div>
         <div id="user-info">
+            {{ user.is_authenticated }}
             {% if user.is_authenticated %}
                 <p>Hola, <a href="/cuentas/perfil/{{ request.user.username }}">{{ request.user.perfil.nick }} </a><a href="/cuentas/logout/">[Salir]</a>
             {% else %}<a href="/cuentas/login/">Ingresar</a> || <a href="/cuentas/register/">Crear cuenta</a>
