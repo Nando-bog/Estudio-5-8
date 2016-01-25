@@ -1,1 +1,1 @@
-Active su cuenta en Estudio 5-8: {{ activation_key }}
+Active su cuenta en Estudio 5-8
