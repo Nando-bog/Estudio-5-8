@@ -41,6 +41,13 @@
                 {% endblock site-search %}
             </form>
         </div>
+        <div id="user-info">
+            <p>Hola, <a href="/cuentas/perfil/{{ request.user.username }}">
+            {% if request.user.perfil.nick %} {{ request.user.perfil.nick }} </a> <small><a href="/cuentas/logout/">[Salir]</a>
+            {% else %} Visitante </a> <small><a href="/cuentas/login/">[Ingresar]</a>
+            </p>
+            {% endif %}
+        </div>
     </div>
 
 

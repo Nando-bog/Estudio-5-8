@@ -45,11 +45,15 @@
                 {% endblock site-search %}
             </form>
         </div>
+        {% endif %}
         
         <div id="user-info">
-            <p>Hola, <a href="">{{ request.user.first_name }}</a> <small><a href="">[Salir]</a></small></p>
+            <p>Hola, <a href="/cuentas/perfil/{{ request.user.username }}">
+            {% if request.user.perfil.nick %} {{ request.user.perfil.nick }} </a> <small><a href="/cuentas/logout/">[Salir]</a>
+            {% else %} Visitante </a> <small><a href="/cuentas/login/">[Ingresar]</a>
+            </p>
+            {% endif %}
         </div>
-        {% endif %}
         
     </div>
 
