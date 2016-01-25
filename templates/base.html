@@ -48,7 +48,7 @@
         {% endif %}
 
         <div id="user-info">
-            {% if request.user.perfil %}
+            {% if request.user.is_authenticated %}
                 <p>Hola, <a href="/cuentas/perfil/{{ request.user.username }}">{{ request.user.perfil.nick }} </a><a href="/cuentas/logout/">[Salir]</a>
             {% else %}<a href="/cuentas/login/">Ingresar</a> || <a href="/cuentas/register/">Crear cuenta</a>
             </p>
