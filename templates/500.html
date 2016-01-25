@@ -23,7 +23,6 @@
     
     <div id="page-cont" class="pddng-ext">
         <p class="font-fx-4">La página que estå buscando cometió un error grave y dañó todo. Es posible que esté mutilada o que se haya roto. El programador tendrá que trabajar para solucionarlo. Por favor tenga paciencia.</p>
-        <p class="font-fx-4">Se fue a comprar madera o está cepillando una tabla.</p>
         {% if request.META.HTTP_REFERER %}
             <p class="font-fx-4">Regrese a <a href="{{ request.META.HTTP_REFERER }}">{{ request.META.HTTP_REFERER }}</a>.</p>
         {% endif %}
