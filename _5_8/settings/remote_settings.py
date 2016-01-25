@@ -57,8 +57,6 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 # ## ------ EMAIL CONFIGURATION ------ ## #
 # DO NOT UPLOAD TO GIT. USE os.environ('EMAIL_HOST_PASSWORD', etc.)
 
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.environ.get('EMAIL_HOST')
 EMAIL_PORT = os.environ.get('EMAIL_PORT')
 EMAIL_USE_SSL = os.environ.get('EMAIL_USE_SSL')
