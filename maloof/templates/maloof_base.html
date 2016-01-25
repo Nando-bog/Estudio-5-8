@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+{% block other_imports %} {% endblock other_imports%}
+
+{% block content_base %}
+    
+  {% block content_maloof %}
+    <p>Algo salió mal.</p>
+  {% endblock content_maloof %}
+  
+{% endblock content_base %}
+
+{% block footer %}
+<div class="bckgrnd-color-5" id="site-footer">
+  {% endblock footer %}
+  <footer>
+    <img src="{% static "images/5-8-logo-blanco.png" %}" width="80" height="auto" alt="5-8 Estudio" class="logo">
+    <p class="font-color-2"><strong>Estudio 5-8</strong></p>
+    <small><p class="font-color-2">Un taller con el horario de los ratos libres.</p></small>
+  </footer>
+</div>
+
+
+{% block section_background %}
+<div id="site-background">
+<img src="{% static "images/background-2.jpg" %}" width="3872" height="2592" alt="Estudio 5-8">
+<div class="site-width" id="page-cont-fx">
+</div>
+</div>
+{% endblock section_background %}

@@ -61,7 +61,7 @@
                 <p>{{ form.texto }}</p>
                 <p>{{ form.acepto_tratamiento }} {{ form.acepto_tratamiento.label_tag }} </p>
                 <p>{{ form.acepto_contacto }} {{ form.acepto_contacto.label_tag }}</p>
-                <div>{{ form.captcha }}</div>
+                <!--<div>{{ form.captcha }}</div>-->
             <input type="submit" value="Enviar" />
             {% recaptcha_explicit_init 'es-419' %}
             </form>

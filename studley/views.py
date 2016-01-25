@@ -14,11 +14,11 @@ class HerramientaClaseListView(ListView):
     context_object_name='clases_herramientas'
     template_name='studley_landing.html'
     search_form = SiteSearch()
-    
+
     def get_context_data(self, **kwargs):
         context=super(HerramientaClaseListView, self).get_context_data(**kwargs)
         context['search_form'] = self.search_form
-        cuenta_clase = 
+        cuenta_clase = TipoHerramienta.objects.filter()
         return context
 #class HerramientaTestView(ListView):
     #model=ClaseHerramienta

@@ -1,0 +1,66 @@
+{% extends "maloof_base.html" %}
+{% load static %}
+{% block other_imports %} {% endblock other_imports %}
+
+{% block my_title %}Registro{% endblock %}
+
+{% block content_base %}
+
+{% block content_maloof %}
+            
+    <div class="font-color-2 font-fx-1 pddng-ext clearfix" id="page-header">
+    <header>
+        <h1 class="font-color-2">Bienvenidos a Estudio 5-8</h1>
+        <p></p>
+    </header>
+    </div>
+         
+    <div id="page-title" class="bckgrnd-color-6 font-color-2 pddng-ext">
+        <h1>Registro de usuarios</h1>
+    </div>
+        <div>
+    <img src="{% static "images/page-header-img-1.jpg" %}" width="1024" height="214" class="width-100">
+    </div>
+   
+   <div id="page-cont" class="pddng-ext">
+        
+    <div class="bckgrnd-color-3 pddng-ext" id="cont">
+    <form method="POST" action="/cuentas/register/">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>{{ form.username.label_tag }}</td>
+                <td> {{ form.username }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.email.label_tag }}</td>
+                <td>{{ form.email }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.password1.label_tag }}</td>
+                <td>{{ form.password1 }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.password2.label_tag }}</td>
+                <td>{{form.password2 }}</td>
+            </tr>
+        </table>
+        <input type="submit" value="Enviar" />
+        <input type="hidden" name="next" value="{{ next }}" />
+    </form>
+    </div>
+    </div>
+{% endblock content_maloof %}
+
+{% endblock content_base %}
+
+{% block footer %}
+   <div class="bckgrnd-color-1" id="site-footer">
+{% endblock footer %}
+
+{% block section_background %}
+    <div id="site-background">
+        <img src="{% static "images/background-3.jpg" %}" width="3872" height="2592" alt="Estudio 5-8">
+    <div class="site-width" id="page-cont-fx"></div>
+   </div>
+{% endblock section_background %}

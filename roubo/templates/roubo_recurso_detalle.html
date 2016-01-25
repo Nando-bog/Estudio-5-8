@@ -3,7 +3,7 @@
 {% block other_imports %}{% endblock%}
 {% block other_meta_tags %}
 <!--    #FACEBOOK LIKE/SHARE BUTTON CONFITURATION: https://developers.facebook.com/docs/plugins/like-button-->
-    <meta property="og:url"           content="https://{{ request.build_absolute_uri |urlencode:":/" }}" />
+    <meta property="og:url"           content="http://{{ request.build_absolute_uri |urlencode:":/" }}" />
 	<meta property="og:type"          content="website" />
 	<meta property="og:title"         content="{{ recurso.nombre }} en Estudio 5-8" />
 	<meta property="og:description"   content="Herramientas de {{ recurso.cuerpo |lower |striptags |truncatechars:200 }}" />

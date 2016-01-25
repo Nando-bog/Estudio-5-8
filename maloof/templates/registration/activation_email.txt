@@ -1,0 +1,2 @@
+<p>Gracias por crear una cuenta en Estudio 5-8. Para terminar el proceso, por favor verifique su cuenta de correo vistando el sigueinte enlace:</p>
+<p><a href="http://{{ request.build_absolute_uri |urlencode:":/" }}/cuentas/{{ activation_key }}"></a></p>
