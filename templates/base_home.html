@@ -43,8 +43,6 @@
         </div>
         <div id="user-info">
             {% if user.is_authenticated %}
-                {{ request.user }}
-                {{ request.user.perfil }}
                 <p>Hola, <a href="/cuentas/perfil/{{ request.user.username }}">
                 {% if request.user.perfil.nick %} {{ request.user.perfil.nick }}
                 {% else %} {{ request.user.username }}
