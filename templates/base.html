@@ -50,9 +50,10 @@
         <div id="user-info">
             {% if user.is_authenticated %}
                 <p>Hola, <a href="/cuentas/perfil/{{ request.user.username }}">
-                {% if request.user.pefil.nick %} {{ request.user.perfil.nick }}
+                {% if request.user.perfil %} {{ request.user.perfil.nick }}
                 {% else %} {{ request.user.username }}
                 </a><a href="/cuentas/logout/">[Salir]</a>
+                {% endif %}
             {% else %}<a href="/cuentas/login/">Ingresar</a> || <a href="/cuentas/register/">Crear cuenta</a>
             </p>
             {% endif %}
