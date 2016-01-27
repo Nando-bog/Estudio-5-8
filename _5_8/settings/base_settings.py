@@ -122,9 +122,11 @@ USE_L10N = True
 
 USE_TZ = True
 
-# ### ----DJANGO-REGISTRATION-----
+# ### ----DJANGO-REGISTRATION----- this should not be here, but un local_settings.py and remote_settings.py
 
-ACCOUNT_ACTIVATION_DAYS = 1
-LOGIN_REDIRECT_URL = '/'
-REGISTRATION_OPEN = True
-REGISTRATION_SALT = 'estudio5-8-registration'
+# ACCOUNT_ACTIVATION_DAYS = 1
+# LOGIN_REDIRECT_URL = '/'
+# REGISTRATION_OPEN = True
+# REGISTRATION_SALT = 'estudio5-8-registration'
+
+# ### ------- DJANGO-ALLAUTH ------- ### #

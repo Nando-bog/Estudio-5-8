@@ -47,7 +47,6 @@ class Perfil(models.Model):
     url = models.URLField(blank=True)
     ocupacion = models.CharField(blank=True, max_length=200)
     biografia = models.TextField(blank=True)
-    twitter = models.CharField(blank=True, max_length=15)
     tratamiento_datos = models.BooleanField(blank=False, default=False, help_text='Acepta la política de tratamiento de datos.')
     suscripcion = models.BooleanField(blank=False, default=False, help_text='¿Quiere recibir noticias de Estudio 5-8?')
     compartir_datos = models.BooleanField(blank=False, default=False, help_text='¿Acepta compartir sus datos de contacto con otros miembros de 5-8?')
