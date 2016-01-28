@@ -1,0 +1,11 @@
+{% load account %}{% user_display user as user_display %}{% load i18n %}{% autoescape off %}{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Hola de {{ site_name }}!
+
+Está recibiendo este mensaje porque el usuario {{ user_display }} en {{ site_domain }} registró esta dirección de correo para conectarla con su cuenta.
+
+Para confirmar que esto es correcto, por favor visite la siguiente dirección en su navegador: {{ activate_url }}.
+
+{% endblocktrans %}{% endautoescape %}
+{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}
+Si usted no registó esta dirección, por favor ignore este mensaje y disculpe el error. Si desea mayor información, responda a este mensaje.
+{{ site_name }}
+{{ site_domain }}{% endblocktrans %}

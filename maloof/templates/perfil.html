@@ -1,0 +1,48 @@
+{% extends "account/base.html" %}
+{% load static %}
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block my_title %}Perfil de {{ request.user }} %} {% endblock my_title %}
+
+{% block content %}
+
+<h1>Hola,
+{% if user.perfil.nick %} {{ user.perfil.nick }}
+{% elif user.first_name %} {{ user.first_name }}
+{% else %} {{ user.username }}
+{% endif %}
+</h1>
+<ul>
+  <li><strong>Nombre de usuario:</strong> {{ user.username }}</li>
+  <li><strong>Nombre:</strong> {{ user.first_name }}</li>
+  <li><strong>Apellido:</strong> {{ user.last_name }}</li>
+  <li><strong>Email:</strong> {{ user.email }}</li>
+</ul>
+
+{% if user.socialaccount_set.all %}
+    {% for account in user.socialaccount_set.all %}
+        <img width="40" height="auto" align="left" src="{{ account.get_avatar_url }}" />
+        <p><strong>Conectado con <span style="text-transform: capitalize;">{{ account.provider }}</span></strong>
+        <br />
+        Perfil: <a href="{{ account.extra_data.link }}">{{ account.extra_data.link }}</a>
+        <br />
+        <small><a href="/accounts/social/connections">[Desconectar]</a></small>
+        </p>
+    {% endfor %}
+{% else %}
+    <p>Conectar con <a href"{% provider_login_url "google process="connect" %}">Google</a></p>
+{% endif %}
+
+{% endblock content %}
+
+{% block footer %}
+   <div class="bckgrnd-color-0" id="site-footer">
+{% endblock footer %}
+
+{% block section_background %}
+    <div id="site-background">
+        <img src="{% static "images/background-3.jpg" %}" width="3872" height="2592" alt="Estudio 5-8">
+    <div class="site-width" id="page-cont-fx"></div>
+   </div>
+{% endblock section_background %}

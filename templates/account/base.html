@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+{% block other_imports %} {% endblock other_imports %}
+
+{% block my_title %}Registro{% endblock %}
+
+{% block content_base %}
+<div id="page-cont" class="pddng-ext">
+  <div class="cuentas bckgrnd-color-3">
+    {% block content %}
+    {% endblock content %}
+  </div>
+</div>
+
+{% endblock content_base %}
+
+{% block footer %}
+   <div class="bckgrnd-color-1" id="site-footer">
+{% endblock footer %}
+
+{% block section_background %}
+    <div id="site-background">
+        <img src="{% static "images/background-3.jpg" %}" width="3872" height="2592" alt="Estudio 5-8">
+    <div class="site-width" id="page-cont-fx"></div>
+   </div>
+{% endblock section_background %}

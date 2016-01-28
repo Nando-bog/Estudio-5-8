@@ -43,12 +43,12 @@
         </div>
         <div id="user-info">
             {% if user.is_authenticated %}
-                <p>Hola, <a href="/cuentas/perfil/{{ request.user.username }}">
+                <p>Hola, <a href="/cuenta/perfil/{{ request.user.username }}">
                 {% if request.user.perfil.nick %} {{ request.user.perfil.nick }}
                 {% else %} {{ request.user.username }}
                 {% endif %}
-                </a><a href="/cuentas/logout/">[Salir]</a>
-            {% else %}<a href="/cuentas/login/">Ingresar</a> || <a href="/cuentas/register/">Crear cuenta</a>
+                </a><a href="/accounts/logout/">[Salir]</a>
+            {% else %}<a href="/accounts/login/">Ingresar</a> || <a href="/accounts/signup/">Crear cuenta</a>
             </p>
             {% endif %}
         </div>

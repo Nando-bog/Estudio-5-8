@@ -1,0 +1,70 @@
+{% extends "account/base.html" %}
+{% load static %}
+{% load i18n %}
+{% load account socialaccount %}
+{% block other_imports %}
+  <script type="text/javascript">
+  function hideshow(div_to_hide)
+  {
+    if (!document.getElementById)
+      return
+    if (div_to_hide.style.display=="block")
+      div_to_hide.style.display="none"
+    else
+    div_to_hide.style.display="block"
+  }
+</script>
+{% endblock other_imports%}
+
+{% block my_title %}Estudio 5-8: iniciar de sesión{% endblock my_title %}
+
+{% block content %}
+
+  <h1>Iniciar sesión con:</h1>
+
+<h2><a href="javascript:hideshow(document.getElementById('login5-8'))">Estudio 5-8</a></h2>
+
+  <div id="login5-8">
+  <form class="login" method="POST" action="{% url 'account_login' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% if redirect_field_value %}
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+    <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
+    <br />
+    <small><a class="button secondaryAction" href="{% url 'account_reset_password' %}">
+      {% trans "Forgot Password?" %}</a></small> 
+  </form>
+  </div>
+{% get_providers as socialaccount_providers %}
+
+{% for provider in socialaccount_providers %}
+{% if provider.id == "openid" %}
+{% for brand in provider.get_brands %}
+<h2>
+  <a title="{{brand.name}}" 
+     class="socialaccount_provider {{provider.id}} {{brand.id}}" 
+     href="{% provider_login_url provider.id openid=brand.openid_url process=process %}"
+     >{{brand.name}}</a>
+</h2>
+{% endfor %}
+{% endif %}
+<h2>
+  <a title="{{provider.name}}" class="socialaccount_provider {{provider.id}}" 
+     href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">{{provider.name}}</a>
+</h2>
+{% endfor %}
+  
+{% endblock content %}
+
+{% block footer %}
+   <div class="bckgrnd-color-0" id="site-footer">
+{% endblock footer %}
+
+{% block section_background %}
+    <div id="site-background">
+        <img src="{% static "images/background-3.jpg" %}" width="3872" height="2592" alt="Estudio 5-8">
+    <div class="site-width" id="page-cont-fx"></div>
+   </div>
+{% endblock section_background %}

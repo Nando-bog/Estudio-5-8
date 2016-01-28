@@ -34,14 +34,22 @@ DEFAULT_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',  # Required by django-allauth (below)
 ]
 
 THIRD_PARTY_APPS = [
     'taggit',
     'django_extensions',
     'storages',
-    'watson',
+    'watson',  # Site search app
     'snowpenguin.django.recaptcha2',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    # Service providers for allauth
+    'allauth.socialaccount.providers.google',
+    # 'allauth.socialaccount.providers.facebook',
+    # 'allauth.socialaccount.providers.twitter',
 ]
 
 LOCAL_APPS = [
@@ -79,16 +87,19 @@ TEMPLATES = [
                 'django.core.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.media'
+                'django.template.context_processors.media',
             ],
         },
-        # 'TEMPLATE_CONTEXT_PROCESSORS': 'django.core.context_processors.request',
     },
 ]
 
-# TEMPLATE_CONTEXT_PROCESSORS = (
-#   'django.core.context_processors.request',
-# )
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
 
 WSGI_APPLICATION = '_5_8.wsgi.application'
 
@@ -129,4 +140,23 @@ USE_TZ = True
 # REGISTRATION_OPEN = True
 # REGISTRATION_SALT = 'estudio5-8-registration'
 
+SITE_ID = 1
+
 # ### ------- DJANGO-ALLAUTH ------- ### #
+
+LOGIN_URL = '/accounts/login'
+LOGOUT_URL = '/accounts/logout'
+LOGIN_REDIRECT_URL = '/cuenta/perfil'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_SUBJECT_PREFIX = 'Estudio 5-8'
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': ['profile', 'email'],
+        'AUTH_PARAMS': {'access_type': 'online'}
+        }
+    }

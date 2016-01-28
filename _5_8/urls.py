@@ -5,8 +5,10 @@ from django.conf import settings
 from django.conf.urls import include, url, static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
+from django.views.generic import RedirectView
 from .views import ElEstudio, dynamic_css, home_page, site_search
 from roubo.views import contacto
+from maloof.views import PerfilView
 from .feeds import SiteFeed
 admin.autodiscover()
 
@@ -20,7 +22,11 @@ urlpatterns = [
     url(r'contacto/?$', contacto, name='contacto_sitio'),
     url(r'rss/?$', SiteFeed()),
     url(r'q/?$', site_search, name='busqueda'),
-    url(r'cuentas/', include('registration.backends.hmac.urls')),
+    url(r'accounts/', include('allauth.urls')),
+    url(r'cuenta/perfil/?$', PerfilView.as_view(), name='perfil'),
+    url(r'accounts/profile/?$', RedirectView.as_view(url='/cuenta/perfil/')),
+    # url(r'accounts/profile/?$', RedirectView.as_view(url='/cuenta/perfil/')),
+    # url(r'accounts/?$', RedirectView.as_view(url='/cuenta/'))
 ]
 
 urlpatterns += staticfiles_urlpatterns()

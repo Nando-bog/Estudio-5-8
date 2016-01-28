@@ -1,7 +1,7 @@
 # coding=utf-8
 # Paises para usar en el proyecto
 
-# REGISTRATION CONSTANTS
+# PROFILE CONSTANTS
 
 AF = 'AF'
 AL = 'AL'
