@@ -43,7 +43,7 @@
         </div>
         <div id="user-info">
             {% if user.is_authenticated %}
-                <p>Hola, <a href="/cuenta/perfil/{{ request.user.username }}">
+                <p>Hola, <a href="/cuenta/perfil/">
                 {% if request.user.perfil.nick %} {{ request.user.perfil.nick }}
                 {% else %} {{ request.user.username }}
                 {% endif %}
