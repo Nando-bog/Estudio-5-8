@@ -60,3 +60,4 @@ class Perfil(models.Model):
 
     def __str__(self):
         return '{0} (perfil)'.format(self.usuario.username)
+    

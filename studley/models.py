@@ -10,9 +10,18 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 
 
+def change_uploaded_filename(instance, filename):
+    """Return a path and filename to upload an image."""
+
+    upload_to = "herramientas"
+    extension = filename.split('.')[-1]
+    filename = '{0}.{1}'.format(uuid4().hex, extension)
+    return os.path.join(upload_to, filename)
+
+
 class Imagen(models.Model):
-    imagen = models.ImageField(upload_to='herramientas')
-    nombre = models.CharField(max_length=150)
+    imagen = models.ImageField(upload_to=change_uploaded_filename)
+    nombre = models.CharField(max_length=150, blank=True, default='imagen')
     autor = models.CharField(max_length=150, blank=True)
     url = models.URLField(blank=True)
     licencia = models.TextField(blank=True)

@@ -142,6 +142,10 @@ USE_TZ = True
 
 SITE_ID = 1
 
+# ##------- AUTH -------## #
+
+
+
 # ### ------- DJANGO-ALLAUTH ------- ### #
 
 LOGIN_URL = '/accounts/login'
