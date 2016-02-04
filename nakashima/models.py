@@ -42,7 +42,6 @@ class Imagen(models.Model):
 class Objeto(models.Model):
     """Representa un mueble, proyecto, artesanía."""
     # Constantes
-    BANO = 'BAN'
     BIBLIOTECA = 'BIB'
     CAJA = 'CAJ'
     COCINA = 'COC'
@@ -55,7 +54,6 @@ class Objeto(models.Model):
     OTRO = 'OTRO'
 
     TIPOS_OBJETO = (
-        (BANO, 'Baño'),
         (BIBLIOTECA, 'Biblioteca'),
         (CAJA, 'Caja'),
         (COCINA, 'Cocina'),
@@ -141,11 +139,18 @@ class AvanceObjeto(models.Model):
 class EvaluacionArtesano(models.Model):
     """Evaluación hecha por un cliente a un artesano que le hizo un proyecto."""
 
+    fecha_creacion = models.DateField(default=datetime.date.today)
     artesano = models.ForeighKey(settings.AUTH.USER.MODEL, unique=True)
     cliente = models.ForeighKey(settings.AUTH.USER.MODEL, unique=True)
     objeto = models.ForeignKey(Objeto)
     calificacion = models.IntegerField()
     comentario = models.TextField()
+
+    class Meta:
+        ordering = ['artesano', 'fecha_creacion']
+
+    def __str__(self):
+        return 'Evaluación de {0}, {1}'.format(artesano, fecha_creacion)
 
 
 class ObjetosImagenes(models.Model):

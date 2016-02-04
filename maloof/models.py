@@ -34,8 +34,20 @@ class Perfil(models.Model):
         (MAS, 'Masculino'),
         (FEM, 'Femenino'),
     )
+    # CONSTANTES TIPOS
+    ARTESANO = 'ART'
+    CLIENTE = 'CLI'
+    SOCIO = 'SOC'
+    ADMIN = 'ADM'
+    TIPOS_USUARIOS = (
+        (CLIENTE, 'Cliente'),
+        (ARTESANO, 'Artesano'),
+        (SOCIO, 'Socio'),
+        (ADMIN, 'Administrador'),
+    )
 
     usuario = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, primary_key=True)
+    tipo = models.CharField(max_length=5, unique=True, choices=TIPOS_USUARIOS, default=CLIENTE)
     nick = models.CharField(max_length=20, help_text='¿Cómo quiere que lo llamemos?')
     fecha_nacimiento = models.DateField(blank=True, default=timezone.now())
     sexo = models.CharField(blank=True, max_length=3, choices=SEXOS)
@@ -60,4 +72,3 @@ class Perfil(models.Model):
 
     def __str__(self):
         return '{0} (perfil)'.format(self.usuario.username)
-    
