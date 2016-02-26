@@ -108,8 +108,7 @@ class Destacado(models.Model):
         verbose_name_plural = 'Destacados'
 
     def __str__(self):
-        return '{0} {1} {2} sticky: {3}'.format(self.orden, self.recurso.nombre_corto,
-                                                self.recurso.tipo, self.sticky)
+        return '{0} {1} {2} sticky: {3}'.format(self.orden, self.recurso.nombre_corto, self.recurso.tipo, self.sticky)
 
 
 class Contacto(models.Model):

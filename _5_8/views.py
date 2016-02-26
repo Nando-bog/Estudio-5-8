@@ -26,11 +26,19 @@ def home_page(request, *args, **kwargs):
     destacado_proyecto = Q(recurso__tipo='PRY')
     destacado_video = Q(recurso__tipo='VID')
     destacado_galeria = Q(recurso__tipo='GLR')
-    q_filter_destacado = destacado_proyecto | destacado_blog | destacado_tutorial | destacado_documento | destacado_video | destacado_galeria
-    destacados = Destacado.objects.filter(q_filter_destacado).order_by('-sticky', 'orden', '-recurso__fecha_actualizacion')
-    contexto['destacados_roubo'] = destacados
-    clases_herramientas = ClaseHerramienta.objects.all().order_by('nombre')
-    contexto['herramientas'] = clases_herramientas
+    # q_filter_destacado = destacado_proyecto | destacado_blog | destacado_tutorial | destacado_documento | destacado_video | destacado_galeria
+    # destacados = Destacado.objects.filter(q_filter_destacado).order_by('-sticky', 'orden', '-recurso__fecha_actualizacion')
+    videos_destacados = Destacado.objects.filter(destacado_video).order_by('-sticky', 'orden', '-recurso__fecha_actualizacion')[0:2]
+    q_filter_destacados_blogs = destacado_blog | destacado_proyecto | destacado_tutorial
+    blogs_destacados = Destacado.objects.filter(q_filter_destacados_blogs).order_by('-sticky', 'orden', '-recurso__fecha_actualizacion')[0:2]
+    proyectos_destacados = Destacado.objects.filter(destacado_galeria).order_by('-sticky', 'orden', '-recurso__fecha_actualizacion')[0:2]
+    contexto['videos_destacados'] = videos_destacados
+    contexto['blogs_destacados'] = blogs_destacados
+    contexto['proyectos_destacados'] = proyectos_destacados
+    
+    # contexto['destacados_roubo'] = destacados
+    # clases_herramientas = ClaseHerramienta.objects.all().order_by('nombre')
+    # contexto['herramientas'] = clases_herramientas
     contexto['search_form'] = search_form
     return render(
         request,

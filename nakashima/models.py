@@ -77,7 +77,8 @@ class Objeto(models.Model):
     entregado_cliente = models.BooleanField(default=False)
 
     # Atributos básico no obligatorios
-    fecha_entregado = models.DateField(default=datetime.date.today + datetime.timedelta(days=14), blank=True)
+    fecha_entregado_artesano = models.DateField(default=datetime.date.today + datetime.timedelta(days=14), blank=True)
+    fecha_entregado_cliente = models.DateField(default=datetime.date.today + datetime.timedelta(days=14), blank=True)
     artesano = settings.AUTH_USER_MODEL(blank=True)
     cliente = settings.AUTH_USER_MODEL(blank=True, unique=True)
     cotizacion_aceptada = models.ForeighKey('Cotizacon', unique=True, blank=True)
@@ -104,6 +105,12 @@ class Cotizacion(models.Model):
     material = models.CharField(max_length=250)
     descripcion = models.TextField()
     precio = models.IntegerField()
+
+    class Meta:
+        verbose_name_plural = 'Cotizaciones'
+
+    def __str__(self):
+        return 'Cotizacion {0} por {1}, {2}'.format(self.objeto, self.artesano, self.fecha_creacion)
 
 
 class Portafolio(models.Model):
