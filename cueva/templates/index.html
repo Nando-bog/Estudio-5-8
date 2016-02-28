@@ -1,7 +1,6 @@
-{% extends "base.html" %}
+{% extends "base-1.html" %}
 {% load static %}
 {% load staticfiles %}
-{% block other_imports %}{% endblock other_imports %}
 
 {% block other_meta_tags %}
 <!--    #FACEBOOK LIKE/SHARE BUTTON CONFITURATION: https://developers.facebook.com/docs/plugins/like-button-->
@@ -17,58 +16,62 @@
     
 {% endblock other_meta_tags%}
 
-{% block content_base %}
-  <br/><br/><br/><br/><br/>
-  <div class="bckgrnd-color-2">
+{% block page_content %}
+
+<div class="site-width" id="site-content">
+<div id="home-content">
+
 	{% for destacado in videos_destacados %}
-	  <p>
-		<a href="{{ destacado.get_absolute_url }}">
-		  <img src="{% static '' %}{{ destacado.imagen_destacada }}" width="100px" height = "auto" />
-		  {{ destacado.nombre }}
-		</a> <a href="/roubo/VID">{{ destacado.get_tipo_display }}</a>
-		{{ destacado.fecha_creacion |date:"j F, Y"}}
-		{{destacado.cuerpo |truncatechars:200}}
-	  </p>
+	<div class="home-destacado bckgrnd-color-1">
+	  <a href="{{ destacado.get_absolute_url }}">
+      <img src="{% static '' %}{{ destacado.imagen_destacada }}" width="320" height="106" alt="{{ destacado.nombre }}">
+      <h3>{{ destacado.nombre }}</h3>
+	  </a>
+      <p class="font-size-sub1"><span class="bckgrnd-color-7 font-color-1 tag-1-home"><a href="/roubo/VID">{{ destacado.get_tipo_display }}</a></span> {{ destacado.fecha_creacion |date:"j F, Y"}}</p>
+      <p>{{ destacado.cuerpo |truncatechars:200 |striptags }}</p>
+  	</div>
 	{% endfor %}
 	
+		
 	{% for destacado in cuadernos_destacados %}
-	  <p>
-		<a href="{{ destacado.get_absolute_url }}">
-		  <img src="{% static '' %}{{ destacado.imagen_destacada }}" width="100px" height = "auto" />
-		  {{ destacado.nombre }}
-		</a> <a href="/roubo/cuaderno">{{ destacado.get_tipo_display }}</a>
-		{{ destacado.fecha_creacion |date:"j F, Y"}}
-		{{destacado.cuerpo |truncatechars:200 |striptags }}
-	  </p>
+    <div class="home-destacado bckgrnd-color-2">
+      <a href="{{ destacado.get_absolute_url }}">
+	  <img src="{% static '' %}{{ destacado.imagen_destacada }}" width="320" height="106" alt="{{ destacado.nombre }}">
+      <h3>{{ destacado.nombre }}</h3>
+	  </a>
+      <p class="font-size-sub1"><span class="bckgrnd-color-7 font-color-1 tag-1-home"><a href="/roubo/cuaderno">{{ destacado.get_tipo_display }}</a></span> {{ destacado.fecha_creacion |date:"j F, Y"}}</p>
+      <p>{{ destacado.cuerpo |truncatechars:200 |striptags }}</p>
+  	</div>
 	{% endfor %}
 	
 	{% for destacado in herramientas_destacadas %}
-	  <p>
-		<a href="{{ destacado.get_absolute_url }}">
-		  <img src="{% static '' %}{{ destacado.imagen.imagen }}{{ destacado.imagenes.all.0.imagen }}" width="100px" height = "auto" />
-		  {{ destacado.nombre }}
-		</a>
-		<a href="/studley/">
-		  {% if destacado.herramientas_recomendadas %} Colección
-		  {% else %} Herramienta
-		  {% endif %}
-		{{ destacado.fecha_creacion |date:"j F, Y"}}
-		{{destacado.cuerpo |truncatechars:200 |striptags }}
-		</a>
+    <div class="home-destacado bckgrnd-color-3">
+      <a href="{{ destacado.get_absolute_url }}">
+		<img src="{% static '' %}{{ destacado.imagen.imagen }}{{ destacado.imagenes.all.0.imagen }}" width="320" height="106" alt="{{ destacado.nombre }}">
+	  <h3>{{ destacado.nombre }}</h3></a>
+      <p class="font-size-sub1"><span class="bckgrnd-color-7 font-color-1 tag-1-home"><a href="/studley/">
+	  {% if destacado.herramientas_recomendadas %} Colección
+		  {% else %} Herramienta</a>
+		  {% endif %}</span> {{ destacado.fecha_creacion |date:"j F, Y"}}
 	  </p>
-	{% endfor %}
+	  <p>{{destacado.descripcion |truncatechars:200 |striptags }}</p>
+  	</div>
+  {% endfor %}
+	
 	
 	{% for destacado in galerias_destacadas %}
-	  <p>
-		<a href="{{ destacado.get_absolute_url }}">
-		  <img src="{% static '' %}{{ destacado.imagen_destacada }}" width="100px" height = "auto" />
-		  {{ destacado.nombre }}
-		</a> <a href="/roubo/GLR">{{ destacado.get_tipo_display }}</a>
-		{{ destacado.fecha_creacion |date:"j F, Y"}}
-		{{destacado.cuerpo |truncatechars:200 |striptags }}
-	  </p>
-	  {% endfor %}
+    <div class="home-destacado bckgrnd-color-4">
+      <a href="{{ destacado.get_absolute_url }}">
+	  <img src="{% static '' %}{{ destacado.imagen_destacada }}" width="320" height="106" alt="{{ destacado.nombre }}">
+      <h3>{{ destacado.nombre }}</h3>
+	  </a>
+      <p class="font-size-sub1"><span class="bckgrnd-color-7 font-color-1 tag-1-home"><a href="/roubo/GLR">{{ destacado.get_tipo_display }}</a></span> {{ destacado.fecha_creacion |date:"j F, Y"}}</p>
+      <p>{{ destacado.cuerpo |truncatechars:200 |striptags }}</p>
+  	</div>
+	{% endfor %}
 </div>
+</div>
+
 
 <!--REDES SOCIALES-->
 <br/>
@@ -96,8 +99,4 @@
   <!--END FACEBOOK LIKE-->
 </div>
 	
-{% endblock content_base %}
-
-{% block footer %}
-<div class="bckgrnd-color-8" id="site-footer">
-{% endblock footer %}
+{% endblock page_content %}

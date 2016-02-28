@@ -9,7 +9,7 @@ from django.views.generic import RedirectView
 # from .views import ElEstudio, dynamic_css, home_page, site_search
 from roubo.views import contacto
 from maloof.views import PerfilView
-from cueva.views import ElEstudio, home_page, dynamic_css, site_search
+from cueva.views import ElEstudio, home_page, dynamic_css, dynamic_css_1, site_search
 from cueva.feeds import SiteFeed
 admin.autodiscover()
 
@@ -20,6 +20,7 @@ urlpatterns = [
     url(r'^studley/', include('studley.urls')),
     url(r'el-estudio/?$', ElEstudio.as_view(), name='el-estudio'),
     url(r'styles/5-8-styles.css/?$', dynamic_css, name='css'),
+    url(r'styles/5-8-styles-1.css/?$', dynamic_css_1, name='css'),
     url(r'contacto/?$', contacto, name='contacto_sitio'),
     url(r'rss/?$', SiteFeed()),
     url(r'q/?$', site_search, name='busqueda'),

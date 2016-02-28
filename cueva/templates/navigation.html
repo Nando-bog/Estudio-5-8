@@ -1,0 +1,46 @@
+{% load static staticfiles %}
+
+<div id="header-cont">
+<div class="navigation font-1">
+      <ul class="nav">
+          <li class="logo"><a href="#"><img src="{% static '' %}images/5-8-logo.png" width="120" height="56" alt="5-8 Estudio"></a>
+          <li class="btn"><a href="#" class="btn-link">&#9776;</a>
+              <ul class="menu">
+                  <li><a href="/roubo/VID/">Video <span class="menu-item-sub">tutoriales</span></a></li>
+                  <li><a href="/roubo/cuaderno/">Cuaderno <span class="menu-item-sub">de notas</span></a></li>
+                  <li><a href="/studley/">Herramientas <span class="menu-item-sub">y colecciones</span></a></li>
+                  <li><a href="/roubo/GLR/">Galerías <span class="menu-item-sub">de proyectos</span></a></li>
+                  <li><a href="/el-estudio">El estudio <span class="menu-item-sub">¿Qué es?</span></a></li>
+                  <li><a href="/contacto">Contacto <span class="menu-item-sub">&nbsp;</span></a></li>
+              </ul>
+          </li>
+      </ul>
+  </div>
+
+{% if search_form %}
+<div id="search-box">  
+    <form action="/q/" method="POST">
+        {% block site-search %}
+        {% csrf_token %}
+        {{ search_form }}
+        <input type="submit" value="Buscar" class="small-submit"/>
+        {% endblock site-search %}
+    </form>
+</div>
+{% endif %}
+
+<div id="user-info">
+    {% if user.is_authenticated %}
+        <p>Hola,
+            <a href="/cuenta/perfil/">
+        {% if request.user.perfil %} {{ request.user.perfil.nick }}
+        {% else %} {{ request.user.username }}
+            </a>
+        {% endif %}
+        <a href="/accounts/logout/">[Salir]</a>
+    {% else %}<a href="/accounts/login/">Inciar sesión</a> || <a href="/accounts/signup/">Crear cuenta</a>
+        </p>
+    {% endif %}
+</div>
+
+</div>

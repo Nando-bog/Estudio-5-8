@@ -66,6 +66,15 @@ def dynamic_css(request):
     )
 
 
+def dynamic_css_1(request):
+    return render(
+        request,
+        '5-8-styles-dynamic-1.css',
+        {'background': 'background-home-1.jpg'},
+        content_type="text/css",
+    )
+
+
 def site_search(request):
     """Site wide search implemented with django-watson
     """
