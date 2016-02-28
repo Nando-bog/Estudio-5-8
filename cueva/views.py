@@ -44,10 +44,10 @@ def home_page(request, *args, **kwargs):
             herramientas_destacadas.append(destacado.contenido_destacado)
 
     # Destacados por sección
-    contexto['videos_destacados'] = videos_destacados
-    contexto['cuadernos_destacados'] = cuadernos_destacados
-    contexto['galerias_destacadas'] = galerias_destacadas
-    contexto['herramientas_destacadas'] = herramientas_destacadas
+    contexto['videos_destacados'] = videos_destacados[0:1]
+    contexto['cuadernos_destacados'] = cuadernos_destacados[0:1]
+    contexto['galerias_destacadas'] = galerias_destacadas[0:1]
+    contexto['herramientas_destacadas'] = herramientas_destacadas[0:1]
 
     return render(
         request,

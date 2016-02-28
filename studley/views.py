@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from .models import ClaseHerramienta, TipoHerramienta, HerramientaBase, Herramienta, Coleccion, ColeccionesHerramientas, ColeccionesHerramientasBase
-from _5_8.forms import SiteSearch
+from cueva.forms import SiteSearch
 
 
 class HerramientaClaseListView(ListView):

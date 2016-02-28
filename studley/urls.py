@@ -1,4 +1,4 @@
-#coding=utf-8
+# coding=utf-8
 # URLS para el app "Studley"
 # studley.urls
 # Version 0.2

@@ -12,7 +12,7 @@ from django.forms import ValidationError
 from django.core.mail import send_mail
 from .models import Recurso, Destacado #, DesempenoDeComprension, Curso
 from .forms import ContactoForm
-from _5_8.forms import SiteSearch
+from cueva.forms import SiteSearch
 
 
 class CuadernoListView(ListView):
