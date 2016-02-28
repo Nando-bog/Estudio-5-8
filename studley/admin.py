@@ -10,7 +10,12 @@ class HerramientaBaseImagenInline(admin.TabularInline):
     extra = 1
 
 
+class TipoHerramientaAdmin(admin.ModelAdmin):
+    list_display = ('pk', 'nombre', 'fecha_creacion', 'publicado')
+
+
 class HerramientaBaseAdmin(admin.ModelAdmin):
+    list_display = ('pk', 'nombre', 'fecha_creacion', 'publicado')
     inlines = (HerramientaBaseImagenInline, )
 
 
@@ -21,28 +26,31 @@ class HerramientaImagenInline(admin.TabularInline):
 
 class HerramientaAdmin(admin.ModelAdmin):
     inlines = (HerramientaImagenInline, )
-    
-    
+
+
 class ColeccionImagenInline(admin.TabularInline):
     model = ColeccionesImagenes
     extra = 1
-    
+
+
 class ColeccionHerramientasBaseInline(admin.TabularInline):
     model = ColeccionesHerramientasBase
     extra = 1
-    
+
+
 class ColeccionHerramientasRecomendadasInline(admin.TabularInline):
     model = ColeccionesHerramientas
     extra = 0
-    
+
+
 class ColeccionAdmin(admin.ModelAdmin):
     inlines = (ColeccionImagenInline, ColeccionHerramientasBaseInline, ColeccionHerramientasRecomendadasInline)
-    
+
 
 admin.site.register(HerramientaBase, HerramientaBaseAdmin)
 admin.site.register(Herramienta, HerramientaAdmin)
 admin.site.register(Coleccion, ColeccionAdmin)
 admin.site.register(ClaseHerramienta)
-admin.site.register(TipoHerramienta)
+admin.site.register(TipoHerramienta, TipoHerramientaAdmin)
 admin.site.register(Imagen)
 admin.site.register(Marca)

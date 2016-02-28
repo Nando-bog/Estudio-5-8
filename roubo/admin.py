@@ -1,4 +1,4 @@
-#coding=utf-8
+# coding=utf-8
 # Admin para aplicación Roubo
 # VERSION 0.12
 
@@ -7,45 +7,47 @@ from .models import Recurso, RecursosAutores, Destacado, Contacto #, HiloConduct
 # class CursosHilosConductoresInline(admin.TabularInline):
 #     model = CursosHilosConductores
 #     extra = 1
-#     
-#     
+#
+#
 # class CursosTopicosGenerativosInline(admin.TabularInline):
 #     model = CursosTopicosGenerativos
 #     extra = 1
-#     
-#     
+#
+#
 # class CursosMetasInline(admin.TabularInline):
 #     model = CursosMetas
 #     extra = 1
-# 
-# 
+#
+#
 # class CursosDesempenosInline(admin.TabularInline):
 #     model = CursosDesempenos
 #     extra = 1
-# 
-# 
+#
+#
 # class CursosProfesoresInline(admin.TabularInline):
 #     model = CursosProfesores
 #     extra = 1
-# 
-# 
+#
+#
+
+
 class RecursosAutoresInline(admin.TabularInline):
     model = RecursosAutores
     extra = 1
-# 
-#     
+#
+#
 # class DesempenosAutoresInline(admin.TabularInline):
 #     model = DesempenosAutores
 #     extra = 1
-# 
-#     
+#
+#
 # class DesempenosRecursosInline(admin.TabularInline):
 #     model = DesempenosRecursos
 #     extra = 1
 
 
 class RecursoAdmin(admin.ModelAdmin):
-    list_display = ('nombre', 'nombre_corto', 'tipo', 'fecha_actualizacion')
+    list_display = ('pk', 'nombre', 'nombre_corto', 'tipo', 'fecha_actualizacion')
     prepopulated_fields = {'nombre_corto': ('nombre',)}
     fieldsets = (
         (None, {'fields': ('nombre', 'imagen_destacada', 'nombre_corto', 'fecha_creacion', 'fecha_actualizacion', 'url', 'tipo', 'cuerpo', 'tags')}),
@@ -55,24 +57,24 @@ class RecursoAdmin(admin.ModelAdmin):
 
 class DestacadoAdmin(admin.ModelAdmin):
     list_display = ('recurso', 'orden', 'sticky')
-    
+
 class ContactoAdmin(admin.ModelAdmin):
     list_display = ('fecha', 'autor', 'email', 'url', 'texto')
 # class HiloConductorAdmin(admin.ModelAdmin):
 #     list_display=('nombre_corto', 'nombre')
 #     prepopulated_fields = {'nombre_corto': ('nombre',)}
-# 
-# 
+#
+#
 # class TopicoGenerativoAdmin(admin.ModelAdmin):
 #     list_display=('nombre_corto', 'nombre')
 #     prepopulated_fields = {'nombre_corto': ('nombre',)}
-# 
-# 
+#
+#
 # class MetaAdmin(admin.ModelAdmin):
 #     list_display=('nombre_corto', 'nombre')
 #     prepopulated_fields = {'nombre_corto': ('nombre',)}
 # 
-# 
+#
 # class DesempenoAdmin(admin.ModelAdmin):
 #     fieldsets = (
 #         ("Información básica", {'fields': ('nombre', 'duracion', 'imagen_destacada')}),
@@ -81,8 +83,8 @@ class ContactoAdmin(admin.ModelAdmin):
 #     )
 #     inlines = (CursosDesempenosInline, DesempenosAutoresInline, DesempenosRecursosInline)    
 #     filter_horizontal=['autor', 'recursos',]
-# 
-# 
+#
+#
 # class CursoAdmin(admin.ModelAdmin):
 #     list_display = ('codigo', 'nombre')
 #     #filter_horizontal = ['profesores', 'hilos_conductores', 'topicos_generativos', 'metas_de_comprension', 'inscritos']
@@ -92,7 +94,7 @@ class ContactoAdmin(admin.ModelAdmin):
 #         ("Metadatos: ", {'fields': ('tags', 'imagen_destacada', )}),
 #     )
 #     inlines = (CursosHilosConductoresInline, CursosTopicosGenerativosInline, CursosMetasInline, CursosDesempenosInline, CursosProfesoresInline)
-    
+
 admin.site.register(Recurso, RecursoAdmin)
 admin.site.register(Destacado, DestacadoAdmin)
 admin.site.register(Contacto, ContactoAdmin)

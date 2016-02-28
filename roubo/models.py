@@ -26,7 +26,7 @@ class Recurso(models.Model):
     BLOG = 'BLG'
     GALERIA = 'GLR'
     PROYECTO = 'PRY'
-    TUTORIAL = 'TUT'
+    TUTORIAL = 'TUT' # tutorial que no es solo video *no todo video es tuturial.
     VIDEO = 'VID'
     DOCUMENTO = 'DOC'  # puede ser pdf, epub, etc. Doc no es .doc, sino documento.
     TIPOS_RECURSO = (
@@ -82,6 +82,7 @@ class Recurso(models.Model):
     class Meta:
         ordering = ['nombre_corto']
         verbose_name_plural = 'Recursos'
+        verbose_name = 'Recurso'
 
     class Admin:
         pass

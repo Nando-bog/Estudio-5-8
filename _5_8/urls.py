@@ -6,10 +6,11 @@ from django.conf.urls import include, url, static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
 from django.views.generic import RedirectView
-from .views import ElEstudio, dynamic_css, home_page, site_search
+# from .views import ElEstudio, dynamic_css, home_page, site_search
 from roubo.views import contacto
 from maloof.views import PerfilView
-from .feeds import SiteFeed
+from cueva.views import ElEstudio, home_page, dynamic_css, site_search
+from cueva.feeds import SiteFeed
 admin.autodiscover()
 
 urlpatterns = [

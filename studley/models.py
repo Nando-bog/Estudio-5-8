@@ -94,8 +94,8 @@ class TipoHerramienta(models.Model):
     publicado = models.BooleanField(default=False)
 
     class Meta:
-        verbose_name = 'Tipo'
-        verbose_name_plural = 'Tipos'
+        verbose_name = 'Tipo herramienta'
+        verbose_name_plural = 'Tipos herramientas'
 
     class Admin:
         pass

@@ -1,12 +1,16 @@
 # coding=utf-8
-# Views para el proyecto general.
+# Views que integran el home para el proyecto general.
 # Version 0.1
-
+# Django/Python Libs.
 from django.views.generic.base import TemplateView
 from django.shortcuts import render
 from django.db.models import Q
+from django.contrib.contenttypes.models import ContentType
+# 3rd party libs
 import watson
+# Project libs
 from .forms import SiteSearch
+from .models import DestacadoHome
 from roubo.models import Recurso, Destacado
 from studley.models import ClaseHerramienta
 
@@ -16,33 +20,38 @@ class ElEstudio(TemplateView):
 
 
 def home_page(request, *args, **kwargs):
-    """Retorna los destacados para la página de inicio.
-    """
+    """Return destacados del home del sitio"""
     search_form = SiteSearch()
     contexto = {}
-    destacado_blog = Q(recurso__tipo='BLG')
-    destacado_tutorial = Q(recurso__tipo='TUT')
-    destacado_documento = Q(recurso__tipo='DOC')
-    destacado_proyecto = Q(recurso__tipo='PRY')
-    destacado_video = Q(recurso__tipo='VID')
-    destacado_galeria = Q(recurso__tipo='GLR')
-    # q_filter_destacado = destacado_proyecto | destacado_blog | destacado_tutorial | destacado_documento | destacado_video | destacado_galeria
-    # destacados = Destacado.objects.filter(q_filter_destacado).order_by('-sticky', 'orden', '-recurso__fecha_actualizacion')
-    videos_destacados = Destacado.objects.filter(destacado_video).order_by('-sticky', 'orden', '-recurso__fecha_actualizacion')[0:2]
-    q_filter_destacados_blogs = destacado_blog | destacado_proyecto | destacado_tutorial
-    blogs_destacados = Destacado.objects.filter(q_filter_destacados_blogs).order_by('-sticky', 'orden', '-recurso__fecha_actualizacion')[0:2]
-    proyectos_destacados = Destacado.objects.filter(destacado_galeria).order_by('-sticky', 'orden', '-recurso__fecha_actualizacion')[0:2]
+    # Destacados de roubo
+    videos_destacados = []
+    cuadernos_destacados = []  # agrupa tipos distintos de roubo... confuso... pero bueno: blogs, tutoriales, proyectos y documentos, segun recurso.tipo
+    galerias_destacadas = []
+    # Destacados de studley
+    herramientas_destacadas = []
+    destacados = DestacadoHome.objects.all().order_by('-fecha_creacion')
+    for destacado in destacados:
+        if ContentType.objects.get_for_model(destacado.contenido_destacado).model == 'recurso':
+            if destacado.contenido_destacado.tipo == 'VID':
+                videos_destacados.append(destacado.contenido_destacado)
+            elif (destacado.contenido_destacado.tipo == 'BLG') | (destacado.contenido_destacado.tipo == 'PRY') | (destacado.contenido_destacado.tipo == 'TUT') | (destacado.contenido_destacado.tipo == 'DOC'):
+                cuadernos_destacados.append(destacado.contenido_destacado)
+            elif destacado.contenido_destacado.tipo == 'GLR':
+                galerias_destacadas.append(destacado.contenido_destacado)
+            elif destacado.contenido_destacado.tipo == 'PRY':
+                proyectos_destacados.append(destacado.contenido_destacado)
+        elif (ContentType.objects.get_for_model(destacado.contenido_destacado).model == 'tipoherramienta') | (ContentType.objects.get_for_model(destacado.contenido_destacado).model == 'herramientabase') | (ContentType.objects.get_for_model(destacado.contenido_destacado).model == 'herramienta') | (ContentType.objects.get_for_model(destacado.contenido_destacado).model == 'coleccion'):
+            herramientas_destacadas.append(destacado.contenido_destacado)
+
+    # Destacados por sección
     contexto['videos_destacados'] = videos_destacados
-    contexto['blogs_destacados'] = blogs_destacados
-    contexto['proyectos_destacados'] = proyectos_destacados
-    
-    # contexto['destacados_roubo'] = destacados
-    # clases_herramientas = ClaseHerramienta.objects.all().order_by('nombre')
-    # contexto['herramientas'] = clases_herramientas
-    contexto['search_form'] = search_form
+    contexto['cuadernos_destacados'] = cuadernos_destacados
+    contexto['galerias_destacadas'] = galerias_destacadas
+    contexto['herramientas_destacadas'] = herramientas_destacadas
+
     return render(
         request,
-        'index-fp.html',
+        'index.html',
         contexto,
     )
 
