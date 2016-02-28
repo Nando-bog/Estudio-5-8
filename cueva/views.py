@@ -48,6 +48,7 @@ def home_page(request, *args, **kwargs):
     contexto['cuadernos_destacados'] = cuadernos_destacados[0:1]
     contexto['galerias_destacadas'] = galerias_destacadas[0:1]
     contexto['herramientas_destacadas'] = herramientas_destacadas[0:1]
+    contexto['search_form'] = search_form
 
     return render(
         request,
