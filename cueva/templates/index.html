@@ -25,7 +25,7 @@
 		<a href="{{ destacado.get_absolute_url }}">
 		  <img src="{% static '' %}{{ destacado.imagen_destacada }}" width="100px" height = "auto" />
 		  {{ destacado.nombre }}
-		</a> <a href="">{{ destacado.get_tipo_display }}</a>
+		</a> <a href="/roubo/VID">{{ destacado.get_tipo_display }}</a>
 		{{ destacado.fecha_creacion |date:"j F, Y"}}
 		{{destacado.cuerpo |truncatechars:200}}
 	  </p>
@@ -36,7 +36,7 @@
 		<a href="{{ destacado.get_absolute_url }}">
 		  <img src="{% static '' %}{{ destacado.imagen_destacada }}" width="100px" height = "auto" />
 		  {{ destacado.nombre }}
-		</a> {{ destacado.get_tipo_display }}
+		</a> <a href="/roubo/cuaderno">{{ destacado.get_tipo_display }}</a>
 		{{ destacado.fecha_creacion |date:"j F, Y"}}
 		{{destacado.cuerpo |truncatechars:200 |striptags }}
 	  </p>
@@ -48,11 +48,13 @@
 		  <img src="{% static '' %}{{ destacado.imagen.imagen }}{{ destacado.imagenes.all.0.imagen }}" width="100px" height = "auto" />
 		  {{ destacado.nombre }}
 		</a>
+		<a href="/studley/">
 		  {% if destacado.herramientas_recomendadas %} Colección
 		  {% else %} Herramienta
 		  {% endif %}
 		{{ destacado.fecha_creacion |date:"j F, Y"}}
 		{{destacado.cuerpo |truncatechars:200 |striptags }}
+		</a>
 	  </p>
 	{% endfor %}
 	
@@ -61,7 +63,7 @@
 		<a href="{{ destacado.get_absolute_url }}">
 		  <img src="{% static '' %}{{ destacado.imagen_destacada }}" width="100px" height = "auto" />
 		  {{ destacado.nombre }}
-		</a> {{ destacado.get_tipo_display }}
+		</a> <a href="/roubo/GLR">{{ destacado.get_tipo_display }}</a>
 		{{ destacado.fecha_creacion |date:"j F, Y"}}
 		{{destacado.cuerpo |truncatechars:200 |striptags }}
 	  </p>
