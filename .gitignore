@@ -13,13 +13,8 @@ local_settings.py
 *.gz
 # Byte-compiled / optimized / DLL files
 __pycache__/
-*.py[cod]
 *$py.class
-
-# C extensions
 *.so
-
-# Distribution / packaging
 .Python
 env/
 build/
@@ -36,7 +31,7 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
-/static/*
+static/*
 *.jpg
 *.png
 *.gif
