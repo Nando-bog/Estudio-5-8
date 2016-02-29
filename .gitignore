@@ -37,3 +37,6 @@ var/
 *.psd
 *.svg
 *.DS_Store
+static/admin/*
+static/images/*
+static/django*
