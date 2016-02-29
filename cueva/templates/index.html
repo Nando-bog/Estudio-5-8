@@ -30,6 +30,7 @@
 </div>
 {% endblock page_background %}
 
+
 {% block page_content %}
 
 <div class="site-width" id="site-content">
@@ -86,7 +87,7 @@
 </div>
 <div class = "home-slider font-color-3">
   {% random_image as bg_image %}
-  <script async>
+  <script>
 	var bg_image_url = "{% static ''%}";
 	bg_image_url += "{{ bg_image.imagen }}";
 	console.log(bg_image_url)

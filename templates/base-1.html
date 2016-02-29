@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <!--Hoja de estilo generada como un template, usando el motor de Django. Tiene entrada en urls.py, views.py y una plantilla .css en /templates llamada 5-8-styles-dynamic.css.-->
-    <link rel="stylesheet" type="text/css" href="/styles/5-8-styles-1.css/">
+    <link rel="stylesheet" type="text/css" href="{% static '/styles/5-8-styles-1.css' %}">
     {% block other_imports %}{% endblock other_imports %}
     <title>{% block my_title %}Estudio 5-8{% endblock my_title %}</title>
     {% block other_meta_tags %}{% endblock other_meta_tags%}
