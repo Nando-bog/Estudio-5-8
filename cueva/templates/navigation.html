@@ -13,30 +13,31 @@
                   <li><a href="/el-estudio">El estudio <span class="menu-item-sub">¿Qué es?</span></a></li>
                   <li><a href="/contacto">Contacto <span class="menu-item-sub">&nbsp;</span></a></li>
               </ul>
+          
+            {% if search_form %} 
+                <form action="/q/" method="POST">
+                    {% block site-search %}
+                    {% csrf_token %}
+                    {{ search_form }}
+                    <input type="submit" value="Buscar" class="small-submit"/>
+                    {% endblock site-search %}
+                </form>
+            {% endif %}
+            
+            {% if user.is_authenticated %}
+                <p>Hola,
+                    <a href="/cuenta/perfil/">
+                {% if request.user.perfil %} {{ request.user.perfil.nick }}
+                {% else %} {{ request.user.username }}
+                    </a>
+                {% endif %}
+                <a href="/accounts/logout/">[Salir]</a>
+            {% else %}<a href="/accounts/login/">Inciar sesión</a>  <a href="/accounts/signup/">Crear cuenta</a>
+                </p>
+            {% endif %}
+          
+          
           </li>
       </ul>
   </div>
-
-{% if search_form %} 
-    <form action="/q/" method="POST">
-        {% block site-search %}
-        {% csrf_token %}
-        {{ search_form }}
-        <input type="submit" value="Buscar" class="small-submit"/>
-        {% endblock site-search %}
-    </form>
-{% endif %}
-
-{% if user.is_authenticated %}
-    <p>Hola,
-        <a href="/cuenta/perfil/">
-    {% if request.user.perfil %} {{ request.user.perfil.nick }}
-    {% else %} {{ request.user.username }}
-        </a>
-    {% endif %}
-    <a href="/accounts/logout/">[Salir]</a>
-{% else %}<a href="/accounts/login/">Inciar sesión</a>  <a href="/accounts/signup/">Crear cuenta</a>
-    </p>
-{% endif %}
-
 </div>

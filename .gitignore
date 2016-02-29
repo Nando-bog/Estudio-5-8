@@ -31,7 +31,6 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
-static/*
 *.jpg
 *.png
 *.gif
