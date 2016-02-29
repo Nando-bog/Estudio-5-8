@@ -17,8 +17,7 @@
       </ul>
   </div>
 
-{% if search_form %}
-<div id="search-box">  
+{% if search_form %} 
     <form action="/q/" method="POST">
         {% block site-search %}
         {% csrf_token %}
@@ -26,21 +25,18 @@
         <input type="submit" value="Buscar" class="small-submit"/>
         {% endblock site-search %}
     </form>
-</div>
 {% endif %}
 
-<div id="user-info">
-    {% if user.is_authenticated %}
-        <p>Hola,
-            <a href="/cuenta/perfil/">
-        {% if request.user.perfil %} {{ request.user.perfil.nick }}
-        {% else %} {{ request.user.username }}
-            </a>
-        {% endif %}
-        <a href="/accounts/logout/">[Salir]</a>
-    {% else %}<a href="/accounts/login/">Inciar sesión</a> || <a href="/accounts/signup/">Crear cuenta</a>
-        </p>
+{% if user.is_authenticated %}
+    <p>Hola,
+        <a href="/cuenta/perfil/">
+    {% if request.user.perfil %} {{ request.user.perfil.nick }}
+    {% else %} {{ request.user.username }}
+        </a>
     {% endif %}
-</div>
+    <a href="/accounts/logout/">[Salir]</a>
+{% else %}<a href="/accounts/login/">Inciar sesión</a>  <a href="/accounts/signup/">Crear cuenta</a>
+    </p>
+{% endif %}
 
 </div>
