@@ -2,7 +2,7 @@
 
 /* Google Fonts */
 
-@import url(http://fonts.googleapis.com/css?family=Bitter:400,700|Raleway:900,400,300);
+@import url(https://fonts.googleapis.com/css?family=Bitter:400,700|Raleway:900,400,300);
 
 /* RESET  */
 
@@ -542,7 +542,7 @@ a:hover {
 	width: 100%;
 	left: 0px;
 	top: 0px;
-	background-image: url({% static '' %}images/{{ background }});
+	/*background-image: url({% static '' %}{{ background }});*/
 	background-size: cover;
 }
 
