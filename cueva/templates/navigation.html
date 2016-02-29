@@ -12,9 +12,11 @@
                   <li><a href="/roubo/GLR/">Galerías <span class="menu-item-sub">de proyectos</span></a></li>
                   <li><a href="/el-estudio">El estudio <span class="menu-item-sub">¿Qué es?</span></a></li>
                   <li><a href="/contacto">Contacto <span class="menu-item-sub">&nbsp;</span></a></li>
-              </ul>
-          
-            {% if search_form %} 
+              </ul>      
+          </li>
+      </ul>
+  </div>
+       {% if search_form %} 
                 <form action="/q/" method="POST">
                     {% block site-search %}
                     {% csrf_token %}
@@ -35,9 +37,4 @@
             {% else %}<a href="/accounts/login/">Inciar sesión</a>  <a href="/accounts/signup/">Crear cuenta</a>
                 </p>
             {% endif %}
-          
-          
-          </li>
-      </ul>
-  </div>
 </div>
