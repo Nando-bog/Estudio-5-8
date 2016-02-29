@@ -2,6 +2,7 @@
 # Views que integran el home para el proyecto general.
 # Version 0.1
 # Django/Python Libs.
+from random import choice
 from django.views.generic.base import TemplateView
 from django.shortcuts import render
 from django.db.models import Q
@@ -10,7 +11,7 @@ from django.contrib.contenttypes.models import ContentType
 import watson
 # Project libs
 from .forms import SiteSearch
-from .models import DestacadoHome
+from .models import DestacadoHome, ImagenFondoHome
 from roubo.models import Recurso, Destacado
 from studley.models import ClaseHerramienta
 
@@ -67,10 +68,12 @@ def dynamic_css(request):
 
 
 def dynamic_css_1(request):
+    # imagen de fondo
+    imagen_fondo = ImagenFondoHome.objects.all()[0]
     return render(
         request,
         '5-8-styles-dynamic-1.css',
-        {'background': 'background-home-1.jpg'},
+        {'background': imagen_fondo.imagen},
         content_type="text/css",
     )
 
