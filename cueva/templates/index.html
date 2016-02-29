@@ -1,6 +1,15 @@
 {% extends "base-1.html" %}
-{% load static %}
-{% load staticfiles %}
+{% load static staticfiles %}
+{% load random_background_image %}
+
+{% block other_imports %}
+  <style>
+  .home-slider {
+	clear: right;
+  }
+	
+  </style>
+{% endblock other_imports %}
 
 {% block other_meta_tags %}
 <!--    #FACEBOOK LIKE/SHARE BUTTON CONFITURATION: https://developers.facebook.com/docs/plugins/like-button-->
@@ -13,8 +22,13 @@
     <script src="https://apis.google.com/js/platform.js" async defer>
       {lang: 'es-419'}
     </script>
-    
 {% endblock other_meta_tags%}
+
+{% block page_background %}
+<div id="home-background">
+<!--<img src="img/background-1.jpg" width="3872" height="2592" alt="Estudio 5-8"> -->
+</div>
+{% endblock page_background %}
 
 {% block page_content %}
 
@@ -69,6 +83,19 @@
       <p>{{ destacado.cuerpo |truncatechars:200 |striptags }}</p>
   	</div>
 	{% endfor %}
+</div>
+<div class = "home-slider font-color-3">
+  {% random_image as bg_image %}
+  <script async>
+	var bg_image_url = "{% static ''%}";
+	bg_image_url += "{{ bg_image.imagen }}";
+	console.log(bg_image_url)
+	bg_div = document.getElementById("home-background");
+	bg_div.style.backgroundImage = "url("+bg_image_url+")";
+  </script>
+    <p><i>{{ bg_image.nombre }}</i></p>
+    <p><i>{{ bg_image.autor }}</i><p>
+	<p><i>{{ bg_image.licencia }}</i><p>
 </div>
 </div>
 
