@@ -3,6 +3,8 @@
 # version 0.1
 # febrero 26, 2016
 import datetime
+import os
+from uuid import uuid4
 from django.db import models
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
